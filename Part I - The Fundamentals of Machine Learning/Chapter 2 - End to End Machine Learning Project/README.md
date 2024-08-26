@@ -1,5 +1,14 @@
 # Working with Real Data
+In this chapter, a simple and complete example will be executed to illustrate the step-by-step process of a machine learning project. The project will illustrate a real-state company. The following steps will be:
 
+1. Observe the complete scope
+2. Obtain data
+3. Analyze and visualize the data
+4. Prepare the data for the ML model
+5. Select and train the model
+6. Improve the model
+7. Present the solution
+8. Send, monitor and maintain the system
 
  
 # Look at the Bit Picture
