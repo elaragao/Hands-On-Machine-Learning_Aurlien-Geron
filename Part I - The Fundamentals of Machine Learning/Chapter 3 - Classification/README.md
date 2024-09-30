@@ -73,20 +73,140 @@ sgd_clf.predict([some_digit])
 
 # Performance Measures
 
+Compared to the previous chapter, evaluating a classifier is a little more laborious than a regressor. Some ways to evaluate this will be presented.
+
+
+
 ## Measuring Accuracy Using Cross-Validation
+
+Just as we saw in [Chapter 2], using Cross-Validation will separate the training set into k-folds, in the current case, 3 folds, training the model k times and holding a different fold for evaluations.
+
+```python
+from sklearn.model_selection import cross_val_score
+
+cross_val_score(sgd_clf, X_train, y_train_5, cv=3, scoring="accuracy")
+```
+
+When observing the accuracy, you can observe a very high value in all folds. This occurs because, even with the errors, the minority of values ​​are different from 5, which makes the evaluation model give the false impression that the model is excellent. To demonstrate this, it is possible to use the `DummyClassifier`, which classifies all values ​​with the most frequent data, in this case, different from 5, and will still obtain a high accuracy (in this case, above 90%).
+
+Thus, it is possible to observe that accuracy is not the best way to evaluate classifiers, especially when dealing with _skewed datasets_ (when one value is much more frequent than others).
+
 
 ## Confusion Matrices
 
-## Precision and Recall
+A confusion matrix counts the number of times instances A and B were classified for all possible A/B pairs. To calculate the confusion matrix, it is first necessary to have a set of predictions so that it can be compared to the correct labels. It is important to note that for now the test set should be ignored.
+
+In addition to the scores, k-fold validation can return the predictions made for each fold. This is ideal for analysis at this stage of the project.
+
+```python
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_train_5, y_train_pred)
+```
+
+This will return a 2×2 matrix. Each row represents a real class, while columns represent the _predicted class_
+
+
+
+
+<div class="block-language-tx"><table>
+<thead>
+	<tr>
+		<th style="text-align:center" colspan="2">Confusion Matrix</th>
+	</tr>
+</thead>
 	
+<tbody>
+	<tr>
+		<td>
+			<b>Negative</b>
+		</td>
+		<td>
+			<b>False Positive</b>
+		</td>	
+	</tr>
+</tbody>
+
+<tbody>
+	<tr>
+		<td>
+			<b>False Negative</b>
+		</td>
+		<td>
+			<b>Positive</b>
+		</td>
+	</tr>
+</tbody>
+
+</table>
+</div>
+
+
+
+
+
+- **Negatives**: Values ​​correctly classified as negative.
+- **False Positive**: Or type I error, where a negative value is classified as positive.
+- **False Negative**: Or type II error, where a positive value is classified as negative.
+- **Positive**: Values ​​correctly classified as positive.
+
+In addition to the confusion matrix, it is necessary to obtain more concise metrics, which are **Precision** and **Recall**.
+
+Precision: Indicates the proportion of correct positive predictions in relation to the total positive predictions made by the model.
+
+```math
+Precision = \frac{TP}{TP + FP}
+```
+Recall: Also called sensitivity or true positive rate (TPR), it measures the model's ability to find all positive samples in the dataset.
+
+```math
+Recall = \frac{TP}{TP + FN}
+```
+
+
+
+## Precision and Recall
+
+Scikit-Learn provides function to compute the values ​​of Precision and Recall:
+
+```python
+from sklearn.metrics import precision_score, recall_score
+
+precision_score(y_train_5, y_train_pred)   # == TP / (TP + FP)
+recall_score(y_train_5, y_train_pred)      # == TP / (TP + FN)
+```
+
+One way to use Precision and Recall for analysis is to use the F1 metric, which consists of a _harmonic mean_ between them, giving better results for F1 only when both Precision and Recall are high and favors when they are similar.
+
+```python
+from sklearn.metrics import f1_score
+f1_score(y_train_5, y_train_pred)
+```
+
+```math
+F1 = \frac{2}{\frac{1}{Precision} + \frac{1}{Recall}} = 2 × \frac{Precision × Recall}{Precision + Recall} = \frac{TP}{TP + \frac{FN + FP}{2}}
+```
+
+It is important to highlight for future analyses that, because it favors when Precision and Recall are similar, it is not ideal for certain cases, in metrics that favor one and neglect the other. For example:
+
+- **Precision more important**: In the case of detecting safe videos for children, it is preferable to reject videos that are safe (**Low Recall**), but keep the safe videos (**High Precision**).
+- **Recall more important**: When training something to detect shoplifters, it is preferable to have a higher false alarm rate (**Low Precision**), but to detect almost all cases where a shoplifting occurred (**High Recall**).
+
+It is not possible to have a high rate for both, increasing Precision reduces Recall, and vice versa. This is called the _Precision/Recall Trade-off_
+
+
+ 
 ## The Precision/Recall Trade-Off
+
+
 
 ## The ROC Curve
 
 
 
-
 # Multiclass Classification
+
+
 
 
 
