@@ -27,6 +27,10 @@ from sklearn.datasets import fetch_openml
 mnist = fetch_openml('mnist_784', as_frame=False)
 ```
 
+> [!TIP]
+> When dealing with images, it is preferable not to use DataFrames. To do this, set `as_frame=False`.
+
+
 In this set there are 70,000 images, each with 784 features, because each image has a dimensionality of 28×28 pixels, and these have intensities from 0 (white) to 255 (black). To more successfully analyze the images, it is necessary to reshape them into a 28×28 matrix, using `cmap="binary"` to obtain a color map:
 
 ```python
