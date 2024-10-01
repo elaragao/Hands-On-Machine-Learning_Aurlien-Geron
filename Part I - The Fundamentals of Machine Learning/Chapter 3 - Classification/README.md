@@ -197,6 +197,52 @@ It is not possible to have a high rate for both, increasing Precision reduces Re
 
  
 ## The Precision/Recall Trade-Off
+In order to understand how _Trade-Off_ works, it is important to first understand how the `SGDClassifier` operates. For each instance, a score is calculated based on the `Decision Function`. If the chosen digit is **greater** than the _threshold_, it will be categorized as a positive instance, and if it is **less** than the _threshold_, it will be categorized as a negative instance. Below we will compare three positions of the **Decision Threshold**:
+
+
+![tradeoff_precisionrecall](https://github.com/user-attachments/assets/0d639c83-13a6-4f15-b7b2-6f147a2a2780)
+
+
+- Position on the Left: The position between the number "9" and "5" contains 6 TP numbers, and 2 FP numbers.
+- Position in the Center: The position between two "5" numbers, contains 4 TP numbers (real "5") on the right, and one FP (a "6" number), returning a Precision of 80% and a Recall of 67%.
+- Position on the Right: The position between "6" and "5" contains 3 TP numbers and 3 FN numbers.
+
+> [!IMPORTANT]
+> It is then possible to observe that increasing the threshold makes Precision greater and Recall smaller, and vice versa.
+
+Although it is not possible to define the threshold directly, it is possible, through the decision scores, to change this value, calling the `decision_function()` method instead of the `predict()` method, which will return the score of the instances and then set the threshold:
+
+
+```python
+y_scores = sgd_clf.decision_function([some_digit])
+y_scores
+
+threshold = 0
+y_some_digit_pred = (y_scores > threshold)
+```
+
+To decide which threshold to use, assuming that we have cross-validation, we must define the return of the scores and not the predictions. From there, it is possible to use the `precision_recall_curve()` function to then calculate the possible limits between Precision and Recall.
+
+```python
+from sklearn.metrics import precision_recall_curve
+
+y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3, method="decision_function")
+
+precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores)
+
+```
+
+Assuming that you decide to opt for a threshold where you have 90% Precision, an alternative is to use the NumPy `argmax()` function to obtain the lowest limit that this is found, obtaining the first index of the maximum value. Then, with this, it is possible to make predictions with the `predict()` method.
+
+```python
+idx_for_90_precision = (precisions >= 0.90).argmax()
+threshold_for_90_precision = thresholds[idx_for_90_precision]
+
+y_train_pred_90 = (y_scores >= threshold_for_90_precision)
+```
+
+> [!CAUTION]
+> Even though there is a high Precision, a low Recall, such as the one obtained at 48%, is not a good thing.
 
 
 
