@@ -276,11 +276,17 @@ roc_auc_score(y_train_5, y_scores)
 
 After using the `SGDClassifier` model, it is important to try other models, such as `RandomForestClassifier`, where their PR curves and F1 score will be compared. The `precision_recall_curve()` function, which was used from the _scores_ in the SGD model, which cannot be obtained in a _RandomForestClassificer_ because it does not have a `decision_function()` method, instead it has the `predict_proba()` method, which returns the class probabilities of each instance.
 
-```python 
+```python
 from sklearn.ensemble import RandomForestClassifier
 
 forest_clf = RandomForestClassifier(random_state=42)
-y_probas_forest = cross_val_predict(forest_clf, 0.5 # positive probability ≥ 50%
+y_probas_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=3, method="predict_proba")
+```
+
+To make Score predictions, codes such as:
+
+```python
+y_train_pred_forest = y_probas_forest[:, 1] >= 0.5  # positive proba ≥ 50%
 
 f1_score(y_train_5, y_pred_forest)
 roc_auc_score(y_train_5, y_scores_forest)
