@@ -295,6 +295,54 @@ roc_auc_score(y_train_5, y_scores_forest)
 
 # Multiclass Classification
 
+_Multiclass Classifiers_ or _Multinomial Classifiers_ are capable of classifying into more than two classes. Some examples of classifiers are:
+- Binary: `SGDClassifier`,`SVC`
+- Multiclass: `LogisticRegression`,`RandomForestCLassifier`,`GaussianNB`
+
+Although binary classifiers are not capable of distinguishing between more than two classes, it is possible to use them for this purpose. For this, there are two most popular strategies that will be exemplified using the dataset we are currently studying:
+- _One Versus The Rest_ (OvR) or _One Versus All_ (OvA): Individually classifies each digit (i.e., 0-detector, 1-detector, 2-detector...) and from the classifier that has the highest score obtains its decision.
+- _One Versus One_ (OvO): These are classifiers that individually distinguish each digit from the other (e.g. "0" and "1", "0" and "2"...). Trains a total of $N \times (N - 1)/2$ classifiers, in our case, 45.
+
+>[!CAUTION]
+> Looking at the two strategies for binary classifiers to operate as multiclass, you might be wondering "In which case would it be advantageous to use _One Versus One_. In the case of some algorithms, such as SVM (Support Vector Machines), which scale poorly with increasing training set, this strategy provides the advantage of being a large set of small training sets, and not a large training set, allowing better use of this algorithm. But for most binary classification, the _One Versus The Rest_ method is still preferred.
+
+Scikit-Learn detects whether it is trying to use a binary classification algorithm, and selects _OvO_ or _OvR_ depending on which algorithm. Assuming you want to test the SVM algorithm for classification:
+
+```python
+from sklearn.svm import SVC
+
+svm_clf = SVC(random_state=42)
+svm_clf.fit(X_train[:2000], y_train[:2000])  # y_train, not y_train_5
+
+svm_clf.predict([some_digit]) # Predict the value of variable some_digit
+
+some_digit_scores = svm_clf.decision_function([some_digit]) # Return the scores of some_digit
+
+class_id = some_digit_scores.argmax() # Return ID of highest score.
+```
+
+When the classifier is trained, the `classes_` attribute stores a list of the target classes. In most cases, it is necessary to compare the ID obtained in the previous code with the target label.
+
+```python
+svm_clf.classes_
+
+svm_clf.classes_[class_id]
+```
+
+If you wish, you can force the use of the strategy you want, by importing the test class, be it `OneVsOneClassifier` or `OneVsRestClassifier`.
+
+```python
+from sklearn.multiclass import OneVsRestClassifier
+
+ovr_clf = OneVsRestClassifier(SVC(random_state=42))
+ovr_clf.fit(X_train[:2000], y_train[:2000])
+
+ovr_clf.predict([some_digit])
+
+len(ovr_clf.estimators_) # Return number of estimators
+```
+
+It is possible, in an analogous way, to do the same for SGD, which will be explained better in the .ipybn files
 
 
 
@@ -302,7 +350,47 @@ roc_auc_score(y_train_5, y_scores_forest)
 
 # Error Analysis
 
+Assuming that, at this stage, the promising model has been found, it is then necessary to analyze the errors. Initially, it is useful to view a _Confusion Matrix_ using the `confusion_matrix()` function. The `ConfusionMatrixDisplay.from_predictions()` function will plot the graph to aid visualization. Since, on several occasions, the data for one value is in greater number than others, it is useful to normalize the matrix using the `normalize = True` argument.
 
+> [!NOTE]
+> Unlike the matrix seen previously, this one will have dimensions of 10 × 10, it is worth noting that the most relevant data is in the main diagonal.
+
+```python
+from sklearn.metrics import ConfusionMatrixDisplay
+
+y_train_pred = cross_val_predict(sgd_clf, X_train_scaled, y_train, cv=3) # Predict Values
+
+ConfusionMatrixDisplay.from_predictions(y_train, y_train_pred) # Plot Confusion Matrix
+
+ConfusionMatrixDisplay.from_predictions(y_train, y_train_pred,
+ normalize="true", values_format=".0%") # Plot normalized Confusion Matrix
+
+plt.show() 
+```
+
+>[!CAUTION]
+> Be careful, because matrices are not symmetric. For example, assuming that the number "5" was classified x times as number "8", this does not mean that the number "8" was classified x times as number "5".
+
+It is also possible to analyze the weights of the errors. These matrices can be categorized by row or by column. By categorizing by row, we see the percentage of errors where the images identified as the value of the **x** axis were actually the **y** axis. By categorizing by column, we indicate the percentage of the values ​​classified in **x** that are actually **y**. The code below demonstrates the plot of the matrix:
+
+```python
+sample_weight = (y_train_pred !=y_train)
+
+ConfusionMatrixDisplay.from_predictions(y_train, y_train_pred,
+                                        sample_weight=sample_weight,
+                                        normalize="true", values_format=".0%")
+
+plt.show()
+```
+
+> [!WARNING]
+> This type of matrix indicates the percentages of the **TOTAL ERRORS**, and not of all the values. It is observable since, in the main matrix, all the values ​​that correspond to themselves are 0%.
+
+Performing the analyses of these types of confusion matrices is useful for reducing possible errors. Some possible options when detecting errors in a specific class are:
+- Obtaining more training data (which resembles the value giving the error, an FP) for the classifier to distinguish from the real ones.
+- Improving the algorithm to have closed loops in the class giving the error.
+- Pre-processing the images so that the errors stand out more and are correctly detected.
+- Analyzing individual errors.
 
 
 # Multilabel Classification
