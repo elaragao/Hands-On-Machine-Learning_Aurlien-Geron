@@ -247,7 +247,44 @@ y_train_pred_90 = (y_scores >= threshold_for_90_precision)
 
 
 ## The ROC Curve
+The _Receiver Operating Characteristic_ (ROC) curve is another method for binary classifiers. The ROC curve compares the Recall (or _True Positive Rate_) with _False Positive Rate_ (FPR), also called _fall-out_, which is the rate of negative instances classified as positive. To plot the curve, you can obtain the values ​​through the code:
 
+> [!NOTE]
+> _True Negative Rate_ (TNR), or _specificity_ can also explicitly specify the FPR value, where $FPR = 1 - TNR$
+
+```python
+from sklearn.metrics import roc_curve
+
+fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)
+```
+
+> [!IMPORTANT]
+> There is also a trade-off in the relationship between TPR (Recall) and FPR. The higher one, the lower the other.
+
+To estimate the classifiers, one way is to compare the _Area Under the Curve_ (AUC). A perfect classifier will have an area of ​​1, and a random one will have an area of ​​about 0.5. This can be estimated from the code:
+
+```python
+from sklearn.metrics import roc_auc_score
+
+roc_auc_score(y_train_5, y_scores)
+```
+
+>[!IMPORTANT]
+> How to choose between the ROC curve and the Precision/Recall (PR) curve?
+>- The PR would be chosen in situations where there are **few positive classes**, or when you care more about **avoiding false positives**. Example: Credit card fraud detection, where there are few cases of fraud (positive) and many cases of non-fraud (negative).
+>- ROC is chosen in more generic situations, where the values ​​are more balanced, **considering both false positives and false negatives**, but it does not detect the problem of false positives in rare classes well.
+
+After using the `SGDClassifier` model, it is important to try other models, such as `RandomForestClassifier`, where their PR curves and F1 score will be compared. The `precision_recall_curve()` function, which was used from the _scores_ in the SGD model, which cannot be obtained in a _RandomForestClassificer_ because it does not have a `decision_function()` method, instead it has the `predict_proba()` method, which returns the class probabilities of each instance.
+
+```python 
+from sklearn.ensemble import RandomForestClassifier
+
+forest_clf = RandomForestClassifier(random_state=42)
+y_probas_forest = cross_val_predict(forest_clf, 0.5 # positive probability ≥ 50%
+
+f1_score(y_train_5, y_pred_forest)
+roc_auc_score(y_train_5, y_scores_forest)
+```
 
 
 # Multiclass Classification
