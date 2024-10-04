@@ -396,5 +396,76 @@ Performing the analyses of these types of confusion matrices is useful for reduc
 # Multilabel Classification
 
 
+For _Multilabel Classification_, an example would be a basic face recognition system. Assume there are 3 people, Bob, Alice and Charlie. Assuming a picture is shown where Alice and Charlie are present, the output should be [False, True, True], meaning Bob is not there, Alice is there and Charlie is there. Systems that output multiple binary tags. Let's take an example we are working on:
+
+```python
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+y_train_large = (y_train >= '7') # Select numbers bigger than 7
+y_train_odd = (y_train.astype('int8') % 2 == 1) # Select odd numbers
+
+y_multilabel = np.c_[y_train_large, y_train_odd] 
+
+knn_clf = KNeighborsClassifier()
+knn_clf.fit(X_train, y_multilabel)
+```
+
+The code works by creating two targets for the digits, the first one to see if the number is greater than seven and the second one to see if it is odd, then it creates a `KNeighborsCLassifier` that is capable of performing multilabel classification. The prediction returns an array containing the answers to whether the digit is greater than "7" and whether or not it is odd.
+
+
+There are several ways to evaluate a _Multilabel Classifier_, as seen in the binary classifiers. The approach used for this will be the `F1 Score`.
+
+```python
+y_train_knn_pred = cross_val_predict(knn_clf, X_train, y_multilabel, cv=3)
+
+f1_score(y_multilabel, y_train_knn_pred, average="macro")
+```
+> [!NOTE]
+> It is worth noting that this method considers all labels equally important, which is not always the case. If this needs to be changed and the labels need to be weighted, it is necessary to define `average = "weighted"`.
+
+
+It is possible to make a classifier that does not natively support the _Multilabel Classifier_, with `SVC`, for example, but it will have difficulty understanding the dependencies between labels like the ones we have, being the large digit (7, 8, and 9) has a greater probability of being odd, but one classifier does not have information about the other. It is possible to make a chain organization through the class present in Scikit-Learn, `ChainClassifier`.
+
+> [!NOTE]
+> It is also possible to do `cross-validation` with this class, using the `cv` hyperparameter.
+
+
+
+```python
+from sklearn.multioutput import ClassifierChain
+
+chain_clf = ClassifierChain(SVC(), cv=3, random_state=42)
+chain_clf.fit(X_train[:2000], y_multilabel[:2000])
+
+chain_clf.predict([some_digit])
+```
 
 # Multioutput Classification
+
+_Multioutput Classification_ is a generalization of multilabel classification where each label can be multiclass (i.e., it can have more than two possible values). To illustrate this, a system will be created that removes noise from images, and will produce a clean digit.
+
+It is observable that in the output there is one label per pixel, and each label has intensity values ​​from 0 to 255, therefore, it is a _Multioutput Classification_ system. Then, a function will be made to add "noise" to the digits
+
+```python
+np.random.seed(42) # to make this code example reproducible
+noise = np.random.randint(0, 100, (len(X_train), 784))
+X_train_mod = X_train + noise
+noise = np.random.randint(0, 100, (len(X_test), 784))
+X_test_mod = X_test + noise
+y_train_mod = X_train
+y_test_mod = X_test
+```
+
+Then, `KNeighborsClassifier` will be used to obtain the classifications:
+
+```python
+knn_clf = KNeighborsClassifier()
+knn_clf.fit(X_train_mod, y_train_mod)
+
+clean_digit = knn_clf.predict([X_test_mod[0]])
+plot_digit(clean_digit)
+
+plt.show()
+```
+
