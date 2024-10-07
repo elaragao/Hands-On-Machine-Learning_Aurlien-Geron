@@ -161,7 +161,7 @@ lin_reg.predict(X_new)
 <!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
 
 ## Computational Complexity
-
+When using the training method and parameter adjustments mentioned, the computational complexity and time taken are linear, that is, having twice as many resources would take twice as long. It is necessary to analyze other ways of adjusting the parameters, such as those that will be seen in later sections.
 
 
 
@@ -169,9 +169,24 @@ lin_reg.predict(X_new)
 
 
 # Gradient Descent
+
+_Gradient Descent_ is a very general optimization algorithm capable of iteratively adjusting parameters to minimize a cost function.
+
+The algorithm measures the local gradient of the error function with respect to the parameter vector $\theta$, and goes in the direction of gradient descent, and when it reaches zero it becomes the minimum. The image below will be used to explain the gradient.
+
+![GradDesc](https://github.com/user-attachments/assets/84eccbeb-c249-40f3-878e-eb71beed5c8c)
+
+<!-- Lista pra ver as parada -->
+- f
+- f
+- f
+  
+
+
 ## Batch Gradient Descent
 ## Stochastic Gradient Descent
 ## Mini-Batch Gradient Descent
+
 
 
 
