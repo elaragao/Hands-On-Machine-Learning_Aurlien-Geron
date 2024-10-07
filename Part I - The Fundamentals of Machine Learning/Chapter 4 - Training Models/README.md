@@ -47,7 +47,7 @@ In general terms, the linear model makes predictions by computing a weighted sum
 ```math
 \hat{y} = \theta_{0} + \theta_{1} x_{1} + \theta_{2} x_{2} + ... + \theta_{n} x_{n} 
 ```
-
+<details>
 <summary>Equation terms</summary>
 
 - $\hat{y}$: Is the predicted value.
@@ -63,8 +63,9 @@ An even more concise way of representing this equation is through the vectorized
 \hat{y} = h_{\theta}(x) = \theta \cdot \textbf{x}
 
 ```
-\text{\boldmath$\theta$}
 
+
+<details>
 <summary>Equation terms</summary>
 
 - $\hat{y}$: Is the predicted value.
