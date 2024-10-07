@@ -95,16 +95,70 @@ MSE(X, h_{\theta}) = \frac{1}{m} \sum^{m}_{i = 1} (\theta^{T}x^{i} - y^{i})^{2}
 
 
 ## The Normal Equation
+One way to find the value of $\theta$ that minimizes the MSE is through the Ordinary Least Squares, or, _Normal Equation_.
+
+```math
+
+\hat{\theta} = (X^{T}X)^{-1} X^{T} y
+
+```
+<details>
+<summary>Equation terms</summary>
+
+- $\hat{\theta}$: is the value of $\theta$ that minimizes the _cost function_
+- $y$: is the **vector of target** containing $y^{(1)}$ to $y^{(m)}$
+
+</details>
 
 
 
+Written in code form:
 
-$$\textsf{\textbf{A}}$$
+```python
+from sklearn.preprocessing import add_dummy_feature
 
-$$\textbf{A}$$
+X_b = add_dummy_feature(X) # add x0 = 1 to each instance
+theta_best = np.linalg.inv(X_b.T @ X_b) @ X_b.T @ y
+```
 
-$$\textsf{A}$$
- 
+> [!TIP]
+> In case A and B are both NumPy Arrays, the operation `A @ B` is equivalent to `np.matmul(A,B)`.
+
+Therefore, the way to predict a value using these equations would be:
+
+```python
+X_new = np.array([[0], [2]])
+X_new_b = add_dummy_feature(X_new) # add x0 = 1 to each instance
+y_predict = X_new_b @ theta_best
+y_predict
+
+```
+
+Similarly, it can be calculated using the SciKit-Learn library
+
+```python
+from sklearn.linear_model import LinearRegression
+
+lin_reg = LinearRegression()
+lin_reg.fit(X, y)
+lin_reg.intercept_, lin_reg.coef_
+lin_reg.predict(X_new)
+```
+
+
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
+<!-- Man, I got stuck here. I need to come back later because there was a lot of information in a few lines. -->
 
 ## Computational Complexity
 
