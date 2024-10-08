@@ -9,10 +9,9 @@ This chapter will cover in more depth how the algorithms themselves work, rather
 - Softmax Regression
 
 
+
+<!--
 $\hat{x}$, $\tilde{x}$, $\vec{x}$
-
-
-
 
 A, *A*,**A**, $\textbf{A}$ , $A$
 
@@ -26,7 +25,7 @@ A, *A*,**A**, $\textbf{A}$ , $A$
 ```math
 \mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
 ```
-
+-->
 
 # Linear Regression
 The simplified _Linear Regression_ equation can be seen as:
@@ -175,44 +174,93 @@ When using the training method and parameter adjustments mentioned, the computat
 
 # Gradient Descent
 
-_Gradient Descent_ is a very general optimization algorithm capable of iteratively adjusting parameters to minimize a cost function.
+Gradient Descent is a very general optimization algorithm capable of iteratively adjusting parameters to minimize a cost function.
 
-The algorithm measures the local gradient of the error function with respect to the parameter vector $\theta$, and goes in the direction of gradient descent, and when it reaches zero it becomes the minimum. The image below will be used to explain the gradient.
+The algorithm measures the local gradient of the error function with respect to the parameter vector $\theta$, and goes in the direction of gradient descent, and when it reaches zero it becomes the minimum. The image below will be used to explain the gradient. In a normal case, the method starts with a random $\theta$ (called _Random Initialization_), and then gradually improves. The image below demonstrates how _Gradient Descent_ operates.
 
-![GradDesc](https://github.com/user-attachments/assets/84eccbeb-c249-40f3-878e-eb71beed5c8c)
+
+![GradDesc_3](https://github.com/user-attachments/assets/eb202878-ed1b-4fdc-93a2-f6f2afbea50e)
+
+
+> [!NOTE]
+> It is interesting to note that usually the size of the learning step is proportional to the slope of the cost function, so the steps gradually get smaller as the cost approaches the minimum.
+
+
+An important parameter is the step size, which is determined by the hyperparameter _Learning Rate_. Some cases can be determined or drastically affected by these
+
+
+![GradDesc_2](https://github.com/user-attachments/assets/dc7af7e7-d143-4fdf-8aa8-3a1c40b83c0f)
+
 
 <!-- Lista pra ver as parada -->
-- f
-- f
-- f
-  
 
+- The image on the left shows when the _Learning Rate_ is **too small**, which makes the algorithm need many iterations, and therefore, takes longer.
+- The central image shows when the _Learning Rate_ is **too high**, which makes it go from side to side of the valley, and there is a possibility of ending up higher than when it started, usually failing to find a good solution.
+- The image on the right shows the possibility of having **Local Minimum**, which tends to be no better than the **Global Minimum**. The image shows cases of starting on the left, which would make it stay at the **Local Minimum**, and if it started on the right, it would take a long time to reach the **Global Minimum**
+
+
+
+
+
+
+
+
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 
 ## Batch Gradient Descent
 ```math
-
 \frac{\partial}{\partial \theta _{j}}MSE(\theta) = 
 \frac{2}{m}\sum_{i=1}^{m}(\theta^{T} x^{(i)} - y^{(i)}) x_{j}^{(i)}
-
 ```
 
 
 
 ```math
-
-
 \nabla _{\theta} MSE(\theta) =
-\begin{pmatrix} \frac{\partial}{\partial \theta_{0}}MSE(\theta) \\ \frac{\partial}{\partial \theta_{1}}MSE(\theta) \\ ... \\ \frac{\partial}{\partial \theta_{n}}MSE(\theta) \end{pmatrix}
+\begin{pmatrix}
+  \frac{\partial}{\partial \theta_{0}}MSE(\theta) \\
+  \frac{\partial}{\partial \theta_{1}}MSE(\theta) \\
+  ... \\
+  \frac{\partial}{\partial \theta_{n}}MSE(\theta)
+\end{pmatrix}
 = \frac{2}{m} X^{T} \cdot (X \cdot \theta - y)
+```
 
+
+```math
+
+\theta ^{(next \: step)} = \theta - \eta \nabla _{\theta} MSE(\theta)
 
 ```
+
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Stochastic Gradient Descent
+
+
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Mini-Batch Gradient Descent
 
 
 
-
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Polynomial Regression
 
 
