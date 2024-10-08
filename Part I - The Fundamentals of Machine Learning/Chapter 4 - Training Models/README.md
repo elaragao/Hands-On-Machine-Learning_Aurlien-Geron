@@ -23,6 +23,11 @@ A, *A*,**A**, $\textbf{A}$ , $A$
 ```
 
 
+```math
+\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
+```
+
+
 # Linear Regression
 The simplified _Linear Regression_ equation can be seen as:
 
@@ -184,6 +189,24 @@ The algorithm measures the local gradient of the error function with respect to 
 
 
 ## Batch Gradient Descent
+```math
+
+\frac{\partial}{\partial \theta _{j}}MSE(\theta) = 
+\frac{2}{m}\sum_{i=1}^{m}(\theta^{T} x^{(i)} - y^{(i)}) x_{j}^{(i)}
+
+```
+
+
+
+```math
+
+
+\nabla _{\theta} MSE(\theta) =
+\begin{pmatrix} \frac{\partial}{\partial \theta_{0}}MSE(\theta) \\ \frac{\partial}{\partial \theta_{1}}MSE(\theta) \\ ... \\ \frac{\partial}{\partial \theta_{n}}MSE(\theta) \end{pmatrix}
+= \frac{2}{m} X^{T} \cdot (X \cdot \theta - y)
+
+
+```
 ## Stochastic Gradient Descent
 ## Mini-Batch Gradient Descent
 
