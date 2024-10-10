@@ -213,12 +213,16 @@ An important parameter is the step size, which is determined by the hyperparamet
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 
 ## Batch Gradient Descent
+
+In order to implement _Gradient Descent_, it is necessary to calculate the gradient of the cost functions of each parameter of the model $\theta_{j}$, that is, calculate for small changes in $\theta_{j}$. To calculate this function, the equation below is used:
+
+
 ```math
 \frac{\partial}{\partial \theta _{j}}MSE(\theta) = 
 \frac{2}{m}\sum_{i=1}^{m}(\theta^{T} x^{(i)} - y^{(i)}) x_{j}^{(i)}
 ```
 
-
+In simpler terms, it is possible to calculate the gradient vector described as $\nabla MSE(\theta)$, which contains all the partial derivatives of the cost function (one for each parameter of the model). This is why it is called _Bach Gradient Descent_, since it calculates the entire batch of data at each step.
 
 ```math
 \nabla _{\theta} MSE(\theta) =
@@ -231,6 +235,7 @@ An important parameter is the step size, which is determined by the hyperparamet
 = \frac{2}{m} X^{T} \cdot (X \cdot \theta - y)
 ```
 
+Then, obtaining the value, it is necessary to subtract the value $\theta$ from the result obtained by the gradient $\nabla MSE(\theta)$, which is multiplied by a constant called _Learning Rate_, represented by the letter $\eta$, which operates determining the step size.
 
 ```math
 
@@ -238,12 +243,12 @@ An important parameter is the step size, which is determined by the hyperparamet
 
 ```
 
-
+The code below exemplifies how this equation works:
 
 ```python
 
 eta = 0.1  # learning rate
-n_epochs = 1000
+n_epochs = 1000 # number of iterations
 m = len(X_b)  # number of instances
 
 np.random.seed(42)
@@ -256,7 +261,16 @@ for epoch in range(n_epochs):
 
 ```
 
+The image below demonstrates how different learning rate values ​​operate.
 
+[Image]
+
+- **On the left** there is a very low **Learning Rate**, it will be possible to reach the solution, but it will take a long time.
+- **In the center** the **Learning Rate is good**, converging to the solution in a few iterations
+- **On the right** there is a very high **Learning Rate**, causing the algorithm to diverge, getting further away from the solution at each step.
+
+> [!TIP]
+> It is possible to use `GridSearch` to find a good learning rate, but it is important to limit the number of iterations to avoid slow models.
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
