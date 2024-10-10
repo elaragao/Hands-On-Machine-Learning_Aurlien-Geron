@@ -269,8 +269,12 @@ The image below demonstrates how different learning rate values ​​operate.
 - **In the center** the **Learning Rate is good**, converging to the solution in a few iterations
 - **On the right** there is a very high **Learning Rate**, causing the algorithm to diverge, getting further away from the solution at each step.
 
-> [!TIP]
+> [!NOTE]
 > It is possible to use `GridSearch` to find a good learning rate, but it is important to limit the number of iterations to avoid slow models.
+
+
+> [!TIP]
+> How to set the number of iterations? If it is too low, it may be far from the ideal solution, if it is too high, it will take a long time. One possible solution is to **set a large number of iterations** and stop the algorithm when the gradient vector becomes too small, when the norm becomes smaller than the number $\epsilon $ (the _tolerance_), which occurs when the Gradient Descent reaches **Near Minimum**.
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
@@ -294,7 +298,7 @@ The image below demonstrates how different learning rate values ​​operate.
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Polynomial Regression
-
+_Polynomial Regression_ is a way to perform regression on data sets that do not follow a linear structure using a linear-like model. A simple way to do this is to add the necessary powers to fit the model.
 
 
 
