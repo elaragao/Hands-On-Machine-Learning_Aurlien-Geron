@@ -300,6 +300,7 @@ The image below demonstrates how different learning rate values ​​operate.
 # Polynomial Regression
 _Polynomial Regression_ is a way to perform regression on data sets that do not follow a linear structure using a linear-like model. A simple way to do this is to add the necessary powers to fit the model.
 
+The Scikit-Learn `PolynomialFeatures` class
 
 
 
