@@ -263,7 +263,11 @@ for epoch in range(n_epochs):
 
 The image below demonstrates how different learning rate values ​​operate.
 
-[Image]
+
+![GradDesc_5](https://github.com/user-attachments/assets/e3c47a34-6876-45f7-8edf-8b1aea07b2e0)
+
+
+
 
 - **On the left** there is a very low **Learning Rate**, it will be possible to reach the solution, but it will take a long time.
 - **In the center** the **Learning Rate is good**, converging to the solution in a few iterations
@@ -274,7 +278,7 @@ The image below demonstrates how different learning rate values ​​operate.
 
 
 > [!TIP]
-> How to set the number of iterations? If it is too low, it may be far from the ideal solution, if it is too high, it will take a long time. One possible solution is to **set a large number of iterations** and stop the algorithm when the gradient vector becomes too small, when the norm becomes smaller than the number $\epsilon $ (the _tolerance_), which occurs when the Gradient Descent reaches **Near Minimum**.
+> How to set the number of iterations? If it is too low, it may be far from the ideal solution, if it is too high, it will take a long time. One possible solution is to **set a large number of iterations** and stop the algorithm when the gradient vector becomes too small, when the norm becomes smaller than the number $\epsilon$ (the _tolerance_), which occurs when the Gradient Descent reaches **Near Minimum**.
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
