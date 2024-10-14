@@ -292,7 +292,13 @@ To understand _Stochastic Gradient Descent_ (**SGD**), it is important to reinfo
 The stochastic nature or randomness of SGD makes the algorithm much less regular compared to _Batch Gradient Descent_, which smoothly reduces to a minimum, SGD **approaches the minimum** and will keep "bouncing", but not stabilizing.
 
 
+> [!NOTE]
+> In short, randomness is **good** because it avoids local minima, and **bad** because it does not establish a minimum.
 
+One way to reduce the problem caused by randomness is to gradually decrease the _learning rate_, starting with large values ​​to avoid local minima and decreasing it until a global minimum is established, a process called _simulated annealing_. The name of the function that determines the _learning rate_ at each iteration is _learning scheadule_.
+
+> [!CAUTION]
+> If the learning rate decreases **quickly** it can get stuck in local minima, if it decreases **slowly** it can hover around the minimum for a long time.
 
 
 ```python
@@ -319,6 +325,21 @@ for epoch in range(n_epochs):
 		theta = theta - eta * gradients
 
 ```
+
+
+
+It is possible to perform linear regression using SGD through the Scikit-Learn `SGDRegressor` library. The function operates until it reaches the maximum number of epochs as 1000 (_max_iter_) **or** until it decays less than the set value of $10^{-5}$ (_tol_) in an interval of 100 epochs (_n_iter_no_change_). It starts with a _learning rate_ of 0.01 (_eta0_).
+
+
+```python
+from sklearn.linear_model import SGDRegressor
+
+sgd_reg = SGDRegressor(max_iter=1000, tol=1e-5, penalty=None, eta0=0.01,n_iter_no_change=100, random_state=42)
+
+sgd_reg.fit(X, y.ravel())  # y.ravel() because fit() expects 1D targets
+```
+
+
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
