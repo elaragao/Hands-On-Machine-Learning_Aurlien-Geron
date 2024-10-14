@@ -287,7 +287,7 @@ The image below demonstrates how different learning rate values ​​operate.
 ## Stochastic Gradient Descent
 To understand _Stochastic Gradient Descent_ (**SGD**), it is important to reinforce what _Batch Gradient Descent_ is.
 - **Batch Gradient Descent** uses **the entire training set** to calculate the gradients at each step, and if the training set is too large, it will slow down the algorithm.
-- **Stochastic Gradient Descent** chooses **a random instance** in the training set at each step and calculates the gradients based on this chosen random instance, making the algorithm faster.
+- **Stochastic Gradient Descent** chooses **a random instance** (a single sample, like, $x^{(42)}$$ and $y^{(42)}$) in the training set at each step and calculates the gradients based on this chosen random instance, making the algorithm faster.
 
 The stochastic nature or randomness of SGD makes the algorithm much less regular compared to _Batch Gradient Descent_, which smoothly reduces to a minimum, SGD **approaches the minimum** and will keep "bouncing", but not stabilizing.
 
