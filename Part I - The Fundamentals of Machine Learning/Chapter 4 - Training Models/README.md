@@ -420,6 +420,49 @@ One way to reduce overfitting is to regularize the model. The fewer degrees of f
 ## Ridge Regression
 
 
+_Ridge Regression_ acts as a regularized form of _Linear Regression_. A regularization term is added to the cost function (MSE) to penalize models that have very large weights (or coefficients, adjusted parameters of each input feature) to avoid _overfitting_, in an attempt to keep the weights small.
+
+In this regression, the hyperparameter $\alpha$ controls how much the model will be regularized, and when set to 0, there is a linear regression. The equation for the Ridge Regression cost function is:
+
+```math
+
+J(\theta) = MSE(\theta) + \frac{\alpha}{m} \sum^{n}_{i=1} \theta^{2}_{i}
+```
+
+The equation can also be represented in its closed form:
+
+```math
+
+\hat{\theta} = (X^{T}X + \alpha A)^{-1} X^{T} y
+
+```
+
+> [!NOTE]
+> The term **A** represents an identity matrix of dimension $(n+1) \ times (n+1)$, where the value 1 located in the upper left corner is replaced by a 0 corresponding to the bias term.
+
+The most common way to apply Ridge Regression with Scikit-Learn in closed form is:
+
+```python
+from sklearn.linear_model import Ridge
+
+ridge_reg = Ridge(alpha=0.1, solver="cholesky")
+ridge_reg.fit(X, y)
+ridge_reg.predict([[1.5]])
+```
+
+Using SGD for this:
+
+```python
+sgd_reg = SGDRegressor(penalty="l2", alpha=0.1 / m, tol=None, max_iter=1000, eta0=0.01, random_state=42)
+...
+...
+sgd_reg.fit(X, y.ravel()) # y.ravel() because fit() expects 1D targets
+sgd_reg.predict([[1.5]])
+```
+
+The hyperparameter `penalty = "l2"` is what determines the type of regularization used, being a form of regularization equivalent to Ridge Regression, together with the adjustment of the hyperparameter `alpha = 0.1/m`.
+
+
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Lasso Regression
