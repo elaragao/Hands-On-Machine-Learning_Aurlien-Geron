@@ -353,28 +353,85 @@ sgd_reg.fit(X, y.ravel())  # y.ravel() because fit() expects 1D targets
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Polynomial Regression
-_Polynomial Regression_ is a way to perform regression on data sets that do not follow a linear structure using a linear-like model. A simple way to do this is to add the necessary powers to fit the model.
 
-The Scikit-Learn `PolynomialFeatures` class
-
+_Polynomial Regression_ is a way to perform regression on datasets that do not follow a linear structure using a linear-like model. A simple way to do this is to add the necessary powers to fit the model. The Scikit-Learn `PolynomialFeatures` class allows you to perform the process:
 
 
 
 
+```python
+from sklearn.preprocessing import PolynomialFeatures
+
+
+poly_features = PolynomialFeatures(degree=2, include_bias=False)
+X_poly = poly_features.fit_transform(X)
+
+
+lin_reg = LinearRegression()
+lin_reg.fit(X_poly, y)
+lin_reg.intercept_, lin_reg.coef_
+```
+
+
+
+
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Learning Curves
+There are cases in which we do not know the degree of the polynomial to apply to the data fit. If a small degree is chosen, _underfitting_ will tend to occur, if a very large degree is chosen, there will be _overfitting_. It is common practice to use _cross validation_ to evaluate performance.
+
+> [!NOTE]
+> It is important to remember that if the model performs well on the training set and generalizes poorly, the case tends to be **Overfitting**. If the model performs poorly on both, it tends to be **Underfitting**.
+
+In addition to this method, it is also possible to use _Learning Curves_, which consist of graphs comparing the model on the training and validation sets as functions of the size of the training set (or training iteration). They are trained several times on subsets of different sizes in the training set, and then a function is defined for the plot of the curves. The error naturally starts at 0, and stabilizes until it reaches a plateau. An example can be seen in the code below:
 
 
+```python
+from sklearn.model_selection import learning_curve
+
+train_sizes, train_scores, valid_scores = learning_curve(
+ LinearRegression(), X, y, train_sizes=np.linspace(0.01, 1.0, 40), cv=5, scoring="neg_root_mean_squared_error")
+
+train_errors = -train_scores.mean(axis=1)
+valid_errors = -valid_scores.mean(axis=1)
+
+plt.plot(train_sizes, train_errors, "r-+", linewidth=2, label="train")
+plt.plot(train_sizes, valid_errors, "b-", linewidth=3, label="valid")
+
+plt.show()
+
+```
+
+> [!NOTE]
+> By observing the graphs, behaviors can be observed to see whether or not the function would work for the purpose. In the case of **Underfitting**, the training and validation lines will be very close, but with a high error. In the case of **Overfitting**, a considerable distance will be observed between the training and validation sets, with the training set having the lowest error.
 
 
-
-
-
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Regularized Linear Models
-
+One way to reduce overfitting is to regularize the model. The fewer degrees of freedom a model has, the more difficult it will be to overfit, and a simple way to regularize a polynomial model is to reduce the number of degrees. In more linear models, it is common for regularization to be done by adjusting and restricting the model's weights.
 
 ## Ridge Regression
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Lasso Regression
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Elastic Net Regression
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Early Stopping
 
 
@@ -383,13 +440,30 @@ The Scikit-Learn `PolynomialFeatures` class
 
 
 
-
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Logistic Regression
 
 
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Estimating Probabilities
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Training and Cost Function
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Decision Boundaries
+
+
+
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
+<!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Softmax Regression
 
 
