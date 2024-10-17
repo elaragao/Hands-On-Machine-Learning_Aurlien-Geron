@@ -468,6 +468,25 @@ The hyperparameter `penalty = "l2"` is what determines the type of regularizatio
 ## Lasso Regression
 
 
+
+```math
+J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
+```
+
+
+
+```math
+
+g(\theta , J) = \nabla _{\theta} MSE(\theta) + 2 \alpha
+
+
+\begin{bmatrix}  sign(\theta _{1}) \\ sign(\theta _{2}) \\ ... \\ sign(\theta _{n}) \\ \end{bmatrix}
+```
+
+> [!IMPORTANT]
+> It is important to note that both Ridge and Lasso regressions are useful, but they can be better applied in different contexts. **Lasso** is more useful in problems where there are many variables and some are irrelevant to the problem. **Ridge**, on the other hand, performs better in data where all, or almost all, variables are useful.
+
+
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Elastic Net Regression
