@@ -466,7 +466,9 @@ The hyperparameter `penalty = "l2"` is what determines the type of regularizatio
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Lasso Regression
+_Least absolute shrinkage and selection operator regression_ (or Lasso Regression) is another reclassification of Linear Regression. It is similar to Ridge Regression, but adds a regularization term $2 \alpha$ and operates using the norm $\ell _{1}$, unlike $\ell _{2}$ in that it is not the square, but the sum of the norms of the weights.
 
+A difference in Lasso Regression is that it eliminates the least relevant weights, making them 0.
 
 
 ```math
