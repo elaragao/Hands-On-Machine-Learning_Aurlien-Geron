@@ -550,11 +550,7 @@ elastic_net.predict([[1.5]])
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Early Stopping
 
-
-
-```math
-J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
-```
+Early Stopping consists of the regularization of iterative algorithms by stopping training as soon as the validation error reaches a minimum, discovered by saving the values ​​and obtaining a series of values ​​above the minimum found, returning to the minimum.
 
 
 
@@ -564,15 +560,70 @@ J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 # Logistic Regression
-
+Logistic Regression is used to estimate the probability of an instance belonging to a certain class, acting as a classification algorithm.
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Estimating Probabilities
 
+Similar to linear regression, logistic regression calculates the weighted sum of the input characteristics (_polarization terms_), giving as output the logistic of the result, through the equation, where $\sigma$ is the logistic function:
+
+
+```math
+\hat{p} = h_{\theta}(x) = \sigma (\theta^{T}x) 
+
+\: \: \: \: where \: \: \: \: \sigma (t) = \frac{1}{1+e^{-t}}
+```
+
+By estimating the probability of the model of the instance **x**, it is possible to predict $\hat{y}$:
+
+
+```math
+\hat{y} = \left\{  \begin{matrix} 
+0 \: \: \: if \: \: \: \hat{p} < 0.5 \\
+1 \: \: \: if \: \: \: \hat{p} \geq 0.5
+\end{matrix} \right.
+```
+
+Then, by this model, it is predicted that the return value of $\hat{y}$ is 1 when the value of $\theta ^{T} x$ is **positive** and 0 if it is **negative**.
+
+
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Training and Cost Function
+
+
+```math
+c(\theta) = 
+\left\{ 
+\begin{matrix}
+-log(\hat{p}) \: \: \: if \: \: \: y = 1 \\
+-log(1 - \hat{p}) \: \: \: if \: \: \: y = 0
+\end{matrix}
+\right.
+```
+
+
+
+```math
+
+J(\theta) = \frac{1}{m} \sum^{m}_{i=1} 
+[
+(y^{(i)}) log(\hat{p}^{(i)}) + (1 - y^{(i)}) log(1 - \hat{p}^{(i)})
+]
+
+```
+
+
+
+
+
+```math
+
+\frac{\partial}{\partial \theta _{j}} = 
+\frac{1}{m} \sum^{m}_{i=1} (\sigma (\theta ^{T} x^{(i)}) - y^{(i)}) x^{(i)}_{j}
+
+```
 
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
