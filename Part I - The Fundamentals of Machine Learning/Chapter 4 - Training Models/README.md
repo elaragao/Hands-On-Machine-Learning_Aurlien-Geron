@@ -468,14 +468,12 @@ The hyperparameter `penalty = "l2"` is what determines the type of regularizatio
 ## Lasso Regression
 _Least absolute shrinkage and selection operator regression_ (or Lasso Regression) is another reclassification of Linear Regression. It is similar to Ridge Regression, but adds a regularization term $2 \alpha$ and operates using the norm $\ell _{1}$, unlike $\ell _{2}$ in that it is not the square, but the sum of the norms of the weights.
 
-A difference in Lasso Regression is that it eliminates the least relevant weights, making them 0.
-
 
 ```math
 J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
 ```
 
-
+A difference with Lasso Regression is the fact that it eliminates the least relevant weights, making them 0. The image below shows the comparison between Lasso and Ridge regressions, as well as the norms $\ell _{1}$ and $\ell _{2}$:
 
 ```math
 
@@ -492,10 +490,14 @@ g(\theta , J) = \nabla _{\theta} MSE(\theta) + 2 \alpha
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Elastic Net Regression
-```math
-J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
-```
 
+
+
+```math
+
+J(\theta) = MSE(\theta) + r(2 \alpha \sum^{n}_{i=1} |\theta_{i}|) + (1-r) (\frac{a}{m} \sum^{n}_{i=1} \theta^{2}_{i})
+
+```
 
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
