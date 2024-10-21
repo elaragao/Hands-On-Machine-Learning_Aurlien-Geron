@@ -475,28 +475,74 @@ J(\theta) = MSE(\theta) + 2 \alpha \sum^{n}_{i=1} |\theta_{i}|
 
 A difference with Lasso Regression is the fact that it eliminates the least relevant weights, making them 0. The image below shows the comparison between Lasso and Ridge regressions, as well as the norms $\ell _{1}$ and $\ell _{2}$:
 
+![Ridge_Lasso](https://github.com/user-attachments/assets/840a325d-6708-4729-980f-ae58f6c6cb03)
+
+- The **Top Left** graphs represent the loss of $\ell _{1}$ ($|\theta _{1}| + |\theta _{2}|$) starting at $\theta _{1} = 1$ and $\theta _{2} = 0.5$. You can see the linear drop as you approach the axes. In this case, $\theta _{2} = 0$ is reached quickly, and then the gradient descent begins until it reaches $\theta _{1} = 0$ (oscillation is observable, research the reason later)
+- The **Top Right** graphs demonstrate the cost function of **Lasso Regression** (MSE + loss of $\ell _{1}$). The white circles represent the gradient descent, starting at $\theta _{1} = 0.25$ and $\theta _{2} = -1$. The value $\theta _{2}$ reaches 0, and oscillates until it reaches the global minimum represented by the red square. It is worth noting that, in case of an increase in the term $\alpha$, the global optimum would move to the left along the yellow line, and if it decreased, it would move to the right.
+- The graph in the **Bottom Left Corner** represents the loss of $\ell _{2}$ starting at $\theta _{1} = 1$ and $\theta _{2} = 0.5$. You can see that it reduces in a straight line to the origin.
+- The graph in the **Bottom Right Corner** demonstrates the cost function of the **Ridge Regression** (MSE + loss of $\ell _{2}$). It is possible to see that the gradients become smaller as they approach the global minimum, aiding convergence. It is also visible that, as the parameter $\alpha$ increases, they approach the origin, but are never eliminated.
+
+<!-- EQUAÇÃO QUE EU NÃO QUER COLOCAR
 ```math
 
 g(\theta , J) = \nabla _{\theta} MSE(\theta) + 2 \alpha
 
 
 \begin{bmatrix}  sign(\theta _{1}) \\ sign(\theta _{2}) \\ ... \\ sign(\theta _{n}) \\ \end{bmatrix}
+
+
+\: \: \: \: where \: \: \: \: sign \: \: \: \: \theta _{i}
+
+\begin{Bmatrix}
+-1 \: \: \: if \: \: \: < \: \: 0\\
+0  \: \: \: if \: \: \: = \: \: 0\\
++1 \: \: \: if \: \: \:  > \: \: 0\\
+\end{Bmatrix}
+```
+-->
+
+
+
+The way to write using the SciKit-Learn library is as in the code below, but an alternative way would be using `SGDRegressor(penalty="l1", alpha=0.1)`:
+
+```python
+from sklearn.linear_model import Lasso
+
+lasso_reg = Lasso(alpha=0.1)
+lasso_reg.fit(X, y)
+
+lasso_reg.predict([[1.5]])
 ```
 
 > [!IMPORTANT]
 > It is important to note that both Ridge and Lasso regressions are useful, but they can be better applied in different contexts. **Lasso** is more useful in problems where there are many variables and some are irrelevant to the problem. **Ridge**, on the other hand, performs better in data where all, or almost all, variables are useful.
 
 
+
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Elastic Net Regression
 
+Elastic Net Regression operates as a middle ground between Lasso and Ridge, through the coefficient r. When r is closer to 1, it uses Lasso Regression more, and the closer it is to 0, the more it uses Ridge Regression.
 
 
 ```math
 
-J(\theta) = MSE(\theta) + r(2 \alpha \sum^{n}_{i=1} |\theta_{i}|) + (1-r) (\frac{a}{m} \sum^{n}_{i=1} \theta^{2}_{i})
+J(\theta) = MSE(\theta) + r(2 \alpha \sum^{n}_{i=1} |\theta_{i}|) + (1-r) (\frac{a}{m} \sum^{n}_{i=1} \theta^{2}_{i}) = MSE(\theta) + (r)Lasso(\theta) + (1-r) Ridge(\theta)
 
+```
+> [!IMPORTANT]
+> **How ​​to know what to use, Elastic Net, Lasso, Ridge or no regularization?** Usually the default is to use **Ridge** first, but if you suspect there is a factor that does not affect it, you can use **Elastic Net** or **Lasso**, but in a few moments you can choose not to regularize. In short, **Ridge > Elastic Net > Lasso > No Regularization**
+
+The way to write using the SciKit-Learn library is as in the code below, where the hyperparameter `l1_ratio` corresponds to the mix ratio `r`:
+
+```python
+from sklearn.linear_model import ElasticNet
+
+elastic_net = ElasticNet(alpha=0.1, l1_ratio=0.5)
+elastic_net.fit(X, y)
+
+elastic_net.predict([[1.5]])
 ```
 
 
