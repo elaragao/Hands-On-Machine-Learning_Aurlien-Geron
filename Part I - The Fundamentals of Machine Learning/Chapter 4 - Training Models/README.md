@@ -638,10 +638,57 @@ Although it is not possible to write a closed form of the equation, it is possib
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Decision Boundaries
 
-
+In order to better explain Decision Boundaries, a dataset of 150 iris flowers from 3 different species will be used: Versicollor, Setosa and Virginica. This topic will be better addressed in the .ipybn file
 
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Softmax Regression
 
+Softmax Regression, or Multinomial Logistic Regression, consists of generalization to support multiple classes directly, without the need to train multiple binary classifiers. It operates from instance x, computing the score ($s_{k}(x)$) for each class k, and then estimating a probability $\hat{p}$ by applying the **Softmax Function**, or _normalized exponential_.
 
+```math
+s_{k}(x) = (\theta ^{k})^{T}x
+
+```
+
+The probability $\hat{p}$ is then calculated as follows:
+
+```math
+\hat{p}_{k} = \sigma (s(x))_{k} = \frac{exp(s_{k}(x))}{\sum_{j=1}^{K}exp(s_{j}(x))}
+```
+
+Where:
+- K is the number of classes
+- $s(x)$ is the vector containing the scores of each class of instance x
+- $\sigma (s(x))_{k}$
+
+Softmax regression predicts the class with the highest estimated probability, that is, the class with the highest score, as demonstrated in the equation below:
+
+```math
+\hat{y} = argmax _{k} \sigma (s(x))_{k} = argmax _{k} s_{k}(x)
+= argmax _{k} ((\theta^{(k)})^{T} x)
+
+```
+
+> [!NOTE]
+> `argmax` operator returns the value of the variable that maximizes the function.
+
+To train a model with a high probability of a target class, **cross-entropy** is used, which penalizes the model when it estimates a low probability for a correct target class. It is often used to measure how well a set of class probabilities performs.
+
+```math
+
+J(\Theta) = - \frac{1}{m} \sum_{i=1}^{m} \sum_{k=1}^{K} log(\hat{p} _{k} ^{(i)})
+
+```
+
+Since the vector $\theta ^{(k)}$ is used for each class being analyzed, the matrix $\Theta$, which encompasses all classes, is used to calculate the gradient vector for cross-entropy of class k:
+
+```math
+
+\nabla _{\theta} ^{(k)} = \frac{1}{m} \sum^{m}_{i=1} (
+\hat{p}_{k}^{(i)} -  y_{k}^{(i)}
+) x^{(i)}
+
+```
+
+The analyses using this method will be made in the .ipybn file.
