@@ -592,6 +592,7 @@ Then, by this model, it is predicted that the return value of $\hat{y}$ is 1 whe
 <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção --> <!-- Nova Seção -->
 ## Training and Cost Function
 
+The training function is to define the parameter vector $\theta$ so that the model estimates high probabilities for positive instances and low probabilities for negative instances (y = 1 and y = 0). The cost function can be expressed by the equation:
 
 ```math
 c(\theta) = 
@@ -603,7 +604,7 @@ c(\theta) =
 \right.
 ```
 
-
+And this function applied to the entire training set is the average cost in relation to all training instances, and can be written by the expression called _log loss_:
 
 ```math
 
@@ -615,8 +616,15 @@ J(\theta) = \frac{1}{m} \sum^{m}_{i=1}
 ```
 
 
+The use of logarithms in this way can be explained by:
+- $-log(\hat{p})$
+	- It grows a lot when $t \rightarrow 0$. It causes **high cost** for **positive** instances labeled as **negative**.
+	- It approaches 0 when $t \rightarrow 1$. Causes **low cost** for **positive** instances labeled as **positive**.
+- $-log(1 - \hat{p})$
+	- Grows large when $t \rightarrow 1$. Causes **high cost** for **negative** instances labeled as **positive**.
+	- Approaches 0 when $t \rightarrow 0$. Causes **low cost** for **negative** instances labeled as **negative**.
 
-
+Although it is not possible to write a closed form of the equation, it is possible to write its partial derivative. The equation below causes it to calculate the prediction error for each instance and multiply it by the j-th feature value, then average it over all training instances. Once you have the gradient vector containing all the partial derivatives, you can use it in the batch gradient descent algorithm.
 
 ```math
 
