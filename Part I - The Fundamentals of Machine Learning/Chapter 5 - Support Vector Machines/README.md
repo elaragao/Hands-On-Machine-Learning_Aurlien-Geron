@@ -1,6 +1,3 @@
-# Support Vector Machines
-
-
 
 # Linear SVM Classification
 
