@@ -20,6 +20,29 @@ A more flexible model is called _soft margin classification_, and its goal is to
 
 
 # Nonlinear SVM Classification
+In many cases, Linear SVM is not enough. Adding some new features is an alternative, which in some cases can allow linear separation. The image below shows the feature $x_{1}$ on the left, and on the right the addition of the feature $x_{2} = x_{1} ^{2}$, which results in something linearly separable.
+
+[Image]
+
+The Scikit-Learn library has classes capable of both assisting in the application of SVC and in data generation, in this case, the `make_moons` class, a dataset for training binary classifications. The pipeline below demonstrates one way to use this dataset.
+
+
+```python
+from sklearn.datasets import make_moons
+from sklearn.preprocessing import PolynomialFeatures
+
+X, y = make_moons(n_samples=100, noise=0.15, random_state=42)
+
+polynomial_svm_clf = make_pipeline(
+	PolynomialFeatures(degree=3),
+	StandardScaler(),
+	LinearSVC(C=10, max_iter=10_000, random_state=42)
+)
+
+polynomial_svm_clf.fit(X, y)
+
+```
+
 ## Polynomial Kernel
 ## Similarity Features
 ## Gaussian RBF Kernel
