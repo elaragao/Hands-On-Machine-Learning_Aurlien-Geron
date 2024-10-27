@@ -54,7 +54,8 @@ poly_kernel_svm_clf = make_pipeline(StandardScaler(),
 
 poly_kernel_svm_clf.fit(X, y)
 ```
-
+ The hyperparameter `coef0` controls how much the model is influenced by high-degree terms versus low-degree terms.
+ 
 > [!NOTE]
 > Overfitting can be caused by a high polynomial degree, and it is necessary to reduce the degree. The same goes for when Underfitting occurs due to low polynomial degree.
 
