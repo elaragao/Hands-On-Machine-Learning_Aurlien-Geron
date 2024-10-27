@@ -44,8 +44,28 @@ polynomial_svm_clf.fit(X, y)
 ```
 
 ## Polynomial Kernel
+For the application of polynomial methods in SVM, a useful mathematical technique is the _Kernel Trick_, which allows the same result as a high degree polynomial without implementing a high degree. It is worth noting that low degree polynomials may not be good for complex data, and high degree polynomials may make the algorithm very slow. The code below uses a third degree polynomial kernel:
+
+```python
+from sklearn.svm import SVC
+
+poly_kernel_svm_clf = make_pipeline(StandardScaler(),
+	SVC(kernel="poly", degree=3, coef0=1, C=5))
+
+poly_kernel_svm_clf.fit(X, y)
+```
+
+> [!NOTE]
+> Overfitting can be caused by a high polynomial degree, and it is necessary to reduce the degree. The same goes for when Underfitting occurs due to low polynomial degree.
+
 ## Similarity Features
+
+
+
 ## Gaussian RBF Kernel
+
+
+
 ## SVM Classes and Computational Complexity
 
 
