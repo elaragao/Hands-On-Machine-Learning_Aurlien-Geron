@@ -61,7 +61,7 @@ poly_kernel_svm_clf.fit(X, y)
 
 ## Similarity Features
 
-
+This technique consists of adding features using a similarity function, which measures how similar instances are to a specific landmark.
 
 ## Gaussian RBF Kernel
 
