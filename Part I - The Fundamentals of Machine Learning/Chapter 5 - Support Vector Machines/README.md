@@ -102,6 +102,8 @@ It is worth mentioning that the `SGDClassifier` class can produce similar data t
 
 
 
+
+<!-- https://www.analyticsvidhya.com/blog/2021/06/support-vector-machine-better-understanding/#h-svm-regression -->
 # Under the Hood of Linear SVM Classifiers
 
 
