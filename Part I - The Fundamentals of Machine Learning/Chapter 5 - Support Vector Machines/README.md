@@ -61,15 +61,38 @@ poly_kernel_svm_clf.fit(X, y)
 
 ## Similarity Features
 
-This technique consists of adding features using a similarity function, which measures how similar instances are to a specific _landmark_.
+This technique consists of adding features using a similarity function, which measures how similar instances are to a specific _landmark_. It works in a similar way to the geographic partitioning seen in Chapter 2.
+
+The simplest way to choose landmarks is to create a reference point in each instance of the data set. Because of the many dimensions created, it tends to be possible to partition all the data linearly. The disadvantage is that if there are a very large number of instances, there will be too many features, and therefore, it will be a slow process.
+
 
 ## Gaussian RBF Kernel
 
+Operates similarly to _Kernel Trick_ for polynomials, but for Similarity Features. For this, the _Gaussian RBF Kernel_ is used, as demonstrated in the code below:
+
+```python
+rbf_kernel_svm_clf = make_pipeline(StandardScaler(),
+SVC(kernel="rbf", gamma=5, C=0.001))
+rbf_kernel_svm_clf.fit(X, y)
+```
+
+The model has two hyperparameters, gamma ($\gamma$) and C. The hyperparameter $\gamma$ controls the range of influence of each data point, that is, the larger it is, the shorter ... [Image]
+
+There are other kernels, but they are more specific, such as some used for strings, or Levenshtein distance, for example.
+
+> [!TIP]
+> How to choose which kernel to use? In case of a large training set, `LinearSVC` due to its speed. If the training set is not large, it is valid to use Kernelized SVMs, starting with Gaussian RBF Kernel, and then, polynomial. In cases of specific sets, it is valid to try more specific models.
 
 
 ## SVM Classes and Computational Complexity
 
+For this brief analysis, consider the number of training instances as $m$ and the number of features as $n$.
 
+The `LinearSVC` class operates at a time complexity of approximately O(m × n).
+
+The `SVC` class operates at a time complexity between O(m$^{2}$ × n) and O(m$^{3}$ × n), i.e., it becomes much slower as the number of instances increases.
+
+It is worth mentioning that the `SGDClassifier` class can produce similar data to `LinearSVC` with a good time scale.
 
 
 
