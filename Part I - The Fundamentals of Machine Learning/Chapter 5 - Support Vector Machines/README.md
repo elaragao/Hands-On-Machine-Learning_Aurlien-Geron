@@ -98,6 +98,31 @@ It is worth mentioning that the `SGDClassifier` class can produce similar data t
 
 # SVM Regression
 
+Regression using SVM works by finding the hyperplane that is closest to the data. Unlike classification, where it considers the closest points to create the streets, in regression it considers the furthest points from the tolerance term epsilon ($\epsilon$). The algorithm considers the points at a distance greater than $\epsilon$ from the hyperplane.
+
+```python
+
+from sklearn.svm import LinearSVR
+
+X, y = [...] # a linear dataset
+
+svm_reg = make_pipeline(StandardScaler(),
+LinearSVR(epsilon=0.5, random_state=42))
+svm_reg.fit(X, y)
+
+```
+
+In the same way as shown in the non-linear SVM, it can be done for a non-linear regression.
+
+```python
+from sklearn.svm import SVR
+
+X, y = [...]  # a quadratic dataset
+
+svm_poly_reg = make_pipeline(StandardScaler(),
+	SVR(kernel="poly", degree=2, C=0.01, epsilon=0.1))
+svm_poly_reg.fit(X, y)
+```
 
 
 
@@ -107,7 +132,7 @@ It is worth mentioning that the `SGDClassifier` class can produce similar data t
 # Under the Hood of Linear SVM Classifiers
 
 
-
+<!-- Need to study more about this topic. Write after the end of Part I of book.-->
 
 
 # The Dual Problem
