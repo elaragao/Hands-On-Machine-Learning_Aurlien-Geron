@@ -6,7 +6,7 @@ The chapter will briefly discuss their functionality, how to train them, and how
 
 # Training and Visualizing a Decision Tree
 
-
+The .ipybn file will demonstrate how the decision tree operates on the `load_iris` dataset, using the `DecisioTreeClassifier` class. The output can be viewed using the `export_graphviz` class.
 
 # Making Predictions
 
