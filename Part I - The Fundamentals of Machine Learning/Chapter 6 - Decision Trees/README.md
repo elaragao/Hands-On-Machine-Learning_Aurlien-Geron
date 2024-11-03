@@ -57,9 +57,9 @@ J(k, t_{k}) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}
 
 # Computational Complexity
 
-The training complexity is O(n × m log$_{2}$(m)).
+The training complexity is O(n × m $log_{2}$(m)).
 
-The log $_{2}$ (m) corresponds to the binary logarithm of m. The algorithm compares all features (or fewer if `max_features` is changed) in all samples at each node, then indicates the values ​​of n × m, resulting in O(n × m log $_{2}$ (m)), making it a very fast algorithm.
+The $log _{2}$ (m) corresponds to the binary logarithm of m. The algorithm compares all features (or fewer if `max_features` is changed) in all samples at each node, then indicates the values ​​of n × m, resulting in O(n × m $log _{2}$ (m)), making it a very fast algorithm.
 
 
 # Gini Impurity or Entropy?
