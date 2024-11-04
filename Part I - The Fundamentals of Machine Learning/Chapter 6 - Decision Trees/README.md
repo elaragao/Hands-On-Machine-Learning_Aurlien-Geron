@@ -4,10 +4,18 @@ Decision trees are capable of performing both classification and regression, as 
 
 The chapter will briefly discuss their functionality, how to train them, and how to visualize the predictions made.
 
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+
 # Training and Visualizing a Decision Tree
 
 The .ipybn file will demonstrate how the decision tree operates on the `load_iris` dataset, using the `DecisioTreeClassifier` class. The output can be viewed using the `export_graphviz` class.
 
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 # Making Predictions
 
 For decision trees, it is important to understand the structure of their output, as shown in the figure below:
@@ -34,6 +42,9 @@ The equation indicates the Gini Scores equation at the $i^{th}$ node:
 G_{i} = 1 - \sum_{k=1}^{n} p_{i,k^{2}}
 ```
 
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 # Estimating Class Probabilities
 
 It is possible to use decision trees to estimate the probabilities that instances belong to. For example, suppose you want to analyze a flower with petals that are 5 cm long and 1.5 cm wide:
@@ -48,11 +59,26 @@ This will return an array indicating the values ​​corresponding to the class
 tree_clf.predict([[5, 1.5]])
 ```
 
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 # The CART Training Algorithm
 
+_Classification and Regression Tree_ (CART) trains decision trees by first splitting the training instances into two parts using the feature $k$ and the threshold $t_{k}$ (petal length $\leq$ 2.45cm). The equation below gives the cost function that the algorithm tries to minimize:
+
 ```math
-J(k, t_{k}) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}  
+J(k, t_{k}) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}
 ```
+
+- $G_{left/right}$: impurity of the left/right subsets.
+
+- $m_{left/right}$: number of instances in left/right.
+
+If hyperparameters are not used to limit the tree growth (`min_samples_split`, `min_samples_leaf`, `min_weight_fraction_leaf`, and `max_leaf_nodes`), the algorithm will continue until it reaches maximum depth, or there are no more ways to split to reduce impurity.
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 
 
 # Computational Complexity
@@ -61,6 +87,11 @@ The training complexity is O(n × m $log_{2}$(m)).
 
 The $log _{2}$ (m) corresponds to the binary logarithm of m. The algorithm compares all features (or fewer if `max_features` is changed) in all samples at each node, then indicates the values ​​of n × m, resulting in O(n × m $log _{2}$ (m)), making it a very fast algorithm.
 
+
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 
 # Gini Impurity or Entropy?
 
@@ -72,16 +103,40 @@ H_{i} = - \sum ^{n} _{k=1}_{p_{i},k \neq 0} p_{i},k log_{2}(p_{i},k)
 
 In comparison, both Gini and Entropy produce similar trees. Gini tends to be faster in most cases, but where the measures differ is that Gini tends to isolate classes into their own branches, while Entropy produces more balanced branches.
 
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+
 # Regularization Hyperparameters
 
+Decision trees make few assumptions when training, if left without restrictions the structure will possibly overfit. This type of model is called a _Nonparametric Model_ because the number of parameters is not determined before training, so the model is free to perform.
 
+The _Parametric Model_ has a predetermined number of parameters, therefore, the degree of freedom is limited, reducing the risk of overfitting, but increasing underfitting. The process of applying restrictions to avoid overfitting is called **Regularization**. What is usually regularized is the **Decision Tree Depth**. The most common hyperparameters are:
 
+- `max_depth`: Maximum depth that the tree will go;
+- `max_features`: Maximum number of features evaluated for divisions in the nodes;
+- `max_leaf_nodes`: Maximum number of leaves;
+- `min_samples_split`: Minimum number of samples that a node must have to be split;
+- `min_samples_leaf`: Minimum number of samples for a leaf to be created;
+- `min_weight_fraction_leaf`: Similar to the previous one, but expressed as a fraction of the number of weighted instances.
+  
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 # Regression
 
 
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 
 # Sensitivity to Axis Orientation
 
 
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
 
 # Decision Trees Have a High Variance
