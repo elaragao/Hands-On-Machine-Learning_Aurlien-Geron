@@ -98,7 +98,7 @@ The $log _{2}$ (m) corresponds to the binary logarithm of m. The algorithm compa
 Like Gini Impurity, Entropy is also a criterion that can be used to measure impurity, being set in the hyperparameter `criterion = 'entropy'`. The higher the entropy, the greater the disorder and impurity, and the lowest possible entropy is zero. It is calculated at the $i^{th}$ node as:
 
 ```math
-H_{i} = - \sum ^{n} _{k=1}_{p_{i},k \neq 0} p_{i},k log_{2}(p_{i},k)
+H_{i} = - \sum ^{n} _{k=1} p_{i,k} log_{2}(p_{i,k})
 ```
 
 In comparison, both Gini and Entropy produce similar trees. Gini tends to be faster in most cases, but where the measures differ is that Gini tends to isolate classes into their own branches, while Entropy produces more balanced branches.
