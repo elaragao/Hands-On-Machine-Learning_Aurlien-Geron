@@ -127,6 +127,7 @@ The _Parametric Model_ has a predetermined number of parameters, therefore, the 
 <!------------------------------------------------------------------------------------------------------------------------------->
 # Regression
 
+It is also possible to perform regression using decision trees using the Scikit-Learn `DecisionTreeRegressor` class. The image below represents the result of the tree:
 
 ```math
 
@@ -147,6 +148,12 @@ and
 \hat{y}_{node} = \frac{\sum_{i \: \in \: node} y^{(i)}}{m_{node}}
 
 ```
+
+
+The algorithm works, instead of trying to minimize the impurity, to minimize the MSE. They are also prone to overfitting because they do not have regularization. Below is an example of a comparison between an analysis with restrictions of `min_samples_leaf=10` and without:
+
+[Image]
+
 <!------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------->
