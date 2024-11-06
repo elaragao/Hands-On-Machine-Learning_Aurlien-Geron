@@ -160,9 +160,25 @@ The algorithm works, instead of trying to minimize the impurity, to minimize the
 
 # Sensitivity to Axis Orientation
 
+One drawback of decision trees is that they tend to use orthogonal decision boundaries (splits are always perpendicular to the axis), which makes views at different angles, such as 45º, less straightforward.
+
+One way to scale is to apply Principal Coefficient Analysis (PCA), which reduces the correlation between features, which is usually better for trees. An example can be seen in the code below:
+
+```python
+from sklearn.decomposition import PCA
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+pca_pipeline = make_pipeline(StandardScaler(), PCA())
+X_iris_rotated = pca_pipeline.fit_transform(X_iris)
+tree_clf_pca = DecisionTreeClassifier(max_depth=2, random_state=42)
+tree_clf_pca.fit(X_iris_rotated, y_iris)
+```
 
 <!------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------->
 
 # Decision Trees Have a High Variance
+
+Decision trees have a high variance, meaning that with small changes in data or hyperparameters, they can produce very different models. Since the Scikit-Learn model is stochastic, even by modifying the same decision tree with the same data and hyperparameters, it is possible to produce a different model. The way to avoid this problem is by calculating the average of the predictions, using the **Random Trees** model.
