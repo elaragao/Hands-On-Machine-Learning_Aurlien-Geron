@@ -91,6 +91,12 @@ If all classifiers can estimate the class probabilities (i.e., have the `predict
 
 # Bagging and Pasting
 
+In addition to the voting approach, bagging and pasting can also be analyzed:
+
+- **Bagging**:
+- **Pasting**:
+
+  
 ## Bagging and Pasting in Scikit-Learn
 
 
