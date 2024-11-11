@@ -150,6 +150,22 @@ Feature sampling is something that proves useful when dealing with high-dimensio
 
 # Random Forest
 
+A Random Forest can be seen as an ensemble of Decision Trees, usually by the Bagging method. It has the class `RandomForestClassifier` for classification or `RandomForestRegressor` for regression. Given a few exceptions, `RandomForestClassifier` has all the hyperparameters of `DecisionTreeClassifiers` and `BaggingClassifier`. The code below demonstrates how the code operates a classifier with 500 trees (`n_estimators`) and 16 nodes at most (`max_leaf_nodes`):
+
+```python
+
+from sklearn.ensemble import RandomForestClassifier
+
+rnd_clf = RandomForestClassifier(n_estimators=500, max_leaf_nodes=16, n_jobs=-1)
+
+rnd_clf.fit(X_train, y_train)
+y_pred_rf = rnd_clf.predict(X_test)
+
+```
+
+
+>[!NOTE]
+> Random Forest introduces extra randomness instead of choosing the best feature when splitting a node. It trades off a higher bias for a lower variance, generally producing a better model.
 
 
 ## Extra-Trees
