@@ -91,10 +91,10 @@ If all classifiers can estimate the class probabilities (i.e., have the `predict
 
 # Bagging and Pasting
 
-In addition to the voting approach, bagging and pasting can also be analyzed:
+In addition to the voting approach, **Bagging** and **Pasting** can also be analyzed. These work using the **same algorithm**, but use **different subsets** of the _training set_. The differences between these consist of:
 
-- **Bagging**:
-- **Pasting**:
+- **Bagging**: Among the training subsets, there may be repetition of data that appears in another training subset;
+- **Pasting**: If a piece of data appears in a training subset, it will not appear in another.
 
   
 ## Bagging and Pasting in Scikit-Learn
