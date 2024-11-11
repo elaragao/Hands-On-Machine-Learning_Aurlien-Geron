@@ -96,13 +96,42 @@ In addition to the voting approach, **Bagging** and **Pasting** can also be anal
 - **Bagging**: Among the training subsets, there may be repetition of data that appears in another training subset;
 - **Pasting**: If a piece of data appears in a training subset, it will not appear in another.
 
-  
+Once all predictors are trained, the ensemble can predict the new instance by aggregating the predictions. In the case of classification, the _statistical_ mode is typically used (usually the most frequent prediction, like a _hard voting_), and in the case of regression, the mean is used. Individual predictors have **higher bias** compared to the original training ensemble, but aggregation tends to **reduce bias and variance**. The total, or network, result has a result with a **similar bias** but **lower variance** compared to a single predictor trained on the original training set.
+
+>[!NOTE]
+> It is possible to train in parallel with different CPU cores or different servers, making the model very scalable.
+>
+<!------------------------------------------------------->  
 ## Bagging and Pasting in Scikit-Learn
 
+It is possible to use Scikit-Learn for both Bagging and Pasting. The `BaggingClassifier` class is for classification and `BagginRegressor` for regression, and can be changed to _Pasting_ by changing the hyperparameter `bootstrap=False`.
 
+>[!TIP]
+> The `n_jobs` parameter informs the number of CPU cores that will be used. `-1` is the command to use all available ones.
+
+The code below demonstrates an example of Bagging with 500 Decision Tree predictors (`n_estimators`) with 100 training instances (`max_samples`). It is interesting to note that _Soft Voting_ is applied if the `BaggingClassifiers` classification predictors have the attribute to estimate the probability of the class `predict_proba()`.
+
+```python
+from sklearn.ensemble import BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+bag_clf = BaggingClassifier(DecisionTreeClassifier(), n_estimators=500,
+max_samples=100, n_jobs=-1, random_state=42)
+
+bag_clf.fit(X_train, y_train)
+```
+
+It is interesting to see the comparison between decision trees and the use of Bagging. The ensemble has a **comparable Bias** and a **Lower Variance** (same number of errors and less irregular decision boundary).
+
+[Image]
+
+>[!NOTE]
+> When comparing Bagging with Pasting, Bagging has a greater diversity of subsets, thus having a higher bias and causing less correlation between them, reducing the variance of the ensemble. Usually, Bagging has better results, but if possible, it is better to test both.
+
+<!------------------------------------------------------->
 ## Out-of-Bag Evaluation
 
-
+<!------------------------------------------------------->
 ## Random Patches and Random Subspaces
 
 
