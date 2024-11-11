@@ -130,9 +130,17 @@ It is interesting to see the comparison between decision trees and the use of Ba
 
 <!------------------------------------------------------->
 ## Out-of-Bag Evaluation
+Using Bagging typically results in approximately 63% of the training instances being used, with the other 37% not participating in the training. This 37% portion is called _Out-Of-Bag_ (OOB).
+
+Often, the OOB is used as a validation set and evaluates the accuracy of the model. This can be done from Scikit-Learn using the `oob_score_` class. In addition, it is possible to use the decision function for each training instance from `oob_decision_function_`, which can return the class probabilities if there is the `predict_proba()` method.
+
+
 
 <!------------------------------------------------------->
 ## Random Patches and Random Subspaces
+Feature sampling is something that proves useful when dealing with high-dimensional inputs such as images, and is called the _Random Patches Method_. Two hyperparameters can control this, `max_features` and `bootstrap_features`. By keeping all training instances (e.g. `bootstrap` = False and `max_samples` = 1.0) except for the sampled features, it is called the _Random Subspaces Method_. This results in more diverse predictors, having **higher bias** and **lower variance**.
+
+
 
 
 
