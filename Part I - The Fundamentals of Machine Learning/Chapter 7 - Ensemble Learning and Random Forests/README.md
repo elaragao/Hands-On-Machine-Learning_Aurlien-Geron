@@ -165,8 +165,7 @@ y_pred_rf = rnd_clf.predict(X_test)
 
 
 >[!NOTE]
-> Random Forest introduces extra randomness instead of choosing the best feature when splitting a node. It trades off a higher bias for a lower variance, generally producing a better model.
-
+> **Random Forest** introduces extra randomness instead of choosing the best feature when splitting a node. Compared to _Decision Trees_, which choose the _best feature_, **Random Forest** chooses _random features_. It trades off higher bias for lower variance, often producing a better model.
 
 ## Extra-Trees
 
