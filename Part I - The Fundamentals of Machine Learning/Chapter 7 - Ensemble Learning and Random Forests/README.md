@@ -165,10 +165,17 @@ y_pred_rf = rnd_clf.predict(X_test)
 
 
 >[!NOTE]
-> **Random Forest** introduces extra randomness instead of choosing the best feature when splitting a node. Compared to _Decision Trees_, which choose the _best feature_, **Random Forest** chooses _random features_. It trades off higher bias for lower variance, often producing a better model.
+> **Random Forest** introduces extra randomness: instead of choosing the best feature when splitting a node from the training set, it chooses the **best feature of the subset of the tree being trained**. Compared to _Decision Trees_, which choose the _best feature_, **Random Forest** chooses _random features_. It trades off higher bias for lower variance, often producing a better model.
+
+
 
 ## Extra-Trees
 
+To understand **Extra Trees** (_Extremely Randomized Trees_) it is important to remember the two precursors. **Decision Trees** operate on the complete training set looking for the best threshold. **Random Forest**, unlike **Decision Trees**, looks for the best threshold in **each subset it operates on**.
+
+**Extra Trees** operate using the training subset using all the data from the training set (unlike _bagging_, which uses about 67%) using **Random Thresholds**. This trades a **higher bias** for a **lower variance**. Compared to **Random Forest**, its performance is faster, and the decision between choosing one of the two can be discriminated only by the accuracy in each case.
+
+It has classes in the Scikit-Learn library. For classification, `ExtraTreesClassifier` and for regression `ExtraTreesRegressor`.
 
 
 ## Feature Importance
