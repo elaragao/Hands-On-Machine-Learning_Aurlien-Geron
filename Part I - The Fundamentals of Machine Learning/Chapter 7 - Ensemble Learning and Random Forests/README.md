@@ -182,7 +182,10 @@ It has classes in the Scikit-Learn library. For classification, `ExtraTreesClass
 
 
 
+Something interesting that **Random Trees** allow is the _measurement of feature importance_. It is possible to obtain a score for each feature before training and scale the results, so that the sum of these importances is 1, being accessed through `feature_importances_`.
 
+>[!NOTE]
+> It is possible to do this for regressions, classifications and images (with the pixels with more or less importance being represented in a heat graph).
 
 
 <!------------------------------------------------------->
