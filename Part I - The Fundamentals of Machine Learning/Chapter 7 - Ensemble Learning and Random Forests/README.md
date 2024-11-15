@@ -1,4 +1,4 @@
-#  Ensemble Learning and Random Forests
+#  Ensemble Learning and Random Forests 
 
 **Ensemble Learning** is the technique of aggregating predictions from a group of predictors. It usually gives a better result than using the best individual predictor. An Ensemble Learning algorithm is called an **Ensemble Method**.
 
