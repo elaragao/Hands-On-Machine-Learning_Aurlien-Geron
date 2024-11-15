@@ -194,11 +194,11 @@ Something interesting that **Random Trees** allow is the _measurement of feature
 
 # Boosting
 
-
+_Hypothesys Boosting_ or **Boosting** is using Ensemble methods that combine weak learners into a strong one, sequentially training predictors to correct the former.
 
 ## AdaBoost
 
-
+**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _undertuned_ by their predecessor, focusing increasingly on difficult cases.
 
 
 ## Gradient Boosting
