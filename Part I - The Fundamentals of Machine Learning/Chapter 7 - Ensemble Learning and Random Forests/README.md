@@ -198,8 +198,9 @@ _Hypothesys Boosting_ or **Boosting** is using Ensemble methods that combine wea
 
 ## AdaBoost
 
-**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _undertuned_ by their predecessor,
-
+<!-------------------------------------------------------><!-------------------------------------------------------><!-------------------------------------------------------><!------------------------------------------------------->
+<!------------------------------------------------------->
+<!------------------------------------------------------->
 
 
 ## Gradient Boosting
