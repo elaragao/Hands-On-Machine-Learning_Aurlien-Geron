@@ -227,6 +227,21 @@ r_{j} = \sum^{m}_{i=1} w^{(i)} \: \: \: where \: \: \: \hat{y}^{(i)}_{j} \neq y^
 </details>
 
 
+
+So, the equation below indicates _Predictor's Weight_ ($\alpha _{j}$). The more accurate the predictor, the higher the weight it will have. If it is "guessing" randomly, the weight will be close to zero. If the error rate is very wrong (less accurate than random) the weight will be negative.
+
+```math
+\alpha_{j} = \eta log \frac{1 - r_{j}}{r_{j}}
+```
+
+<summary>Equation terms</summary>
+
+- $\alpha_{j}$: Is the Predictor's Weight.
+- $r_{j}$: Is the Weighted Error Rate of the $j^{th}$ predictor.
+- $\eta$: Is the learning rate hyperparameter (default 1).
+
+</details>
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
