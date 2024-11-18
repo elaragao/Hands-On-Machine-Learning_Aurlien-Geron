@@ -214,6 +214,19 @@ r_{j} = \sum^{m}_{i=1} w^{(i)} \: \: \: where \: \: \: \hat{y}^{(i)}_{j} \neq y^
 ```
 
 
+<details>
+
+<summary>Equation terms</summary>
+
+- $r_{j}$: Is the Weighted Error Rate of the $j^{th}$ predictor.
+- $w^{(i)}$: Is the calculed weight of the $i^{th}$ instance.
+- $\hat{y}^{(i)}_{j}$: Is the prediction of the instance $i^{th}$ of the $j^{th}$ predictor.
+- $y^{(i)}$: Is the correct label of the $i^{th}$ instance.
+
+
+</details>
+
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
