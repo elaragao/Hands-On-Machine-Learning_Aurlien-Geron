@@ -263,7 +263,8 @@ w^{(i)} exp(\alpha_{j}) \: \: \: if \: \: \: \hat{y}^{(i)}_{j} \neq y^{(i)}
 ```python
 from sklearn.ensemble import AdaBoostClassifier
 
-ada_clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1), 	n_estimators=30,learning_rate=0.5, random_state=42)
+ada_clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1),
+ 	n_estimators=30,learning_rate=0.5, random_state=42)
 
 ada_clf.fit(X_train, y_train)
 ```
