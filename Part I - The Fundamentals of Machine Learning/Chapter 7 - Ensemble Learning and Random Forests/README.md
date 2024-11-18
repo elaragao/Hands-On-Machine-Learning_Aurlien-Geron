@@ -233,7 +233,7 @@ So, the equation below indicates _Predictor's Weight_ ($\alpha _{j}$). The more 
 ```math
 \alpha_{j} = \eta log \frac{1 - r_{j}}{r_{j}}
 ```
-
+<details>
 <summary>Equation terms</summary>
 
 - $\alpha_{j}$: Is the Predictor's Weight.
