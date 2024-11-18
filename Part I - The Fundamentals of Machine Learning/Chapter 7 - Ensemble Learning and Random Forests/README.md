@@ -256,9 +256,27 @@ w^{(i)} exp(\alpha_{j}) \: \: \: if \: \: \: \hat{y}^{(i)}_{j} \neq y^{(i)}
 \end{matrix} \right.
 ```
 
+With this, the prediction is then made, and the cycle repeats until there is either a perfect predictor or the number of set predictors reaches the limit. The class ($k$) that receives the highest number of votes will be the chosen predictor, which is demonstrated by the equation below:
+
+```math
+
+\hat{y}(x) = argmax_{k} \sum^{N}_{j=1} \alpha_{j} \: \: \: where  \: \: \: \hat{y}_{j}(x) = k
+
+```
 
 
 
+<details>
+<summary>Equation terms</summary>
+
+- $\alpha_{j}$: Is the Predictor's Weight.
+- $N$: Is the number of predictors.
+- $k$: Is the possible classes.
+
+</details>
+
+
+Below is an example code containing 30 _stumps_ using the SciKit-Learn `AdaBoostClassifier` class:
 
 ```python
 from sklearn.ensemble import AdaBoostClassifier
