@@ -242,6 +242,19 @@ So, the equation below indicates _Predictor's Weight_ ($\alpha _{j}$). The more 
 
 </details>
 
+
+Having these values, the AdaBoost algorithm updates the weight of the instances according to the equation below, which is **Weighted Update Rule**:
+
+
+```math
+w^{(i)} \leftarrow \left\{  \begin{matrix} 
+w^{(i)} \: \: \: if \: \: \: \hat{y}^{(i)}_{j} = y^{(i)} \\
+w^{(i)} exp(\alpha_{j}) \: \: \: if \: \: \: \hat{y}^{(i)}_{j} \neq y^{(i)}
+\end{matrix} \right.
+```
+
+
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
