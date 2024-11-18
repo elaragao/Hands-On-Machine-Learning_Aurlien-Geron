@@ -196,9 +196,12 @@ Something interesting that **Random Trees** allow is the _measurement of feature
 
 _Hypothesys Boosting_ or **Boosting** is using Ensemble methods that combine weak learners into a strong one, sequentially training predictors to correct the former.
 
+<!------------------------------------------------------->
+<!------------------------------------------------------->
+<!------------------------------------------------------->
 ## AdaBoost
 
-**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _underfitted_ by their predecessor, focusing increasingly on difficult cases. The predictors have different weights depending on the accuracy in the weighted training set.
+**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _underfitted_ by their predecessor, focusing increasingly on difficult cases. The predictors have different weights depending on the accuracy in the weighted training set. You can visualize this type of predictor as **Stumps**, which consist of decision trees with __one node__ and __two leafes__.
 
 >[!NOTE]
 > As these corrections are made, the learning rate decreases, that is, the weight of incorrectly classified instances increases less with each iteration.
@@ -255,6 +258,15 @@ w^{(i)} exp(\alpha_{j}) \: \: \: if \: \: \: \hat{y}^{(i)}_{j} \neq y^{(i)}
 
 
 
+
+
+```python
+from sklearn.ensemble import AdaBoostClassifier
+
+ada_clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1), 	n_estimators=30,learning_rate=0.5, random_state=42)
+
+ada_clf.fit(X_train, y_train)
+```
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
