@@ -198,8 +198,23 @@ _Hypothesys Boosting_ or **Boosting** is using Ensemble methods that combine wea
 
 ## AdaBoost
 
-**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _undertuned_ by their predecessor, focusing increasingly on difficult cases.
-<!-------------------------------------------------------><!-------------------------------------------------------><!-------------------------------------------------------><!------------------------------------------------------->
+**AdaBoost** (_Adaptive Boosting_) works by correcting instances that were _underfitted_ by their predecessor, focusing increasingly on difficult cases. The predictors have different weights depending on the accuracy in the weighted training set.
+
+>[!NOTE]
+> As these corrections are made, the learning rate decreases, that is, the weight of incorrectly classified instances increases less with each iteration.
+
+>[!WARNING]
+> It is worth keeping in mind that, given the fact that these trainings are sequential, it is not possible to do the training in parallel, and they do not scale as well as _Bagging_ or _Pasting_.
+
+The equation below shows the **Weighted Error Rate of the $j^{th}$ predictor**, where for each instance the weight $w^{(i)}$ is initially set to $1/m$. For each trained predictor, the generated error rate $r_{1}$ is calculated, and so on according to the equation:
+
+
+```math
+r_{j} = \sum^{m}_{i=1} w^{(i)} \: \: \: where \: \: \: \hat{y}^{(i)}_{j} \neq y^{(i)}
+```
+
+
+<!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 
