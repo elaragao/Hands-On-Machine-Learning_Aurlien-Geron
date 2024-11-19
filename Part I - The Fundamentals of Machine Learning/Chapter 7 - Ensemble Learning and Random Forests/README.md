@@ -295,7 +295,6 @@ ada_clf.fit(X_train, y_train)
 
 
 ```python
-import numpy as np
 from sklearn.tree import DecisionTreeRegressor
 
 tree_reg1 = DecisionTreeRegressor(max_depth=2, random_state=42)
