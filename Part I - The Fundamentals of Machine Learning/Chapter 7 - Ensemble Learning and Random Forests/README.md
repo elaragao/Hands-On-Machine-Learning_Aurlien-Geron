@@ -294,6 +294,23 @@ ada_clf.fit(X_train, y_train)
 ## Gradient Boosting
 
 
+```python
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor
+
+tree_reg1 = DecisionTreeRegressor(max_depth=2, random_state=42)
+tree_reg1.fit(X, y)
+
+y2 = y - tree_reg1.predict(X) # Residual errors made by first predictor
+tree_reg2 = DecisionTreeRegressor(max_depth=2, random_state=43)
+tree_reg2.fit(X, y2)
+
+y3 = y2 - tree_reg2.predict(X) # Residual errors made by second predictor
+tree_reg3 = DecisionTreeRegressor(max_depth=2, random_state=44)
+tree_reg3.fit(X, y3)
+
+```
+
 
 
 ## Histogram-Based Gradient Boosting
