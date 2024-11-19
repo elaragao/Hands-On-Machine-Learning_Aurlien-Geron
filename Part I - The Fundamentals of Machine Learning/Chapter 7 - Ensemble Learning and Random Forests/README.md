@@ -293,7 +293,7 @@ ada_clf.fit(X_train, y_train)
 
 ## Gradient Boosting
 
-The **Gradient Boosting** method, unlike _AdaBoost_, which adjusts the weight of each instance at each iteration, adjusts the **Residual Error** for each previous predictor. A more in-depth explanation can be found at [this link](https://pages.github.com/](https://www.datacamp.com/tutorial/guide-to-the-gradient-boosting-algorithm) <!--[add link: https://www.datacamp.com/tutorial/guide-to-the-gradient-boosting-algorithm].-->
+The **Gradient Boosting** method, unlike _AdaBoost_, which adjusts the weight of each instance at each iteration, adjusts the **Residual Error** for each previous predictor. A more in-depth explanation can be found at [this link](https://www.datacamp.com/tutorial/guide-to-the-gradient-boosting-algorithm) <!--[add link: https://www.datacamp.com/tutorial/guide-to-the-gradient-boosting-algorithm].-->
 
 The code below exemplifies one way to use the algorithm, in this case, using _Decision Trees_ as base predictors for _Regression_, a technique called **Gradient Tree Boosting** or **Gradient Boosted Regression Trees** (GBRT). The example given will use three trees. The _first_ tree will perform the regression on the existing data. The _second_ tree will perform the regression using the residual error committed by the first predictor (`y2`). The _third_ tree will perform the regression using the residual error committed by the second predictor (`y3`).
 
