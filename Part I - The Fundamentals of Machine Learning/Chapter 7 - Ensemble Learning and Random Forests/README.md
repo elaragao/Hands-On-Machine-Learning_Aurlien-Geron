@@ -314,7 +314,9 @@ tree_reg3.fit(X, y3)
 
 ```
 
+The image below helps to illustrate how the algorithm works. The left column shows how the individual trees work, and their ensemble on the right. In the **first row**, we see on the left a regression tree on the training data, and on the right its ensemble, which is the tree itself. In the **second row**, on the left, we have the regression tree on the **residual errors** of the _first regression tree_, and on the right the ensemble of the first two trees. In the **third row**, on the left we have the regression tree of the **residual errors** of the first two trees, and on the right the ensemble of the three trees.
 
+[Image]
 
 ## Histogram-Based Gradient Boosting
 
