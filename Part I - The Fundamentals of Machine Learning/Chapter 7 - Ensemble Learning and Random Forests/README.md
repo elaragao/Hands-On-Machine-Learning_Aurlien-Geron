@@ -318,6 +318,26 @@ The image below helps to illustrate how the algorithm works. The left column sho
 
 [Image]
 
+
+
+Alternatively, it is possible to use the `GradientBoostingRegressor` class from the SciKit-Learn library. In addition to the hyperparameters similar to trees, it also has others such as `n_estimators`, which determines the number of trees, and `learning_rate`, which scales the contribution of each tree (between 0 and 1), where having a low value requires more trees to fit in the training set, a regularization technique called _Shrinkage_. The code below demonstrates the operation of the class:
+
+```python
+from sklearn.ensemble import GradientBoostingRegressor
+
+gbrt = GradientBoostingRegressor(max_depth=2, n_estimators=3,
+learning_rate=1.0, random_state=42)
+gbrt.fit(X, y)
+
+```
+
+It is also interesting to highlight another important hyperparameter, `subsample`, which determines what fraction of the instances will be used in each tree, for example, if `subsample=0.25` is chosen, each tree is trained with 25% of the training instances selected randomly.
+
+>[!NOTE]
+> **How ​​to find the ideal number of trees?** The rudimentary way would be using `GridSearchCV` or `RandomizedSearchCV`. Another way is to use the hyperparameter `n_iter_no_change`, which defines how many trees with little or no change in a row to stop training (defining too few can cause _underfitting_ and defining too many can cause _overfitting_), and it is possible to observe the number close to the ideal from the `n_estimators_`.
+
+
+
 ## Histogram-Based Gradient Boosting
 
 
