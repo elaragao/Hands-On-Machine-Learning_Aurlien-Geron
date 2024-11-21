@@ -340,9 +340,27 @@ It is also interesting to highlight another important hyperparameter, `subsample
 
 ## Histogram-Based Gradient Boosting
 
+**Histogram-Based Gradient Boosting** (HGB) operates as an optimization for large data sets by grouping the input values ​​and replacing them with integer values. It can greatly reduce the number of possible boundaries that the training algorithm needs to evaluate. It has two classes in SciKit-Learn: `HistGradientBoostingRegressor` and `HistGradientBoostingClassifier`.
 
+It has a computational complexity of O(b×m) where b is the number of _bins_, m is the number of _instances_ and n is the number of _features_. Although it reduces processing time, it can cause a loss of accuracy, which can reduce _overfitting_ or cause _underfitting_.
 
+Something important to understand about HBG is the fact that it supports categorical features (if used as integers from 0 to 255) and missing values, simplifying preprocessing. It has a simple implementation and can be demonstrated below:
 
+```python
+
+from sklearn.pipeline import make_pipeline
+from sklearn.compose import make_column_transformer
+from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.preprocessing import OrdinalEncoder
+
+hgb_reg = make_pipeline(
+	make_column_transformer((OrdinalEncoder(), ["ocean_proximity"]), remainder="passthrough"),
+ 	HistGradientBoostingRegressor(categorical_features=[0], random_state=42)
+ 	)
+
+hgb_reg.fit(housing, housing_labels)
+
+``` 
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
