@@ -367,7 +367,9 @@ hgb_reg.fit(housing, housing_labels)
 
 # Stacking
 
+The **Stacking** or Stacked Generalization method, unlike functions like _hard voting_, trains a model to aggregate the functions. For example, suppose there are three predictors, as in the image below, predicting three different values ​​each (3.1, 2.7, 2.9), and the final predictor called **Blender** or **Meta Learner** uses the predictions as inputs to make a final prediction.
 
+[Image]
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->
