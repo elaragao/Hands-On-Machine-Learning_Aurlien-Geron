@@ -372,8 +372,11 @@ The **Stacking** or Stacked Generalization method, unlike functions like _hard v
 [Image]
 
 
-To create **Blender**, a training set is first required, which is done using cross validation on each predictor in the ensemble.
+To create **Blender**, a training set is first required, which is done in turn using cross validation on each predictor in the ensemble. The training set is separated into two, a first one that will train the predictors, and a second one called _hold-out_ for the subsequent stage. With the predictions made, the predicted values ​​are used for each instance in the _hold-out_ set and used as input data to create a new training set.
 
+<!-- I need to review this, it's not making sense yet -->
+
+Scikit-Learn has two classes for this, `StackingClassifier` and `StackingRegressor`. If a final estimator is not assigned, by default, `LogisticRegression` will be chosen for classification and `RidgeCV` for regression.
 
 ```python
 from sklearn.ensemble import StackingClassifier
