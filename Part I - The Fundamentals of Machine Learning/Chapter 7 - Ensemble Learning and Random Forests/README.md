@@ -374,6 +374,23 @@ The **Stacking** or Stacked Generalization method, unlike functions like _hard v
 
 To create **Blender**, a training set is first required, which is done using cross validation on each predictor in the ensemble.
 
+
+```python
+from sklearn.ensemble import StackingClassifier
+
+stacking_clf = StackingClassifier(
+	estimators=[
+		('lr', LogisticRegression(random_state=42)),
+		('rf', RandomForestClassifier(random_state=42)),
+		('svc', SVC(probability=True, random_state=42))
+	],
+	final_estimator=RandomForestClassifier(random_state=43),
+	cv=5  # number of cross-validation folds
+)
+
+stacking_clf.fit(X_train, y_train)
+
+```
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!------------------------------------------------------->
