@@ -28,11 +28,18 @@ In the following subchapters two forms of dimensionality reduction will be brief
 <!------------------------------------------------------->
 ## Projection
 
+Given the fact that in real problems the data is usually distributed unevenly across dimensions, as seen in sets like MNIST where many features are nearly constant, while others are highly correlated. Because of this, the training instances tend to be within or close to a **subspace** of much lower dimension than in the high-dimensional space, as can be seen in the figure below, where the 3D data can be represented by the 2D hyperplane:
+
+[Images]
+
+It is possible to observe in the image on the left a 2D subspace of lower dimension with a high-dimensional 3D space where the data actually is. In the image on the right you can see the perpendicular projection of each instance in this subspace, obtaining a 2D data set with a lower dimensionality, now with axes $z_{1}$ and $z_{2}$ representing the coordinates of the projection in the plane.
+
+
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 
 ## Manifold Learning
-
 
 
 
