@@ -372,7 +372,7 @@ The **Stacking** or Stacked Generalization method, unlike functions like _hard v
 [Image]
 
 
-[Image]
+To create **Blender**, a training set is first required, which is done using cross validation on each predictor in the ensemble.
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->
