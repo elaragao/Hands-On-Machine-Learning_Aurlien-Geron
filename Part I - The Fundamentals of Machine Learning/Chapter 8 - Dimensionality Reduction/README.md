@@ -51,7 +51,8 @@ Many dimension reduction algorithms operate by modeling the _Manifold_, called *
 An example of this would be the generation of digits for the MNIST data set. If you randomly generate images, you would very rarely see anything that looks like handwritten digits. By applying constraints and reducing the degrees of freedom, this becomes dramatically more likely. So, as mentioned in the previous paragraph, constraints tend to compress the data set into a _Manifold_ of lower dimension.
 
 
-
+>[!NOTE]
+> The _Manifold Assumption_ is accompanied by the implicit assumption that the task to be performed (regression or classification) will be simpler on a non-lower dimension of the **Manifold**. The task will certainly be faster, but its performance will depend on the training set.
 
 
 
