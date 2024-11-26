@@ -44,6 +44,8 @@ It is possible to observe in the image on the left a 2D subspace of lower dimens
 
 To illustrate the **Manifold**, it is useful to think of the _Swiss Roll_. A 2D _Manifold_ is a shape that can be folded and twisted in a higher dimension.
 
+[Images]
+
 Many dimension reduction algorithms operate by modeling the _Manifold_, called **Manifold Learning**. This is based on the **Manifold Hypothesis** (or **Manifold Assumption**), which states that most high-dimensional data sets in the real world are similar to a _Manifold_ of much lower dimension.
 
 An example of this would be the generation of digits for the MNIST data set. If you randomly generate images, you would very rarely see anything that looks like handwritten digits. By applying constraints and reducing the degrees of freedom, this becomes dramatically more likely. So, as mentioned in the previous paragraph, constraints tend to compress the data set into a _Manifold_ of lower dimension.
