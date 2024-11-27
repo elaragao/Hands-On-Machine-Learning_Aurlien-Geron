@@ -73,7 +73,10 @@ An example of this would be the generation of digits for the MNIST data set. If 
 <!------------------------------------------------------->
 ## Preserving the Variance                                              
 
+Before projecting the training set onto the lower-dimensional hyperplane, the best hyperplane is first selected. This is usually chosen based on the one that preserves the greatest variance of the original set. In this way, it loses less information than the other projections, and also minimizes the mean squared distance between the original data set and the projection onto this axis. This is the basic idea behind PCA.
 
+
+It is possible to obtain the principal components of the training set through the SVD technique (_Singular Value Decomposition_), where it decomposes the matrix $X$ as $X = U \cdot \Sigma \cdot V^{T}$, where V contains the principal components.
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
