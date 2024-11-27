@@ -76,12 +76,22 @@ An example of this would be the generation of digits for the MNIST data set. If 
 Before projecting the training set onto the lower-dimensional hyperplane, the best hyperplane is first selected. This is usually chosen based on the one that preserves the greatest variance of the original set. In this way, it loses less information than the other projections, and also minimizes the mean squared distance between the original data set and the projection onto this axis. This is the basic idea behind PCA.
 
 
-It is possible to obtain the principal components of the training set through the SVD technique (_Singular Value Decomposition_), where it decomposes the matrix $X$ as $X = U \cdot \Sigma \cdot V^{T}$, where V contains the principal components.
+
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
 ## Principal Components                                                 
 
+PCA identifies the axis with the largest amount of variance. If applied to a 2D graph, the result would be a line with points on top in a 1D dimension. In the case of a 2D graph, there would be a second axis that would contain the remaining amount of variance (the sum of the variance of the axes would not necessarily be 100%, but it would be close to it). The same goes for higher dimensions, where the first PCA would have the largest amount of variance, the second PCA would have the second largest amount, and so on.
+
+The unit vector that defines the i-th axis is called the _Principal Component_ (PC), where the first PC is $c_{1}$, the second is $c_{2}$, and so on up to $c_{n}$.
+The principal components of the training set can be obtained using the SVD (_Singular Value Decomposition_) technique, which decomposes the matrix $X$ as $X = U \cdot \sigma \cdot V^{T}$, where V contains the principal components. This can be obtained using the numpy `svd()` function:
+
+```python
+U, s, Vt = np.linalg.svd(X_centered)
+c1 = Vt.T[:, 0]
+c2 = Vt.T[:, 1]
+```
 
 
 <!------------------------------------------------------->
