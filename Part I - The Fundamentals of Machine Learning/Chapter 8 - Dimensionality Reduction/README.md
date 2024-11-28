@@ -170,13 +170,29 @@ Another way is when doing preprocessing for supervised learning such as classifi
 <!------------------------------------------------------->  
 ## PCA for Compression                                                  
 
+Comparing the training set before and after dimension reduction for MNIST, 95% of the variance was preserved while using only 154 features, instead of the original 784, having less than 20% of the original size.
 
+It is possible to perform decompression by applying an inverse transform, which will not return the original data due to the 5% of information lost by variance. The mean squared distance between the original and reconstructed data is called _Reconstruction Error_. The code and equation below demonstrate how it is done:
+
+```python
+X_recovered = pca.inverse_transform(X_reduced)
+```
+
+```math
+X_{recovered} = X_{d-proj} \cdot W_{d}^{T}
+```
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
 ## Randomized PCA                                                       
 
+If the hyperparameter `svd_solver` is set to "randomized", a stochastic algorithm is used to perform _Randomized PCA_, which quickly finds an approximation of the first PC.
 
+```python
+rnd_pca = PCA(n_components=154, svd_solver="randomized", random_state=42)
+
+X_reduced = rnd_pca.fit_transform(X_train)
+```
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
