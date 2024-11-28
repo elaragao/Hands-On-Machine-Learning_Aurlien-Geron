@@ -195,6 +195,18 @@ X2D = pca.fit_transform(X)
 <!-------------------------------------------------------> 
 # Other Dimensionality Reduction Techniques                              
 
+Other dimensionality reduction methods in the Scikit-Learn library are:
 
+- **Multidimensional Scaling** (MDS): Tries to preserve distance between instances. Comparable to _Random Projection_, but when this is better for many data, MDS is better for low-dimensional data. ` sklearn.manifold.MDS`.
+
+- **Isomap**: Operates by creating a graph that connects instances to their closest neighbors and performs the reduction by trying to reduce the _Geodesic Discance_ of the instances (shortest path between two _nodes_). `sklearn.manifold.Isomap`
+
+- **T-Distributed Stochastic Neighbor Embedding** (t-SNE): Tries to keep similar instances close and dissimilar instances far apart. Operates best for visualizing clusters. `sklearn.manifold.TSNE`
+
+- **Linear Discriminat Analysis** (LDA): Operates with linear classification, where it learns the most discriminative axes of the classes to determine the hyperplanes. It distances the classes from each other and is useful before executing classification algorithms.  `sklearn.discriminant_analysis.LinearDiscriminantAnalysis`
+
+The image below shows the comparison between some of these methods:
+
+[Image]
 
 
