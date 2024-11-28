@@ -130,13 +130,38 @@ X2D = pca.fit_transform(X)
 <!------------------------------------------------------->  
 ## Explained Variance Ratio                                             
 
-
+To obtain the **Explained Variance Ratio** you can use the `explained_variance_ratio_` function. This is intended to demonstrate how much variance is maintained by each PC. It is common for the selected PCs to have a good part of the variance maintained, while the other unselected dimensions maintain the rest.
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
 ## Choosing the Right Number of Dimensions                              
 
+It is usually chosen to preserve about 95% of the variance, with exceptions such as using it only for visualization or when there are few dimensions. It will be exemplified using the MNIST dataset:
 
+```python
+from sklearn.datasets import fetch_openml
+# [...]
+pca = PCA()
+pca.fit(X_train)
+
+cumsum = np.cumsum(pca.explained_variance_ratio_)
+d = np.argmax(cumsum >= 0.95) + 1 # d equals 154
+
+# pca = PCA(n_components=d) # It's one option, but not the best
+
+```
+When using `n_components` as a `float` between 0.0 and 1.0, it indicates the variance rate that you want to preserve:
+
+```python
+pca = PCA(n_components=0.95)
+X_reduced = pca.fit_transform(X_train)
+
+pca.n_components_ # Will return 154
+```
+
+Another way to obtain isos is to plot the variance as a function of the number of dimensions, where an elbow is observed in the curve, where the variance stops growing rapidly.
+
+[Image]
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
