@@ -99,6 +99,19 @@ c2 = Vt.T[:, 1]
 ## Projecting Down to d Dimensions                                      
 
 
+Having the PCs, it is possible to reduce the training set to $d$ dimensions by projecting it onto the hyperplane that preserves the most variance. For example, a 3D dataset would be reduced to a 2D dimension by the hyperplane defined by the two main PCs.
+
+To perform this projection of a $d$ dimensional dataset $X_{d-proj}$ it is necessary to calculate the matrix multiplication of the set $X$ multiplied by the matrix $W_{d}$, which contains the first $d$ columns of the matrix $V$:
+
+```math
+X_{d-proj} = X \cdot W_{d}
+```
+
+The code below demonstrates the equation for the first two PCs:
+```python
+W2 = Vt.T[:, :2]
+X2D = X_centered.dot(W2)
+```
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
