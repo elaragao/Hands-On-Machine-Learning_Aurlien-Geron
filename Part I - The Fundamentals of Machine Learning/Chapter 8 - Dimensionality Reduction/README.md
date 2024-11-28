@@ -163,6 +163,9 @@ Another way to obtain isos is to plot the variance as a function of the number o
 
 [Image]
 
+
+Another way is when doing preprocessing for supervised learning such as classifications, it is possible to adjust the number of dimensions like any other hyperparameter (it will be better discussed in the code [Link]).
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
 ## PCA for Compression                                                  
