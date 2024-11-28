@@ -117,7 +117,14 @@ X2D = X_centered.dot(W2)
 <!------------------------------------------------------->  
 ## Using Scikit-Learn                                                   
 
+It is possible to use Scikit-Learn to implement what was demonstrated in the subchapters above through the `PCA` class:
 
+```python
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+X2D = pca.fit_transform(X)
+```
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->  
