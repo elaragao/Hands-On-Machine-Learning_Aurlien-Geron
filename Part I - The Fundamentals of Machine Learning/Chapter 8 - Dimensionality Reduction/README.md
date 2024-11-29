@@ -200,7 +200,32 @@ X_reduced = rnd_pca.fit_transform(X_train)
 
 
 
+The implementation of PCA requires that the training set be trained, which causes problems in cases where online training is required, for example, or for sets that **do not fit in memory**. The **Incremental PCA** (IPCA) algorithm divides the training set into mini-batches and increases the algorithm with one mini-batch at a time.
 
+Two ways of applying it to the same data set will be demonstrated as examples, being MNIST using 100 mini-batches. The first uses the Numpy library function `array_split()` to reduce the dimensions to 154, and it is necessary to use the `partial_fit()` method instead of `fit()`:
+
+```python
+from sklearn.decomposition import IncrementalPCA
+
+n_batches = 100
+inc_pca = IncrementalPCA(n_components=154)
+
+for X_batch in np.array_split(X_train, n_batches):
+inc_pca.partial_fit(X_batch)
+
+X_reduced = inc_pca.transform(X_train)
+```
+
+A different way is to use the `memmap` class, which allows you to manipulate log arrays stored in a binary file on disk. Since the `IncrementalPCA` class uses only a small part of the array at any given time, memory is kept under control and the `fit()` method can be used:
+
+```python
+X_mm = np.memmap(filename, dtype="float32", mode="readonly", shape=(m, n))
+
+batch_size = m // n_batches
+inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
+
+inc_pca.fit(X_mm)
+```
 
 
 
