@@ -288,6 +288,10 @@ X_reduced = gaussian_rnd_proj.fit_transform(X) # same result as above
 ```
 
 
+There is also a second transformer in this library, `SparseRandomProjection`, which uses less memory, is faster and has comparable quality. It is preferable to use this one on large data sets. It has something called **Rate r** which shows the rate of non-zero items in the random matrix called density. By default it is $1/\sqrt{2}$, and can be changed by the hyperparameter r.
+
+In short, **Random Projection** is a simple, fast and memory-efficient method useful for dimensionality reduction.
+
 <!------------------------------------------------------->
 <!------------------------------------------------------->
 <!-------------------------------------------------------> 
