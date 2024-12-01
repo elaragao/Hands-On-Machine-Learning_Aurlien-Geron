@@ -312,7 +312,24 @@ lle = LocallyLinearEmbedding(n_components=2, n_neighbors=10, random_state=42)
 X_unrolled = lle.fit_transform(X_swiss)
 ```
 
+In this code, the variable `t` is a 1D matrix containing the positions of the instances. To understand more deeply how LLE works, it can be divided into two stages.
 
+Stage 1 - For each training instance $x^{(i)}$, the k-nearest neighbor is identified, and then an attempt is made to reconstruct $x^{(i)}$ with a linear function of the neighbors, trying to find a weight that minimizes the squared distance. Therefore, Stage 1 consists of optimization, demonstrated in the equation below, where W is the matrix of people.
+
+```math
+\hat{W} = argmin_{W} \sum^{m}_{i=1} (x^{(i)} - \sum^{m}_{j=1} w_{i,j} x^{(j)})^{2}
+```
+
+>[!NOTE]
+> The above equation is subject to the following condition: $w_{i,j}=0$, if $x^{(j)}$ is not one of the k-nearest neighbors of $x^{(i)}$; and $\sum^{m}_{j=1} w_{i,j} = 1$ for $i = 1, 2, ..., m$
+
+Step 2 - With the weight matrix W operating the linear relations between training instances, these are mapped into a **d**-dimensional space, preserving the local relations as much as possible, with $z^{(i)}$ being the image of $x^{(i)}$ in the **d**-dimensional space. This step consists of an optimization similar to the first, but instead of keeping the instances fixed and finding optimal weights, the weights are kept fixed, searching for an optimal position of the images. The equation below demonstrates the process, where **Z** is the matrix containing all the images:
+
+```math
+\hat{Z} = argmin_{Z} \sum^{m}_{i=1} (z^{(i)} - \sum^{m}_{j=1} \hat{w}_{i,j} z^{(j)})^{2}
+```
+
+The LLE model is better able to build models in low-dimensional representations, especially in nonlinear data.
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->
