@@ -239,10 +239,16 @@ inc_pca.fit(X_mm)
 # Random Projection                                                     
 
 
+The method uses a random projection into a lower-dimensional space, causing similar instances to remain similar and very different instances to remain very different. As with all forms of reduction, the more dimensions are discarded, the more information is lost and the more instances are distorted.
+
+Choose the number of dimensions using the equation below, which determines the minimum number of dimensions to be preserved, ensuring with high probability that the distances do not change more than the given tolerance.
 
 
 
 
+```math
+d \geq \frac{4 log(m)}{\frac{1}{2} \varepsilon^{2} - \frac{1}{3} \varepsilon^{3}}
+```
 
 
 
