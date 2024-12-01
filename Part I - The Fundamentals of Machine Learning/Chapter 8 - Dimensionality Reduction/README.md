@@ -297,11 +297,20 @@ In short, **Random Projection** is a simple, fast and memory-efficient method us
 <!-------------------------------------------------------> 
 # LLE                                                                   
 
+**Locally Linear Embedding** or **LLE** is a **Nonlinear Dimensionality Reduction** or **NLDR**, which, unlike the other techniques discussed in the chapter, does not rely on projection.
 
 
 
 
+```python
+from sklearn.datasets import make_swiss_roll
+from sklearn.manifold import LocallyLinearEmbedding
 
+X_swiss, t = make_swiss_roll(n_samples=1000, noise=0.2, random_state=42)
+lle = LocallyLinearEmbedding(n_components=2, n_neighbors=10, random_state=42)
+
+X_unrolled = lle.fit_transform(X_swiss)
+```
 
 
 
