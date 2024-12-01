@@ -251,6 +251,20 @@ d \geq \frac{4 log(m)}{\frac{1}{2} \varepsilon^{2} - \frac{1}{3} \varepsilon^{3}
 ```
 
 
+<details>
+
+<summary>Equation terms</summary>
+
+- $d$: Is the number of dimensions;
+- $m$: Is the number of instances;
+- $n$: Is the number of features;
+- $\varepsilon$: Is the Squared Distance or the tolerance.
+
+</details>
+
+
+
+
 
 <!------------------------------------------------------->
 <!------------------------------------------------------->
