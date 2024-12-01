@@ -241,7 +241,7 @@ inc_pca.fit(X_mm)
 
 The method uses a random projection into a lower-dimensional space, causing similar instances to remain similar and very different instances to remain very different. As with all forms of reduction, the more dimensions are discarded, the more information is lost and the more instances are distorted.
 
-Choose the number of dimensions using the equation below, which determines the minimum number of dimensions to be preserved, ensuring with high probability that the distances do not change more than the given tolerance.
+Choose the number of dimensions using the equation below, which determines the minimum number of dimensions to be preserved, ensuring with high probability that the distances do not change more than the given tolerance. The equation is known as the Johnson Lindenstrauss equation.
 
 
 
@@ -263,7 +263,29 @@ d \geq \frac{4 log(m)}{\frac{1}{2} \varepsilon^{2} - \frac{1}{3} \varepsilon^{3}
 </details>
 
 
+After obtaining the value of $d$, it is possible to create the matrix **P** of format [d,n], with Guasian distribution and mean 0 and variance $1/d$ and used to project a dataset of $n$ dimensions in $d$ dimensions. Below you can see the code to obtain the reduction:
 
+```python
+from sklearn.random_projection import johnson_lindenstrauss_min_dim
+m, ε = 5_000, 0.1
+d = johnson_lindenstrauss_min_dim(m, eps=ε)
+
+n = 20_000
+np.random.seed(42)
+P = np.random.randn(d, n) / np.sqrt(d) # std dev = square root of variance
+X = np.random.randn(m, n) # generate a fake dataset
+X_reduced = X @ P.T
+```
+
+
+It is possible to do this through the Scikit-Learn library through the `GaussianRandomProjection` class, generating the random matrix. Using the `fit()` and `transform()` methods it is possible to perform the projection:
+
+```python
+from sklearn.random_projection import GaussianRandomProjection
+
+gaussian_rnd_proj = GaussianRandomProjection(eps=ε, random_state=42)
+X_reduced = gaussian_rnd_proj.fit_transform(X) # same result as above
+```
 
 
 <!------------------------------------------------------->
