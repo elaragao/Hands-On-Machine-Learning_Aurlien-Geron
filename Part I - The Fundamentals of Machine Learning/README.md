@@ -41,7 +41,7 @@ There is no single way to define a cluster, it depends on the context and the al
 
 ## k-means 
 
-
+The k-means algorithm is simple and capable of clustering certain data sets quickly, efficiently and in a few iterations. The algorithm is also known as the Lloyd-Forgy algorithm.
 
 <!---------------------------------------------------->
               
