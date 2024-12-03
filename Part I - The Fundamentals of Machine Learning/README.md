@@ -109,7 +109,9 @@ Another possible solution is to run the algorithm several times and keep the bes
 
 
 > [!IMPORTANT]
-> The way to identify which solution is the best is through the _Performance Metric_ called **Inertia**, which is the sum of the distances calculated between the instances and the closest centroid. The model kept is the one with the lowest **Inertia**. It is observable through `kmeans.inertia_`.
+> The way to identify which solution is the best is through the _Performance Metric_ called **Inertia**, which is the sum of the distances calculated between the instances and the closest centroid. The model maintained is the one with the lowest **Inertia**. It is observable through `kmeans.inertia_`. It is worth noting that the `score` method is its negative.
+
+An advancement was recently made to the algorithm, called **k-means++**. Adding a computational step drastically reduces the number of iterations that need to be done to find the optimal solution, and reduces the chance of falling into local minima or suboptimal solutions. It chooses to select centroids that are **Far** from each other.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
