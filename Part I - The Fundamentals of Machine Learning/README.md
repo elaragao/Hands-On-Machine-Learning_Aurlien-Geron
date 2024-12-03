@@ -96,7 +96,15 @@ Although convergence is certain, it may not converge to the correct solution, bu
 
 ### Centroid initialization methods
 
+One way to initialize the centroids in a more optimized way is to use the data found in the random initialization. This can be done as in the code below:
 
+```python
+good_init = np.array([[-3, 3], [-3, 2], [-3, 1], [-1, 2], [0, 2]])
+kmeans = KMeans(n_clusters=5, init=good_init, n_init=1, random_state=42)
+kmeans.fit(X)
+```
+
+Another possible solution is to run the algorithm several times and keep the best solution. This can be done using the hyperparameter `n_init` as any integer number you want.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
