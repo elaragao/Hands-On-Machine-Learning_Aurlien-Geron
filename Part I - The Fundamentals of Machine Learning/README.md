@@ -79,7 +79,22 @@ In this algorithm, there are two main ways to classify the instances:
 - **Hard Clustering**: Allocates the instance in the cluster closest to the centroid;
 - **Soft Clustering**: Assigns scores to each instance in relation to each cluster. This score can be in relation to the instance and centroid, or in relation to the **Similarity Score** or **Affinity* (for example, Gaussina Radial Basis Function).
 <!---------------------------------------------------->
-              
+
+### Centroid initialization methods
+
+In a considerable number of cases, it is not certain how many clusters there are. The algorithm can be operated by randomly placing the centroids in k locations, for example, in k random instances. Then, the instances are labeled and the centroids are updated, and this is done repeatedly. The image below demonstrates this starting in the top left corner, followed by the top right corner where the instances are labeled.
+
+[Image]
+
+>[!NOTE]
+> The algorithm converges in a small number of iterations, usually small, since the mean squared distance of the instances and centroids decreases at each step and converges.
+
+Although convergence is certain, it may not converge to the correct solution, but rather to a _local optimum_, depending on the initialization of the centroid.
+
+
+
+<!---------------------------------------------------->
+<!---------------------------------------------------->
 ## Limits of k-means
 
 
