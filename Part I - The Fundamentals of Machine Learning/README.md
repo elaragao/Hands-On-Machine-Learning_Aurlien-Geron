@@ -106,6 +106,11 @@ kmeans.fit(X)
 
 Another possible solution is to run the algorithm several times and keep the best solution. This can be done using the hyperparameter `n_init` as any integer number you want.
 
+
+
+> [!IMPORTANT]
+> The way to identify which solution is the best is through the _Performance Metric_ called **Inertia**, which is the sum of the distances calculated between the instances and the closest centroid. The model kept is the one with the lowest **Inertia**. It is observable through `kmeans.inertia_`.
+
 <!---------------------------------------------------->
 <!---------------------------------------------------->
 ## Limits of k-means
