@@ -183,21 +183,41 @@ Although it has several advantages, the k-means algorithm performs poorly when f
 > It is important to emphasize that **Scaling** the inputs is important before applying the algorithms.
 
 <!---------------------------------------------------->
+<!---------------------------------------------------->
                            
 ## Using Clustering for Image Segmentation 
 
 
+**Image Segmentation** partitions an image into different segments, and has some variations such as:
 
+- **Color Segmentation**: Pixels with the same color are assigned to the same segment. Useful in satellite forest preservation analysis;
+- **Semantic Segmentation**: Pixels that are part of the same object are in the same segment. Useful in cars driving to identify signs or pedestrians.
+- **Instance Segmentation**: Similar to the previous one, but more specific. It would identify each sign as one and each pedestrian as one.
+
+The last two segmentations are more complex and tend to be used with convolutional neural networks, so the first one will be addressed now. The image `ladybug.png` from the `Pillow` library will be used as an example. The image is a 3D array, where the first dimension is the height, the second the width (number of pixels in the rows and columns) and the third the intensity of the RGB colors. In short, each pixel contains an RGB representation from 0 to 255. Additional channels could represent transparency, or infrared for satellites.
+
+It is possible to reshape the array to obtain a list of RGB colors. The code below demonstrates this being used and applied to 8 clusters. It is important to note that the smaller the number of clusters, the smaller details of the image will go unnoticed by the algorithm.
+
+```python
+X = image.reshape(-1, 3)
+kmeans = KMeans(n_clusters=8, random_state=42).fit(X)
+segmented_img = kmeans.cluster_centers_[kmeans.labels_]
+segmented_img = segmented_img.reshape(image.shape)
+```
+
+<!---------------------------------------------------->
 <!---------------------------------------------------->
 
 ## Using Clustering for Semi-Supervised Learning  
 
 
 <!---------------------------------------------------->
+<!---------------------------------------------------->
 
 ## DBSCAN 
 
 
+<!---------------------------------------------------->
 <!---------------------------------------------------->
                                         
 ## Other Clustering Algorithms   
