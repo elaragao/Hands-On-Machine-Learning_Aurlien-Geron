@@ -111,7 +111,10 @@ Another possible solution is to run the algorithm several times and keep the bes
 > [!IMPORTANT]
 > The way to identify which solution is the best is through the _Performance Metric_ called **Inertia**, which is the sum of the distances calculated between the instances and the closest centroid. The model maintained is the one with the lowest **Inertia**. It is observable through `kmeans.inertia_`. It is worth noting that the `score` method is its negative.
 
-An advancement was recently made to the algorithm, called **k-means++**. Adding a computational step drastically reduces the number of iterations that need to be done to find the optimal solution, and reduces the chance of falling into local minima or suboptimal solutions. It chooses to select centroids that are **Far** from each other.
+
+Recently, an improvement was made to the algorithm, called **k-means++**. It adds a computational step that drastically reduces the number of iterations that need to be done to find the optimal solution, and reduces the chance of falling into local minima or suboptimal solutions. It chooses to select centroids that are **Far** from each other. The `KMeans` class already uses this method.
+
+The algorithm operates in the steps of, first, selecting the centroid $c^{(1)}$ in the dataset. After that, select a new centroid $c^{(i)}$ by choosing an instance $x^{(1)}$ through the probability expressed by the equation $D (x^{(i)})^{2} \sum^{m}_{j=1}D (x^{(j)})^{2}$, where $D (x^{(i)})$ is the distance between the instance $x^{(i)}$ and the closest centroid already chosen (in the case in question, it would be $c^{(1)}$) and repeat this step until selecting the k centroids.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
