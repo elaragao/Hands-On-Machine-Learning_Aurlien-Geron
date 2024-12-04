@@ -177,6 +177,10 @@ The vertical line represents the average score of the silhouette. If the instanc
 <!---------------------------------------------------->
 ## Limits of k-means
 
+Although it has several advantages, the k-means algorithm performs poorly when faced with clusters of different sizes, densities or shapes that are not spherical. An example would be the **Gaussian Mixture** algorithm, which performs better on elliptical shapes.
+
+>[!TIP]
+> It is important to emphasize that **Scaling** the inputs is important before applying the algorithms.
 
 <!---------------------------------------------------->
                            
