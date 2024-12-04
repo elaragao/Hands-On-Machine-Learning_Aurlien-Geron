@@ -116,6 +116,17 @@ Recently, an improvement was made to the algorithm, called **k-means++**. It add
 
 The algorithm operates in the steps of, first, selecting the centroid $c^{(1)}$ in the dataset. After that, select a new centroid $c^{(i)}$ by choosing an instance $x^{(1)}$ through the probability expressed by the equation $D (x^{(i)})^{2} / \sum^{m}_{j=1}D (x^{(j)})^{2}$, where $D (x^{(i)})$ is the distance between the instance $x^{(i)}$ and the closest centroid already chosen (in the case in question, it would be $c^{(1)}$) and repeat this step until selecting the k centroids.
 
+
+
+<!---------------------------------------------------->
+### Accelerated k-means and mini-batch k-means
+
+The **Elkan Algorithm** or **Accelerated Algorithm** is used in data sets with many clusters, avoiding unnecessary distance calculations. It does this through the triangle inequality and controlling lower and upper bounds for the distances between instances and centroids. It is used through the hyperparameter `algorithm = "elkan"`.
+
+The use of **mini-batches** proposed by Schulley uses mini-batches by moving centroids only a little at each iteration, speeding up the algorithm and making it possible to cluster large data sets. It can be used with the `MiniBatchKMeans` class
+
+
+
 <!---------------------------------------------------->
 <!---------------------------------------------------->
 ## Limits of k-means
