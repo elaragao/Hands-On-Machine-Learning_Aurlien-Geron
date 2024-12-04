@@ -114,7 +114,7 @@ Another possible solution is to run the algorithm several times and keep the bes
 
 Recently, an improvement was made to the algorithm, called **k-means++**. It adds a computational step that drastically reduces the number of iterations that need to be done to find the optimal solution, and reduces the chance of falling into local minima or suboptimal solutions. It chooses to select centroids that are **Far** from each other. The `KMeans` class already uses this method.
 
-The algorithm operates in the steps of, first, selecting the centroid $c^{(1)}$ in the dataset. After that, select a new centroid $c^{(i)}$ by choosing an instance $x^{(1)}$ through the probability expressed by the equation $D (x^{(i)})^{2} \sum^{m}_{j=1}D (x^{(j)})^{2}$, where $D (x^{(i)})$ is the distance between the instance $x^{(i)}$ and the closest centroid already chosen (in the case in question, it would be $c^{(1)}$) and repeat this step until selecting the k centroids.
+The algorithm operates in the steps of, first, selecting the centroid $c^{(1)}$ in the dataset. After that, select a new centroid $c^{(i)}$ by choosing an instance $x^{(1)}$ through the probability expressed by the equation $D (x^{(i)})^{2} / \sum^{m}_{j=1}D (x^{(j)})^{2}$, where $D (x^{(i)})$ is the distance between the instance $x^{(i)}$ and the closest centroid already chosen (in the case in question, it would be $c^{(1)}$) and repeat this step until selecting the k centroids.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
