@@ -123,7 +123,13 @@ The algorithm operates in the steps of, first, selecting the centroid $c^{(1)}$ 
 
 The **Elkan Algorithm** or **Accelerated Algorithm** is used in data sets with many clusters, avoiding unnecessary distance calculations. It does this through the triangle inequality and controlling lower and upper bounds for the distances between instances and centroids. It is used through the hyperparameter `algorithm = "elkan"`.
 
-The use of **mini-batches** proposed by Schulley uses mini-batches by moving centroids only a little at each iteration, speeding up the algorithm and making it possible to cluster large data sets. It can be used with the `MiniBatchKMeans` class
+The use of **mini-batches** proposed by Schulley uses mini-batches by moving centroids only a little at each iteration, speeding up the algorithm and making it possible to cluster large data sets. It is possible to use it with the `MiniBatchKMeans` class
+
+>[!TIP]
+> In cases where the data set does not fit in memory, there are a few options: use the `memmap` class, use _mini-batch_ together with the `partial_fit()` method, although it will require much more work.
+
+>[!CAUTION]
+> The algorithm using **Mini-Batches** is much faster than k-means, but has a slightly worse _Inertia_.
 
 
 
