@@ -133,6 +133,46 @@ The use of **mini-batches** proposed by Schulley uses mini-batches by moving cen
 
 
 
+
+
+
+<!---------------------------------------------------->
+### Finding the optimal number of clusters
+
+In some cases, it may seem obvious how many clusters are needed to start the algorithm. For data where there are none, it is common to consider the **lowest Inertia value** as discrimination, but the more centroids, the lower the inertia value, so it is **not a good parameter**.
+
+Another way to analyze would be to see the inertia as a function of $k$, at the inflection point called _elbow_, but using as an example the case where we know that the ideal number is 5, the inflection point points to $k = 4$.
+
+[Image]
+
+Another technique to identify the best value is somewhat crude and computationally expensive. The technique consists of using **Sillhouette Score** acquired from the average **Sillhouette Coefficient** of the instances. The score can be observed by the `silhouette_score` class. The equation below shows how the coefficient is obtained:
+
+```math
+Sillhouete \: \: Coefficient \: \: = \frac{(b-a)}{max(a,b)}
+```
+<details>
+
+<summary>Equation terms</summary>
+
+- $a$: This is the average intra-cluster distance, or average distance for instances within the same cluster;
+
+- $b$: This is the average distance from the closest cluster (minimum distance between the closest instances from different clusters);
+
+</details>
+
+The coefficient can vary between -1 and +1, where:
+
+- **Close to +1**: Instance is well allocated within the cluster and far from the others;
+
+- **Close to 0**: Instance close to a cluster boundary;
+
+- **Close to -1**: Instance possibly assigned to the wrong instance.
+
+One way to visualize this is by plotting the Silhouette Score as a function of k, but in addition, for better visualization, you can plot the **Silhouette Diagram** graph. The graphs are blade-shaped, where the **height** of the shape indicates the number of instances in this cluster and the **width** represents the average of the coefficients of the instances in the cluster (wider = better).
+
+[Image]
+
+The vertical line represents the average score of the silhouette. If the instances are to the left of the line, it indicates that there was poor clustering.
 <!---------------------------------------------------->
 <!---------------------------------------------------->
 ## Limits of k-means
