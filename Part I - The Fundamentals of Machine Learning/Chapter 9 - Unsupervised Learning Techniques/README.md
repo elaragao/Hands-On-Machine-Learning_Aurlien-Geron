@@ -210,6 +210,9 @@ segmented_img = segmented_img.reshape(image.shape)
 
 ## Using Clustering for Semi-Supervised Learning  
 
+Another use would be for data sets with only a few labels, for semi-supervised learning. Using the MNIST numerical set as an example.
+
+To demonstrate this, it is possible to assume that we only have the labels of 50 of these, and use them to obtain the caption of the others through clustering.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
