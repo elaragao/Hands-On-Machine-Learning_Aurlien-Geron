@@ -219,6 +219,32 @@ To demonstrate this, it is possible to assume that we only have the labels of 50
 
 ## DBSCAN 
 
+**Density Based Spatial Clustering of Applications with Noise** (**DBSCAN**) is an algorithm that defines clusters with a continuous region of high density. The way the algorithm operates is as follows:
+
+- Step 1: It uses a small distance $\varepsilon$ to see how many instances are close together in the region, called **$\varepsilon$-neighborhood**;
+- Step 2: If there is a minimum number of instances in the $\varepsilon$-neighborhood, there are regions considered dense, called **Core Instance**
+- Step 3: A set of **Core Instances** forms a **Cluster**.
+- Step 4: Instances outside these sets are considered **Anomalies**.
+
+The algorithm is useful for separating clusters from low-density regions. An example of the code can be seen below with the `DBSCAN` class:
+
+```python
+from sklearn.cluster import DBSCAN
+from sklearn.datasets import make_moons
+
+X, y = make_moons(n_samples=1000, noise=0.05)
+dbscan = DBSCAN(eps=0.05, min_samples=5)
+dbscan.fit(X)
+```
+
+When a label detects a cluster index as -1 it means that the instance is an anomaly. It is possible to visualize both the _Core Instances_ and their indices with `components_` and `core_sample_indices_`.
+
+The `DBSCAN` class does not have a `predict()` method, only the `fit_predict()` method, being unable to predict which cluster new instances belong to. This is not a problem because there are several other better methods for this task, such as `KNeighborsClassifier`.
+
+This allows you to use the entire training set when training a classifier with only the _Core Instances_, ignore anomalies, or select only the anomalies.
+
+**DBSCAN** allows you to identify any number of clusters in any format. It is important to note that **it does not perform well with large datasets** and has problems with **low density** regions.
+
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
