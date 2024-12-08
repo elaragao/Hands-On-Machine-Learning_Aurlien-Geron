@@ -315,6 +315,11 @@ The results of the means and covariance matrices obtained by the algorithm are v
 > What is the difference between **EM** and _K-Means_? The generalization of K-Means only finds the cluster centers ($\mu$), while EM also finds their size, shape and orientation ($\Sigma$) and also their relative weights ($\Phi$). While _K-Mean_ uses **Hard Cluster Attribution**, **EM** uses **Soft Cluster Attribution**.
 
 
+During the _Expectation Stage_ the algorithm estimates the probability of the instance belonging to a cluster, and during the _Maximization Stage_ the clusters are updated using all instances of the dataset with estimated probabilities that each instance belongs to each cluster. This probability is called **Responsibilities of the Clusters for the instances**. Therefore, in each update, each cluster will have more impact from the instance that is most responsible for it.
+
+Due to the possibility of converging to local minima, it is necessary to run the algorithm more than once. It is possible to analyze whether or not there was a conversion using the methods `converged_`, which returns a boolean, and `n_iter_`, which returns the number of iterations required for convergence.
+
+
 
 <!---------------------------------------------------->
                               
