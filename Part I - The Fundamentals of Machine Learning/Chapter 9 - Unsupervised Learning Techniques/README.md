@@ -290,6 +290,8 @@ For the GMM to be performed, it is assumed that the dataset **X** is generated b
 
 Then, initially we estimate the weights $\Phi$ and the distribution parameters $\mu ^{(1)}$ to $\mu ^{(k)}$ and $\Sigma ^{(1)}$ to $\Sigma ^{(k)}$, as shown by the code below using the Scikit-Learn `GaussisanMixture` class for generating 3 clusters:
 
+
+
 ```python
 
 from sklearn.mixture import GaussianMixture
@@ -299,7 +301,20 @@ gm.fit(X)
 
 gm.weights_
 gm.means_
+gm.covariances_
 ```
+
+The results of the means and covariance matrices obtained by the algorithm are very close to the real values. The class operates from the **Expectation Maximization** (EM) algorithm, which works similarly to _k-means_ as follows:
+
+- Step 1: Initialize cluster with random parameters;
+- Step 2: Assign instances to clusters (_Expectation Step_);
+- Step 3: Update Clusters (_Maximization Step_); - Step 4: Repeat steps 2 and 3.
+
+>[!NOTE]
+> What is the difference between **EM** and _K-Means_? The generalization of K-Means only finds the cluster centers ($\mu$), while EM also finds their size, shape and orientation ($\Sigma$) and also their relative weights ($\Phi$). While _K-Mean_ uses **Hard Cluster Attribution**, **EM** uses **Soft Cluster Attribution**.
+
+
+
 <!---------------------------------------------------->
                               
 ## Using Gaussian Mixtures for Anomaly Detection
