@@ -251,7 +251,17 @@ This allows you to use the entire training set when training a classifier with o
                                         
 ## Other Clustering Algorithms   
 
+Some other algorithms from the Scikit-Learn library are:
 
+- **Agglomerative Clustering**: Hierarchical clustering from the bottom up; it operates from individual sets, and gradually clusters them until a single large cluster is formed. It has a tree-like format. It is useful for clusters of different formats and is flexible in performance, scaling well with large datasets if there is a _connectivity matrix_ (sparse m × m matrix indicating that pairs of instances are neighbors).
+
+- **BIRCH**: Or **Balanced Iterative reducing and Clustering using Hierarchies**, it performs well with large datasets and with a not very large number of features (<20). It can be faster than _batch k-mean_.
+
+- **Mean-Shift**: In this algorithm, a point called _Particle_ is initially defined in each instance, and the local density in the data space is calculated. Then the particle is moved to where the density is concentrated and continues to move until the local intensity peak is reached, forming a cluster. It is capable of forming clusters with different numbers and shapes, uses only one hyperparameter and depends on the local density. It scales poorly with large datasets.
+
+- **Affinity Propagation**: In this algorithm, instances choose another instance (or themselves) to "represent" them, and each instance chosen for this purpose is called _Exemplar_. Each _Exemplar_ and its "voters" form a cluster. It is similar to _K-Mean_, but does not require the number of clusters to be chosen beforehand, operates well with clusters of different sizes and scales poorly with a large dataset.
+
+- **Spectral Clustering**: Explaining it in a simpler way, it uses a similarity matrix between the instances, reduces the dimensionality of the matrix and uses a clustering algorithm on this similarity matrix with reduced dimensionality. It does not work well with clusters of different sizes, but it handles different and irregular shapes well, being able to identify more complex patterns, such as clusters of friends in social networks. It does not scale well with large datasets.
 
 <!---------------------------------------------------->
 <!---------------------------------------------------->
