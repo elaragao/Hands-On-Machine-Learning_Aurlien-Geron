@@ -320,7 +320,12 @@ During the _Expectation Stage_ the algorithm estimates the probability of the in
 Due to the possibility of converging to local minima, it is necessary to run the algorithm more than once. It is possible to analyze whether or not there was a conversion using the methods `converged_`, which returns a boolean, and `n_iter_`, which returns the number of iterations required for convergence.
 
 
+**GMM** is a _Generative Model_, and it is possible to create new instances from the data available. It is also possible to output **Hard Clustering** or **Soft Clustering**:
 
+- **Hard Clustering**: Assigns each instance to the most likely cluster, using the `predict()` method;
+- **Soft Clustering**: Estimates probabilities of belonging to clusters, using the `predict_proba()` method.
+
+  
 <!---------------------------------------------------->
                               
 ## Using Gaussian Mixtures for Anomaly Detection
