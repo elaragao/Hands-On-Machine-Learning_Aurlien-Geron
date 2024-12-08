@@ -308,7 +308,8 @@ The results of the means and covariance matrices obtained by the algorithm are v
 
 - Step 1: Initialize cluster with random parameters;
 - Step 2: Assign instances to clusters (_Expectation Step_);
-- Step 3: Update Clusters (_Maximization Step_); - Step 4: Repeat steps 2 and 3.
+- Step 3: Update Clusters (_Maximization Step_);
+- Step 4: Repeat steps 2 and 3.
 
 >[!NOTE]
 > What is the difference between **EM** and _K-Means_? The generalization of K-Means only finds the cluster centers ($\mu$), while EM also finds their size, shape and orientation ($\Sigma$) and also their relative weights ($\Phi$). While _K-Mean_ uses **Hard Cluster Attribution**, **EM** uses **Soft Cluster Attribution**.
