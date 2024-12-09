@@ -407,7 +407,19 @@ Due to the logarithmic property $log(ab) = log(a) + log(b)$, it is preferable to
  
 ## Bayesian Gaussian Mixture Models 
 
+The `BayesianGaussianMixture` class assigns weights close to zero to unnecessary clusters. In its operation, a number is assigned that the operator believes is close to the ideal number of clusters in the system, and the unnecessary ones are automatically eliminated.
 
+```python
+from sklearn.mixture import BayesianGaussianMixture
+
+bgm = BayesianGaussianMixture(n_components=10, n_init=10, random_state=42)
+
+bgm.fit(X)
+bgm.weights_.round(2)
+```
+
+>[!CAUTION]
+> This algorithm works well on ellipsoidal shapes, but does not work well on different shapes, such as the _Moons_ set, for example.
 <!---------------------------------------------------->
 
 ## Other Algorithms for Anomaly and Novelty Detection 
