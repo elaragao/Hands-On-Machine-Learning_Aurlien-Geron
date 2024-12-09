@@ -359,6 +359,50 @@ It is important to note that the task is also related to **Novelty Detection**. 
 ## Selecting the Number of Clusters
 
 
+In the **GMM** model, the same metrics as k-means cannot be used to determine the ideal number of clusters. Instead, it is possible to use models that minimize the _Theoretical Information Criterion_ such as **Bayesina Information Criterion** (BIC) or **Akaike Information Criterion** (AIC):
+
+```math
+BIC = log(m)p - 2log(\hat{L})
+```
+
+```math
+AIC = 2p - 2log(\hat{L})
+```
+
+<details>
+
+<summary>Equation terms</summary>
+
+- $m$: Number of instances;
+- $p$: Number of parameters used by the model;
+- $\hat{L}$: Maximized value of the model's _Likelihood Function_;
+
+</details>
+
+Both models reward models that fit well and penalize those that have many parameters, such as clusters. Mostly they choose the same model, but BIC is usually simpler (- parameters) and does not fit the data as well as AIC. Both have methods in SciKit-Learn, namely `aic()` and `bic()`.
+
+<details>
+
+<summary>**Likelihood Function**</summary>
+
+Initially, let's differentiate the words **Probability** and **Likelihood**:
+
+- **Probability**: How likely a future outcome $x$ is if the values ​​of the parameters $\theta$ are known;
+
+- **Likelihood**: How likely a set of parameters $\theta$ is after the outcome $x$ is known.
+
+As a comparison, if you want to find out the probability of obtaining a value $x$ between $\x_{1}$ and $\x_{2}$ if you already have a known value of $\theta$, you can use the PDF function. Now, if you want to do the opposite, the _Likelehood Function_ is used. In other words, PDF is a function of $x$ with $\theta$ fixed, and _Likelehood Function_ (which **IS NOT A PROBABILITY DISTRIBUTION FUNCTION**) is a function of $\theta$ with $x$ fixed.
+
+It is common to try to obtain the most likely parameters of a dataset **X**, being necessary to obtain functions that maximize the _Likelehood Function_, being some ways:
+- **Maximum Likelehood Estimate (MLE)**: Used when observing a single instance $x$ to obtain the maximum likelihood of $\theta$, being described by the function $L(\theta | x)$
+- **Maximum A-Posteriori (MAP)**: Operates in a similar way to MLE, but counting on the existence of a prior probability distribution $g$ to exist and be taken into consideration in the estimate, being described by the function $L(\theta | x)g(\theta)$
+
+Due to the logarithmic property $log(ab) = log(a) + log(b)$, it is preferable to use the logarithm of the _Likelehood Function_, given the fact that both functions that maximize it are the same. Then, after estimating the values ​​that maximize $\hat{\theta}$, one can calculate $\hat{L} = L \hat{\theta}$, which is used to calculate AIC and BIC.
+
+</details>
+
+
+
 <!---------------------------------------------------->
  
 ## Bayesian Gaussian Mixture Models 
