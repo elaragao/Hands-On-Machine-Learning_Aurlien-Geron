@@ -383,7 +383,7 @@ Both models reward models that fit well and penalize those that have many parame
 
 <details>
 
-<summary>**Likelihood Function**</summary>
+<summary> **Likelihood Function** </summary>
 
 Initially, let's differentiate the words **Probability** and **Likelihood**:
 
@@ -391,7 +391,7 @@ Initially, let's differentiate the words **Probability** and **Likelihood**:
 
 - **Likelihood**: How likely a set of parameters $\theta$ is after the outcome $x$ is known.
 
-As a comparison, if you want to find out the probability of obtaining a value $x$ between $\x_{1}$ and $\x_{2}$ if you already have a known value of $\theta$, you can use the PDF function. Now, if you want to do the opposite, the _Likelehood Function_ is used. In other words, PDF is a function of $x$ with $\theta$ fixed, and _Likelehood Function_ (which **IS NOT A PROBABILITY DISTRIBUTION FUNCTION**) is a function of $\theta$ with $x$ fixed.
+As a comparison, if you want to find out the probability of obtaining a value $x$ between $x_{1}$ and $x_{2}$ if you already have a known value of $\theta$, you can use the PDF function. Now, if you want to do the opposite, the _Likelehood Function_ is used. In other words, PDF is a function of $x$ with $\theta$ fixed, and _Likelehood Function_ (which **IS NOT A PROBABILITY DISTRIBUTION FUNCTION**) is a function of $\theta$ with $x$ fixed.
 
 It is common to try to obtain the most likely parameters of a dataset **X**, being necessary to obtain functions that maximize the _Likelehood Function_, being some ways:
 - **Maximum Likelehood Estimate (MLE)**: Used when observing a single instance $x$ to obtain the maximum likelihood of $\theta$, being described by the function $L(\theta | x)$
