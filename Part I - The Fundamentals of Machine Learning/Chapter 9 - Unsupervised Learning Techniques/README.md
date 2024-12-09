@@ -342,7 +342,18 @@ In the case of many dimensions, it may be difficult for the EM to converge. To d
                               
 ## Using Gaussian Mixtures for Anomaly Detection
 
+The **GMM** model is useful for **Anomaly Detection**. This occurs by identifying low-density regions, and it is only necessary to define the density threshold that you intend to use. An example can be seen in the code below, where 4% of the lowest-density instances are limited to anomalies:
 
+```python
+densities = gm.score_samples(X)
+density_threshold = np.percentile(densities, 2)
+anomalies = X[densities < density_threshold]
+```
+
+>[!NOTE]
+> The discussion made in Chapter 3 regarding the _Precision/Recall_ Trade-off is also valid here. If there are many _False Positives_, you can reduce the threshold, and if there are many _False Negatives_ you can increase the threshold.
+
+It is important to note that the task is also related to **Novelty Detection**. The principle is basically the same, but **Anomaly Detection** starts from the premise that it is to clean the data set, when **Novelty Detection** already has a clean set.
 <!---------------------------------------------------->
 
 ## Selecting the Number of Clusters
