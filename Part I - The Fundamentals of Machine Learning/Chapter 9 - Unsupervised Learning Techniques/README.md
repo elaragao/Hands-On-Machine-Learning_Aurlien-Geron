@@ -332,6 +332,12 @@ Due to the possibility of converging to local minima, it is necessary to run the
 
 
 
+In the case of many dimensions, it may be difficult for the EM to converge. To do this, it is possible to limit parameters such as shape, size and orientation. One way to do this is by using restrictions on the covariance matrix through the hyperparameter `covariance_type`, which can take the following forms:
+
+- "full": Can take any shape, size and orientation (unrestricted covariance matrices). This is the default;
+- "spherical": Spherical shape, diameters may differ (different variances);
+- "diag": Ellipsoidal shape, any size, **parallel** axes (diagonal covariance matrices);
+- "tied": Ellipsoidal shape, same size and orientation (same covariance matrix for all);
 <!---------------------------------------------------->
                               
 ## Using Gaussian Mixtures for Anomaly Detection
