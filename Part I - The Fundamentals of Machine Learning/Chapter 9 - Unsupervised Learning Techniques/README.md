@@ -383,7 +383,7 @@ Both models reward models that fit well and penalize those that have many parame
 
 <details>
 
-<summary> **Likelihood Function** </summary>
+<summary> <b>Likelihood Function<\b> </summary>
 
 Initially, let's differentiate the words **Probability** and **Likelihood**:
 
