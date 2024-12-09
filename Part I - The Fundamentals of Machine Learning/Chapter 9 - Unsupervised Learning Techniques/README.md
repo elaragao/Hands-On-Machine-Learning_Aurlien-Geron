@@ -274,8 +274,8 @@ Some other algorithms from the Scikit-Learn library are:
 
 There are many variants of GMM, the simplest of which requires knowing the number of k Gaussian distributions. To give a brief description of how clusters are defined, let's first define that for instances we will use $i$, and for clusters we will use $j$. Each term in the explanation is:
 
-- $i$: Instance i^{th};
-- $j$: Cluster j^{th};
+- $i$: Instance $i^{th}$;
+- $j$: Cluster $j^{th}$;
 - $x^{(i)}$: Location of instance $i;$
 - $\Phi _{j}$: Weight, or probability that instance $i$ belongs to cluster $j$;
 - $z^{(i)}$: Index of the cluster chosen for the $i^{th}$ instance
