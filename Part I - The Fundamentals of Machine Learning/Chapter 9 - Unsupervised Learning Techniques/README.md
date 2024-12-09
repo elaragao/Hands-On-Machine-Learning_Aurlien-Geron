@@ -325,7 +325,13 @@ Due to the possibility of converging to local minima, it is necessary to run the
 - **Hard Clustering**: Assigns each instance to the most likely cluster, using the `predict()` method;
 - **Soft Clustering**: Estimates probabilities of belonging to clusters, using the `predict_proba()` method.
 
-  
+
+
+>[!TIP]
+> It is possible to use the PDF to obtain the density of the model at any location. The `score_sample()` function, which returns the logarithm of the PDF, makes it possible to extract the PDF through the exponential of the score. This data can be transformed into values ​​between 0 and 1 by integrating the PDF over the region.
+
+
+
 <!---------------------------------------------------->
                               
 ## Using Gaussian Mixtures for Anomaly Detection
