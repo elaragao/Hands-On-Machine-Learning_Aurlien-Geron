@@ -1,2 +1,2 @@
-# Decision 
+# Training Deep Neural Networks 
 
