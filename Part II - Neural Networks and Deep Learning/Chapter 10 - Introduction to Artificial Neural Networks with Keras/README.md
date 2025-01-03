@@ -10,6 +10,7 @@ This chapter will present the functioning and architectures of ANNs, Perceptrons
 
 # From Biological to Artificial Neurons
 
+Briefly speaking of history, ANNs had their first "mention" around the year 1940, where it was explained mainly as _Propositional Logic_ of computers to perform activities similar to the brain. Later, this concept was revisited in the 1960s, until in the 1980s better architectures were explored and a prototype of what we have today was filament, until, in 1990.
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Biological Neurons
