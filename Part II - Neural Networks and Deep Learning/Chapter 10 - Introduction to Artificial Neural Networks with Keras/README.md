@@ -1,6 +1,8 @@
 # Introduction to Artificial Neural Networks with Keras
 
+**Artificial Neural Networks** (ANNs) were inspired by the functioning of neurons in the brain. The functioning of this tool is the core of _Deep Learning_, being versatile, scalable and powerful for complex Machine Learning problems.
 
+This chapter will present the functioning and architectures of ANNs, Perceptrons and Multilayer Perceptrons. Then, implementations using TensorFlow Keras API will be seen.
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
