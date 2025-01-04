@@ -18,6 +18,19 @@ Briefly speaking of history, ANNs had their first "mention" around the year 1940
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Logical Computations with Neurons
+The first model proposed for _Artificial Neurons_ operated basically as a binary on/off operation coordinated from _logic gates_. The image below demonstrates some cases:
+
+[Image]
+
+- $C = A$: If neuron A is activated, C will be activated;
+- $C = A \wedge B$: Performs a logical AND. Neuron C is activated only when A and B are activated;
+- $C = A \vee B$: Performs a logical OR. Neuron C is activated when A is activated, B is activated, or A and B are activated;
+- $C = A \wedge \neg B$: Performs a logical AND and NOT (in B). C is activated when A is activated and B is deactivated.
+
+
+
+<!-- https://gitmind.com/pt/faq/latex-math-symbols.html -->
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
