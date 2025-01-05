@@ -36,6 +36,9 @@ The first model proposed for _Artificial Neurons_ operated basically as a binary
 <!------------------------------------------------------>
 ## The Perceptron
 
+**Perceptron** is one of the simplest forms of ANNs, based on artificial neuron models called _Threshold Logic Unit_ (TLU) or _Linear Threshold Unit_ (LTU), where the inputs and outputs are **numbers** instead of binary values, and their connections are associated with **Weights**.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## The Multilayer Perceptron and Backpropagation
