@@ -41,17 +41,40 @@ The first model proposed for _Artificial Neurons_ operated basically as a binary
 - $1^{st}$: $z = w_{1}x_{1} + w_{2}x_{2} + \cdot \cdot \cdot + w_{n}x_{n} + b = w^{T}x + b$
 - $2^{nd}$: $h_{w}(x) = step(z)$
 
+<details>
+<summary>Equation terms</summary>
 - $x$: Inputs;
-- $w$: Weights of values; - $b$: Bias;
+- $w$: Weights of values; 
+- $b$: Bias;
 - $z$: Linear Function;
 - $h$: Step Function.
-
+</details>
+  
 The _Step Function_ can be either _Heaviside Step Function_ or _Sign Function_, less commonly:
 
 ```math
 
-heaviside(z) = \: \: \: \: \: \: \: \: sgn(z) =
+heaviside(z) = 
 
+\left\{  \begin{matrix} 
+
+0 \: \: \: if \: \: \: z < 0\\
+1 \: \: \: if \: \: \: z \geq 0
+
+\end{matrix} \right.
+
+
+\: \: \: \: \: \: \: \: \: \: \: \:
+
+sgn(z) =
+
+\left\{  \begin{matrix} 
+
+-1 \: \: \: if \: \: \: z < 0\\
+0 \: \: \: if \: \: \: z = 0\\
++1 \: \: \: if \: \: \: z > 0
+
+\end{matrix} \right.
 ```
 
 The schematic below basically demonstrates how a Perceptron works based on TLUs, which can be divided into three main layers:
@@ -73,11 +96,13 @@ h_{W,b}(X) = \Phi (XW + b)
 
 ```
 
+<details>
+<summary>Equation terms</summary>
 - $X$: Input Matrix. Has one row per instance and one column per feature;
 - $W$: Weight Matrix. Has one row per input and one column per neuron;
 - $b$: Bias Vector. Contains one bias term per neuron;
 - $\Phi$: _Activation Function_. In the case of TLUs, _Step Function_
-
+</details>
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
