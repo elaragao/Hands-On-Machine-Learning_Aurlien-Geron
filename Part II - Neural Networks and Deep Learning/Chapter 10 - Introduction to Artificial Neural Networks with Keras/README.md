@@ -36,7 +36,47 @@ The first model proposed for _Artificial Neurons_ operated basically as a binary
 <!------------------------------------------------------>
 ## The Perceptron
 
-**Perceptron** is one of the simplest forms of ANNs, based on artificial neuron models called _Threshold Logic Unit_ (TLU) or _Linear Threshold Unit_ (LTU), where the inputs and outputs are **numbers** instead of binary values, and their connections are associated with **Weights**.
+**Perceptron** is one of the simplest forms of ANNs, based on artificial neuron models called _Threshold Logic Unit_ (TLU) or _Linear Threshold Unit_ (LTU), where the inputs and outputs are **numbers** instead of binary values, and their connections are associated with **Weights**. The algorithm, in basic form, operates in two steps, starting with linear functions for the inputs followed by a _Step Function_:
+
+- $1^{st}$: $z = w_{1}x_{1} + w_{2}x_{2} + \cdot \cdot \cdot w_{n}x_{n} + b = w^{T}x + b
+- $2^{nd}$: $h_{w}(x) = step(z)$
+
+- $x$: Inputs;
+- $w$: Weights of values; - $b$: Bias;
+- $z$: Linear Function;
+- $h$: Step Function.
+
+The _Step Function_ can be either _Heaviside Step Function_ or _Sign Function_, less commonly:
+
+```math
+
+heaviside(z) = \: \: \: \: \: \: \: \: sgn(z) =
+
+```
+
+The schematic below basically demonstrates how a Perceptron works based on TLUs, which can be divided into three main layers:
+
+- _Input Layer_: Layer containing inputs;
+- _Fully Connected Layer_ or _Dense Layer_: Single layer where every TLU is connected to each Input;
+- _Output Layer_: Layer containing outputs.
+
+[Image]
+
+>[!NOTE]
+> The Perceptron consists of a single layer of TLUs.
+
+The Image Perceptron can classify instances into three different binary classes. The equation below shows the simplified equation:
+
+```math
+
+h_{W,b}(X) = \Phi (XW + b)
+
+```
+
+- $X$: Input Matrix. Has one row per instance and one column per feature;
+- $W$: Weight Matrix. Has one row per input and one column per neuron;
+- $b$: Bias Vector. Contains one bias term per neuron;
+- $\Phi$: _Activation Function_. In the case of TLUs, _Step Function_
 
 
 <!------------------------------------------------------>
