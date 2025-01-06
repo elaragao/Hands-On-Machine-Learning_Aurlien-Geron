@@ -105,8 +105,37 @@ h_{W,b}(X) = \Phi (XW + b)
 - $W$: Weight Matrix. Has one row per input and one column per neuron;
 - $b$: Bias Vector. Contains one bias term per neuron;
 - $\Phi$: _Activation Function_. In the case of TLUs, _Step Function_
-- 
+
 </details>
+
+
+
+The way the Perceptron is trained is similar to `SGD`. It operates on an idea similar to *Hebb's Rule* or *Hebbian Learning*, which states that neurons tend to increase their connections when they are fired simultaneously. For each output neuron that produced a wrong prediction, it reinforces the connection weights of the inputs that would have contributed to the correct prediction. The equation that governs this is called _Perceptron Learning Rule_, or _Weight Update_.
+
+```math
+
+w_{(i,j)}^{next \: step} = w_{(i,j)} + \eta (y_{j} - \hat{y_{j}})x_{i}
+
+```
+
+<details>
+<summary>Equation terms</summary>
+  
+- $w_{(i,j)}$: Connection weight of i^{th} input and the j^{th} neuron;
+- $y_{j}$: j^{th} ouput of training instance;
+- $\hat{y_{j}}$: j^{th} output target;
+- $x_{i}$: The i^{th} input of training instance;
+- $\eta$: Learning Rate.
+
+</details>
+
+
+
+
+
+> [!NOTE]
+> **Perceptron Learning Algorithm** can be the equivalent of using `SGDClassifier` with the following hyperparameters: `loss = "perceptron"`, `learning_rate = "constant"`, `eta0 = 1` (learning rate), `penalty = None` (no regularization).
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
