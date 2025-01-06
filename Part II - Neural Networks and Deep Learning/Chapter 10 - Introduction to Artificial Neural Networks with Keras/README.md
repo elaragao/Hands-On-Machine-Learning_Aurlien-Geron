@@ -43,11 +43,13 @@ The first model proposed for _Artificial Neurons_ operated basically as a binary
 
 <details>
 <summary>Equation terms</summary>
+  
 - $x$: Inputs;
-- $w$: Weights of values; 
+- $w$: Weights of values;
 - $b$: Bias;
 - $z$: Linear Function;
 - $h$: Step Function.
+  
 </details>
   
 The _Step Function_ can be either _Heaviside Step Function_ or _Sign Function_, less commonly:
@@ -98,10 +100,12 @@ h_{W,b}(X) = \Phi (XW + b)
 
 <details>
 <summary>Equation terms</summary>
+  
 - $X$: Input Matrix. Has one row per instance and one column per feature;
 - $W$: Weight Matrix. Has one row per input and one column per neuron;
 - $b$: Bias Vector. Contains one bias term per neuron;
 - $\Phi$: _Activation Function_. In the case of TLUs, _Step Function_
+- 
 </details>
 
 <!------------------------------------------------------>
