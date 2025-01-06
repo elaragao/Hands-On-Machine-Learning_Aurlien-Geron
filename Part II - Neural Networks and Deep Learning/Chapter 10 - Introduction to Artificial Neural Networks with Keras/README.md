@@ -38,7 +38,7 @@ The first model proposed for _Artificial Neurons_ operated basically as a binary
 
 **Perceptron** is one of the simplest forms of ANNs, based on artificial neuron models called _Threshold Logic Unit_ (TLU) or _Linear Threshold Unit_ (LTU), where the inputs and outputs are **numbers** instead of binary values, and their connections are associated with **Weights**. The algorithm, in basic form, operates in two steps, starting with linear functions for the inputs followed by a _Step Function_:
 
-- $1^{st}$: $z = w_{1}x_{1} + w_{2}x_{2} + \cdot \cdot \cdot w_{n}x_{n} + b = w^{T}x + b
+- $1^{st}$: $z = w_{1}x_{1} + w_{2}x_{2} + \cdot \cdot \cdot w_{n}x_{n} + b = w^{T}x + b$
 - $2^{nd}$: $h_{w}(x) = step(z)$
 
 - $x$: Inputs;
