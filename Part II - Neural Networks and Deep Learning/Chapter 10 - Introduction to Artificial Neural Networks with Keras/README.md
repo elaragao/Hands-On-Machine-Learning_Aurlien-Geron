@@ -130,12 +130,14 @@ w_{(i,j)}^{next \: step} = w_{(i,j)} + \eta (y_{j} - \hat{y_{j}})x_{i}
 </details>
 
 
-
-
-
 > [!NOTE]
 > **Perceptron Learning Algorithm** can be the equivalent of using `SGDClassifier` with the following hyperparameters: `loss = "perceptron"`, `learning_rate = "constant"`, `eta0 = 1` (learning rate), `penalty = None` (no regularization).
 
+
+
+Although it is not possible to perform very complex patterns because they have linear outputs, the algorithm tends to converge to a solution due to the _Perceptron Convergence Theorem_. It is possible to import the `Perceptron` class from the Scikit-Learn library.
+
+Despite this, the algorithm is unable to handle complex problems, such as XOR logic gates. This limitation is overcome by *MultiLayer Perceptron* (MLP).
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
