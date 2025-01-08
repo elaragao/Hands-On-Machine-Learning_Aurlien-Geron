@@ -143,6 +143,12 @@ Despite this, the algorithm is unable to handle complex problems, such as XOR lo
 <!------------------------------------------------------>
 ## The Multilayer Perceptron and Backpropagation
 
+MLP consists of more than one layer of TLUs. The layers closest to the inputs are called _Lower Layers_, those closest to the outputs _Upper Layers_, the final layer _Output Layers_ and the additional layers in general, _Hidden Layers_.
+
+[Image]
+
+When ANNs contain many _Hidden Layers_ they are called _Deep Neural Networks_, and the field that usually studies this is Deep Learning.
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Regression MLPs
