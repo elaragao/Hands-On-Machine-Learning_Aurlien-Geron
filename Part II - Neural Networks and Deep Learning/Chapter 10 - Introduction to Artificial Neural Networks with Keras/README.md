@@ -230,9 +230,39 @@ For classifications in MLPs, in general, the _Loss Function_ of **Cross-Entropy 
 
 # Implementing MLPs with Keras
 
+Keras is TensorFlow’s high-level deep learning API.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Building an Image Classifier Using the Sequential API
+
+
+To illustrate these cases, we will use the MNIST dataset containing 70,000 grayscale images in dimensions of 28 × 28 pixels with 10 classes representing clothing items, called Fashion MNIST. It is worth noting that linear models achieve an accuracy of 83% in this set.
+
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+
+### Using Keras to Load the Dataset
+
+
+
+<!------------------------------------------------------>
+###  Creating the model using the sequential API
+
+
+<!------------------------------------------------------>
+
+
+### Compiling the Model
+
+
+<!------------------------------------------------------>
+
+### Training and Evaluating the Model
+
+
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
