@@ -150,7 +150,7 @@ MLP consists of more than one layer of TLUs. The layers closest to the inputs ar
 When ANNs contain many _Hidden Layers_ they are called _Deep Neural Networks_, and the field that usually studies this is Deep Learning.
 
 
-To train MLP algorithms, a method called *Reverse-Mode Automatic Differentiation* (or *Reverse-Mode Autodiff*) is used, calculating the gradients automatically and efficiently. The algorithm makes two passes through the neural network (front and back) and is able to discover how the weight and bias of each neuron connection should be adjusted to reduce the error. Through this calculation, it is then possible to apply _Gradient Descent_ to train the algorithm. This combination of techniques is called *Backpropagation*.
+To train MLP algorithms, a method called **Reverse-Mode Automatic Differentiation** (or **Reverse-Mode Autodiff**) is used, calculating the gradients automatically and efficiently. The algorithm makes two passes through the neural network (front and back) and is able to discover how the weight and bias of each neuron connection should be adjusted to reduce the error. Through this calculation, it is then possible to apply _Gradient Descent_ to train the algorithm. This combination of techniques is called **Backpropagation**.
 
 
 <!------------------------------------------------------>
