@@ -185,6 +185,24 @@ Unlike how it is done in Perceptrons, a different _Activation Function_ is requi
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Regression MLPs
+In cases of Regression, to use MLPs, each prediction is made in an output neuron, or _Output_. For example, in a simple regression, there will be one output neuron, in a multivariate regression, there will be one output neuron per dimension.
+
+It is possible to use the `MLPRegressor` class from Scikit-Learn, and the simplified dataset used in Chapter 2 will be used as an example (add Link). The data will then undergo processing and will be standardized so that there are no problems with Gradient Descent. The ReLU activation function will be applied to the _Hidden Layers_ and the _Adam_ variant of Gradient Descent and L2 regularization will be used.
+
+>[!NOTE]
+> Scikit-Learn does not provide an _Activation Function_ for the _Output Layer_ and only supports MSE.
+
+
+Abaixo se tem o funcionamento básico de MLPs para regressão:
+
+| Hyperparameter | Typical Value |
+| :---         |     :---:      |
+| # Hidden Layers | Usually 1-5|
+| # Neurons Per Hidden Layer | Usually 10-100|
+| # Output Neurons | 1 per prediction dimension |
+| Hidden Activation | ReLU |
+| Output Activation | None or ReLU/Softplus (positive outputs) or sigmoid/tanh (bounded outputs)|
+| Loss Function |  MSE or Hubber if outliers|
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
