@@ -153,6 +153,28 @@ When ANNs contain many _Hidden Layers_ they are called _Deep Neural Networks_, a
 To train MLP algorithms, a method called **Reverse-Mode Automatic Differentiation** (or **Reverse-Mode Autodiff**) is used, calculating the gradients automatically and efficiently. The algorithm makes two passes through the neural network (front and back) and is able to discover how the weight and bias of each neuron connection should be adjusted to reduce the error. Through this calculation, it is then possible to apply _Gradient Descent_ to train the algorithm. This combination of techniques is called **Backpropagation**.
 
 
+
+
+
+The algorithm for this basically operates in 5 steps:
+
+- 1st Step: The algorithm operates one _mini-batch_ at a time and passes through the entire training set several times. Each pass through the set is called an **Epoch**;
+
+- 2nd Step: The _mini-batch_ enters the network, passes through the _Input Layer_, and then passes to the first _Hidden Layer_, its output is computed, which is used as input for the next _Hidden Layer_ and so on. This is called the **Forward Pass**, and the intermediate results are preserved for the **Backward Pass**;
+
+- 3rd Step: The _Output Error_ is measured;
+
+- 4th Step: The amount of each output in each layer contributes to the error is calculated analytically by the _Chain Rule_;
+
+- 5th Step:
+
+- 6th Step: The _Gradient Descent_ is used.
+
+>[!CAUTION]
+> It is important that all layers are initialized with random weights and biases.
+
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Regression MLPs
