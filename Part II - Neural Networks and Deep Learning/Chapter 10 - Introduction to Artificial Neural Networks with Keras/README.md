@@ -207,7 +207,20 @@ Abaixo se tem o funcionamento básico de MLPs para regressão:
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Classification MLPs
+MLPs, in cases of classification, can be divided into 3 main cases:
 
+- **Binary Classification**: They can have only one _Output Layer_, with the return being a sigmoid with values ​​0 or 1;
+- **Multilabel Binary Classification**: In cases, for example, of classifying _Spam_ and _Ham_ emails that can be _Urgent_ and _Non-Urgent_, there would be 2 Outputs, one for Spam/Ham and the other for Urgent/Non-Urgent, and it is also possible to use a sigmoid function;
+- **Multiclass Classification**: where classifications can be multiple options, but only one at a time, as in the case of digits 0 and 9 there would be 10 outputs, one per class, and in this case the softmax function is usually used where there is a probability of being part of each class between 0 and 1, with the total value added to 1.
+
+For classifications in MLPs, in general, the _Loss Function_ of **Cross-Entropy Loss** is used. Scikit-Learn uses the `MLPClassifier` class for these tasks, and operates in a very similar way to `MLPRegressor`, differing in that it uses the minimization of _Cross Entropy_ instead of MSE. The table that can represent the classification using MLPs:
+
+| Hyperparameter | Typical Value |
+| :--- | :---: | :---: | :---: |
+| # Hidden Layers | Usually 1-5| | |
+| # Output Neurons | 1 | 1 per binary label | 1 per class|
+| Output Layer Activation | Sigmoid | Sigmoid | Softmax |
+| Loss Function | X-Entropy | X-Entropy | X-Entropy |
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
