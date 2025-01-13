@@ -215,7 +215,9 @@ MLPs, in cases of classification, can be divided into 3 main cases:
 
 For classifications in MLPs, in general, the _Loss Function_ of **Cross-Entropy Loss** is used. Scikit-Learn uses the `MLPClassifier` class for these tasks, and operates in a very similar way to `MLPRegressor`, differing in that it uses the minimization of _Cross Entropy_ instead of MSE. The table that can represent the classification using MLPs:
 
-| Hyperparameter | Typical Value |
+
+
+| Hyperparameter | Binary Classification | Multilabel Binary Classification | Multiclass Classification |
 | :--- | :---: | :---: | :---: |
 | # Hidden Layers | Usually 1-5| | |
 | # Output Neurons | 1 | 1 per binary label | 1 per class|
