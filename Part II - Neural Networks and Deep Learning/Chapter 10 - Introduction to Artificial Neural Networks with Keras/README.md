@@ -166,7 +166,7 @@ The algorithm for this basically operates in 5 steps:
 
 - 4th Step: The amount of each output in each layer contributes to the error is calculated analytically by the _Chain Rule_;
 
-- 5th Step:
+- 5th Step: The **Backward Pass** is performed. The algorithm measures how much error contributions came from the lower layers until reaching the beginning using the _Chain Rule_ again. This measures the error of all the weights and biases of the connection;
 
 - 6th Step: The _Gradient Descent_ is used.
 
