@@ -173,7 +173,14 @@ The algorithm for this basically operates in 5 steps:
 >[!CAUTION]
 > It is important that all layers are initialized with random weights and biases.
 
+>[!NOTE]
+> Summary of **Backpropagation**: Predictions are made for mini-batches (forward pass), the error is measured, the error is passed through layers backwards to measure the error contributions of the parameters (backward pass) and then the weights and biases of each connection are adjusted (gradient descent).
 
+Unlike how it is done in Perceptrons, a different _Activation Function_ is required in MLPs. This became necessary because the _Step Function_ does not have gradients to work with (zero derivative). Some activation functions used are:
+
+- Sigmoid Function: $\sigma (z) = 1/(1 + exp(-z))$
+- Hyperbolic Tangent Function: $tanh(z) = 2 \sigma (2z) -1$
+- Rectified Liner Unit (ReLU) Function: $ReLU(z) = max(0,z)$
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
