@@ -283,6 +283,18 @@ The explanation of the following lines is:
 >[!TIP]
 > You can use the `.summary()` function to obtain information about each layer, including the name, output format, and parameter numbers.
 
+A simpler way to write the above function is:
+
+```python
+model = tf.keras.Sequential(
+	[
+		tf.keras.layers.Flatten(input_shape=[28, 28]),
+		tf.keras.layers.Dense(300, activation="relu"),
+		tf.keras.layers.Dense(100, activation="relu"),
+		tf.keras.layers.Dense(10, activation="softmax")
+	]
+)
+```
 
 
 
