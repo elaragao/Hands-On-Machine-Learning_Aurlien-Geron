@@ -277,7 +277,8 @@ The explanation of the following lines is:
 - **3**: _Input Layer_ created and added to the model, specifying the format of the instances;
 - **4**: _Flatten Layer_. Converts images into a 1D array. Does only a simple preprocessing, in our case, from [32, 28, 28] to [32,784];
 - **5**: Added a _Dense Hidden Layer_ containing 300 neurons, using the ReLU activation function. Each _Dense Layer_ contains its own weight matrix and each neuron contains a bias;
-- **6**: Second _Dense Hidden Layer_ with 100 neurons; - **7**: _Dense Output Layer_ with 10 neurons (1 per class) using the Softmax activation function.
+- **6**: Second _Dense Hidden Layer_ with 100 neurons;
+- **7**: _Dense Output Layer_ with 10 neurons (1 per class) using the Softmax activation function.
 
 >[!TIP]
 > You can use the `.summary()` function to obtain information about each layer, including the name, output format, and parameter numbers.
