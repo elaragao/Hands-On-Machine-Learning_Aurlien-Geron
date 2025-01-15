@@ -245,10 +245,45 @@ To illustrate these cases, we will use the MNIST dataset containing 70,000 grays
 
 ### Using Keras to Load the Dataset
 
+Para se exemplificar esets casos, será utilizada o conjutno de dados do MNIST contenod 70000 imagnes em grayscale em dimensão 28 × 28 pixels com 10 classes representando peças de roupa, denominado Fashion MNIST.É válido ressaltar que, modelos lineares conseguem uma acurácia de 83% neste conjunto.
 
 
 <!------------------------------------------------------>
-###  Creating the model using the sequential API
+
+### Using Keras to Load the Dataset
+The Fashion MNSIT dataset is already separated into training and testing sets, and is also shuffled, but a portion will be kept for the testing set. Unlike the MNSIT set, the Fashion MNSIT has dimensions of 28×28 instead of a 1D array of size 784, and the intensity is represented by integers from 0 to 255.
+
+<!------------------------------------------------------>
+
+
+### Creating the model using the sequential API
+
+Below we see a neural network with two _Hidden Layers_:
+
+```python
+tf.random.set_seed(42) # 1
+model = tf.keras.Sequential() # 2
+model.add(tf.keras.layers.Input(shape=[28, 28])) # 3
+model.add(tf.keras.layers.Flatten()) # 4
+model.add(tf.keras.layers.Dense(300, activation="relu")) # 5
+model.add(tf.keras.layers.Dense(100, activation="relu")) # 6
+model.add(tf.keras.layers.Dense(10, activation="softmax")) # 7
+```
+
+The explanation of the following lines is:
+
+- **1**: Random seed to make reproducible results, randomizing the initial weights of the _Hidden Layers_ and _Output Layers_;
+- **2**: Creates a _Sequential Model_, where there are individually connected stacks;
+- **3**: _Input Layer_ created and added to the model, specifying the format of the instances;
+- **4**: _Flatten Layer_. Converts images into a 1D array. Does only a simple preprocessing, in our case, from [32, 28, 28] to [32,784];
+- **5**: Added a _Dense Hidden Layer_ containing 300 neurons, using the ReLU activation function. Each _Dense Layer_ contains its own weight matrix and each neuron contains a bias;
+- **6**: Second _Dense Hidden Layer_ with 100 neurons; - **7**: _Dense Output Layer_ with 10 neurons (1 per class) using the Softmax activation function.
+
+>[!TIP]
+> You can use the `.summary()` function to obtain information about each layer, including the name, output format, and parameter numbers.
+
+
+
 
 
 <!------------------------------------------------------>
