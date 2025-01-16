@@ -297,7 +297,11 @@ model = tf.keras.Sequential(
 ```
 
 
-If desired, it is possible to change the names of each Layer, but Keras gives unique names to each one.
+If desired, it is possible to change the names of each layer, but Keras gives unique names to each layer. The `get_layer()` method shows the names of the model layers, just as the `get_weight()` method returns the weights, and `set_weight()` allows them to be changed.
+
+>[!NOTE]
+> The weights are initialized randomly, and the biases can be initialized to zero. If you want a different initialization, you can use `kernel_initializeer` for weights or `bias_initializer` for bias.
+
 
 <!------------------------------------------------------>
 
