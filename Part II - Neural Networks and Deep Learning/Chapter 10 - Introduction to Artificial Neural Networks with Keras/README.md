@@ -308,12 +308,22 @@ If desired, it is possible to change the names of each layer, but Keras gives un
 
 ### Compiling the Model
 
+After creating the model, it is necessary to compile it using `compile()`, specifying the _Loss Function_ and _Optimizer_, and other optional arguments.
 
+```python
+model.compile(loss="sparse_categorical_crossentropy", optimizer="sgd", metrics=["accuracy"])
+```
+
+The reason for using this _Loss Function_ is because there are sparse labels, that is, there is only one possible result per class, and the classes are exclusive.
 <!------------------------------------------------------>
 
 ### Training and Evaluating the Model
 
+To do the training, it is necessary to call the `fit()` function, using the chosen inputs (X_train), the target classes (y_train), the number of epochs for training and the validation data (optional).
 
+```python
+history = model.fit(X_train, y_train, epochs = 30, validation_data = (X_valid, y_valid))
+```
 
 
 <!------------------------------------------------------>
