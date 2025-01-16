@@ -317,6 +317,26 @@ If desired, it is possible to change the names of each layer, but Keras gives un
 
 
 <!------------------------------------------------------>
+
+### Using the Model to Make Predictions
+
+To make the model prediction, use the `predict()` method
+
+```python
+y_proba = model.predict(X)
+```
+
+Using the NumPy method, `argmax()`, the class with the highest probability is returned:
+
+```python
+import numpy as np
+
+y_pred = y_proba.argmax(axis = -1) # Return class with greater probability
+
+np.array(class_names)[y_pred] # Return class name with greater probability
+```
+
+<!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Building a Regression MLP Using the Sequential API
 
