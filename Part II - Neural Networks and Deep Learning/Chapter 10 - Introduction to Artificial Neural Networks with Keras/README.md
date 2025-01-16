@@ -326,6 +326,16 @@ history = model.fit(X_train, y_train, epochs = 30, validation_data = (X_valid, y
 ```
 
 
+
+>[!NOTE]
+> Keras shows the number of _mini-batches_ being processed during each _epoch_. The default size of the _batches_ is 32, and since we are training 55000 images, there are 1719 _batches_ per _epoch_.
+
+>[!TIP]
+> If there are classes with a larger number of representatives than others, it is possible to adjust their weight using the `class_weight()` argument.
+
+The `fit()` method returns the _History_ object, containing the training parameters (`history.params`), the list of epochs (`history.epoch`) and the dictionary containing the _loss_ and other extra metrics (`history.history`).
+
+
 <!------------------------------------------------------>
 
 ### Using the Model to Make Predictions
@@ -345,6 +355,7 @@ y_pred = y_proba.argmax(axis = -1) # Return class with greater probability
 
 np.array(class_names)[y_pred] # Return class name with greater probability
 ```
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
