@@ -297,7 +297,7 @@ model = tf.keras.Sequential(
 ```
 
 
-
+If desired, it is possible to change the names of each Layer, but Keras gives unique names to each one.
 
 <!------------------------------------------------------>
 
