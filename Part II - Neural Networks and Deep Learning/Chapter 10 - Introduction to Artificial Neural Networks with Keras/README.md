@@ -383,6 +383,11 @@ np.array(class_names)[y_pred] # Return class name with greater probability
 
 
 
+For regression cases, we will use the California Housing dataset again. It will consist of 3 _Hidden Layers_ composed of 50 neurons.
+
+The API construction will be similar to that used for regression. The difference is that the _Output Layer_ will be only one neuron, the _Activation Function_ will not be used, the _Loss Function_ is MSE, the metric is RMSE and the _Adam Optimizer_ will be used as _Optimizer_.
+
+
 ```python
 tf.random.set_seed(42)
 norm_layer = tf.keras.layers.Normalization(input_shape=X_train.shape[1:])
