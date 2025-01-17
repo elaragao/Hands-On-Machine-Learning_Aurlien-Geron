@@ -336,6 +336,25 @@ history = model.fit(X_train, y_train, epochs = 30, validation_data = (X_valid, y
 The `fit()` method returns the _History_ object, containing the training parameters (`history.params`), the list of epochs (`history.epoch`) and the dictionary containing the _loss_ and other extra metrics (`history.history`).
 
 
+
+>[!NOTE]
+> It is interesting to note that the _training error_ is computed using a moving average during each epoch, while the _validation error_ is computed at the **end** of each epoch.
+> Also, the performance of the _training set_ tends to outperform the _validation set_ when trained for long enough (_training set_ usually approaches 100%).
+
+
+
+If the performance is still not what is desired, the hyperparameters can be adjusted in the following order:
+- Learning rate;
+- Try another optimizer;
+- Model hyperparameters (like number of neurons per layer, number of layers, activation functions, `batch_size`)
+
+Once the accuracy that satisfies the model is obtained, it is evaluated in the _test set_ using the `evaluate()` method:
+
+```python
+model.evaluate(X_test, y_test)
+```
+
+
 <!------------------------------------------------------>
 
 ### Using the Model to Make Predictions
@@ -355,6 +374,7 @@ y_pred = y_proba.argmax(axis = -1) # Return class with greater probability
 
 np.array(class_names)[y_pred] # Return class name with greater probability
 ```
+
 
 
 <!------------------------------------------------------>
