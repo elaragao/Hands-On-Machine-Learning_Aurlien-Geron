@@ -385,7 +385,7 @@ np.array(class_names)[y_pred] # Return class name with greater probability
 
 For regression cases, we will use the California Housing dataset again. It will consist of 3 _Hidden Layers_ composed of 50 neurons.
 
-The API construction will be similar to that used for regression. The difference is that the _Output Layer_ will be only one neuron, the _Activation Function_ will not be used, the _Loss Function_ is MSE, the metric is RMSE and the _Adam Optimizer_ will be used as _Optimizer_.
+The API construction will be similar to that used for regression. The difference is that the _Output Layer_ is only one neuron, the _Activation Function_ will not be used and the _Loss Function_ is MSE, the metric is RMSE and the _Adam Optimizer_ will be used as _Optimizer_. Furthermore, instead of the _Flatten Layer_, a _Normalization Layer_ is used, which is adjusted in the model **before** `fit()` using the `adapt()` method.
 
 
 ```python
