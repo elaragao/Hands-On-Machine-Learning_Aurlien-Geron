@@ -413,6 +413,12 @@ y_pred = model.predict(X_new)
 <!------------------------------------------------------>
 ## Building Complex Models Using the Functional API
 
+
+An example of a non-sequential neural network is the so-called _Wild & Deep_ (shown in the image below), which connects the input (or part of it) to the output, making it possible to learn deep patterns (through the deep path) and simple rules (through the short path). It differs from the usual MLPs, where everyone starts from and through the same path.
+
+[Image]
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Using the Subclassing API to Build Dynamic Models
