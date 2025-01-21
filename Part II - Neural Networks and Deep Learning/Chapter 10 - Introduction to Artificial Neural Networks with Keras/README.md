@@ -422,6 +422,26 @@ An example of a non-sequential neural network is the so-called _Wild & Deep_ (sh
 The code below shows how the image above would be written.
 Initially, the first 5 lines create the _Layers_. The following lines are used to create the "path" between the _input_ and the _output_.
 
+
+
+
+```python
+normalization_layer = tf.keras.layers.Normalization()
+hidden_layer1 = tf.keras.layers.Dense(30, activation="relu")
+hidden_layer2 = tf.keras.layers.Dense(30, activation="relu")
+concat_layer = tf.keras.layers.Concatenate()
+output_layer = tf.keras.layers.Dense(1)
+
+input_ = tf.keras.layers.Input(shape=X_train.shape[1:])
+normalized = normalization_layer(input_)
+hidden1 = hidden_layer1(normalized)
+hidden2 = hidden_layer2(hidden1)
+concat = concat_layer([normalized, hidden2])
+output = output_layer(concat)
+
+model = tf.keras.Model(inputs=[input_], outputs=[output])
+```
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Using the Subclassing API to Build Dynamic Models
