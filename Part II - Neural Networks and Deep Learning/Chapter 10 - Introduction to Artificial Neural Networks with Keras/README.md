@@ -420,8 +420,9 @@ An example of a non-sequential neural network is the so-called _Wild & Deep_ (sh
 
 
 The code below shows how the image above would be written.
-Initially, the first 5 lines create the _Layers_. The following lines are used to create the "path" between the _input_ and the _output_.
+Initially, the first 5 lines create the _Layers_, being _Normalization_, 2 _Hidden Layers_ with 30 neurons and _ReLU_ activation function, a _Concatenate Layer_ and an _Output Layer_ with one neuron. The following lines are used to make the "path" between the _input_ and the _output_.
 
+The `normalization_layer` is used as a function, passing the `input_` as an object, and this is done consecutively with the layers until reaching the output, connecting them sequentially. The `concat_layer` connects both sequentially (for the _Deep_ case) and directly from the `normalization_layer` (for the _Wide_ case).
 
 
 
