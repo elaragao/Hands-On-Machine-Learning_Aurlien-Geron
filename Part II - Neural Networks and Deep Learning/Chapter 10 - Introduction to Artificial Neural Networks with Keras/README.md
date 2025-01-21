@@ -419,6 +419,9 @@ An example of a non-sequential neural network is the so-called _Wild & Deep_ (sh
 [Image]
 
 
+The code below shows how the image above would be written.
+Initially, the first 5 lines create the _Layers_. The following lines are used to create the "path" between the _input_ and the _output_.
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Using the Subclassing API to Build Dynamic Models
