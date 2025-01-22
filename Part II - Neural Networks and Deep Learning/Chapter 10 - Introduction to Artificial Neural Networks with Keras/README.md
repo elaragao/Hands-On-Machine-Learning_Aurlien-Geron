@@ -527,6 +527,40 @@ y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
 <!------------------------------------------------------>
 ## Using the Subclassing API to Build Dynamic Models
 
+
+Both sequential and functional APIs are declarative. You start by declaring which layers you want to use, how to connect them, and then feeding them as a model. Despite its many advantages, the model is static, meaning it cannot operate on models that involve things like loops, conditionals, branching, or other dynamics. Subclasses are used for this:
+
+
+```python
+class WideAndDeepModel(tf.keras.Model):
+    def __init__(self, units=30, activation="relu", **kwargs):
+        super().__init__(**kwargs)  # needed to support naming the model
+        self.norm_layer_wide = tf.keras.layers.Normalization()
+        self.norm_layer_deep = tf.keras.layers.Normalization()
+        self.hidden1 = tf.keras.layers.Dense(units, activation=activation)
+        self.hidden2 = tf.keras.layers.Dense(units, activation=activation)
+        self.main_output = tf.keras.layers.Dense(1)
+        self.aux_output = tf.keras.layers.Dense(1)
+        
+    def call(self, inputs):
+        input_wide, input_deep = inputs
+        norm_wide = self.norm_layer_wide(input_wide)
+        norm_deep = self.norm_layer_deep(input_deep)
+        hidden1 = self.hidden1(norm_deep)
+        hidden2 = self.hidden2(hidden1)
+        concat = tf.keras.layers.concatenate([norm_wide, hidden2])
+        output = self.main_output(concat)
+        aux_output = self.aux_output(hidden2)
+        return output, aux_output
+
+
+model = WideAndDeepModel(30, activation="relu", name="my_cool_model")
+```
+
+
+The above class does the same thing as what was done in the previous subchapter, where the construction is done in `__init__`, and the subsequent operations in `call()`.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Saving and Restoring a Model
@@ -553,6 +587,8 @@ y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Using Callbacks
+
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
