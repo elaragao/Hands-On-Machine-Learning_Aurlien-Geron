@@ -451,6 +451,25 @@ model = tf.keras.Model(inputs=[input_], outputs=[output])
 <!------------------------------------------------------>
 ## Saving and Restoring a Model
 
+
+To save a model, you can use the simple command:
+
+```python
+model.save("my_keras_model", save_format="tf")
+```
+Note that the format `save_format="tf"` refers to the TensorFlow Saved Model Format.
+
+You can also load models with:
+
+```python
+model = tf.keras.models.load_model("my_keras_model")
+y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
+```
+
+>[!NOTE]
+> You can save only the weights using `save_weights()` and `load_weights()` to obtain only the parameters. If you train models lasting days or weeks, you need to constantly save "checkpoints" to avoid future problems.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Using Callbacks
