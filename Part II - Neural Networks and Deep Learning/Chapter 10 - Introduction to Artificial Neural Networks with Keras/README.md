@@ -457,7 +457,7 @@ norm_deep = norm_layer_deep(input_deep)
 hidden1 = tf.keras.layers.Dense(30, activation="relu")(norm_deep)
 hidden2 = tf.keras.layers.Dense(30, activation="relu")(hidden1)
 concat = tf.keras.layers.concatenate([norm_wide, hidden2])
-output = tf.keras.layers.Dense(1)(concat)
+output = tf.keras.layers.Dense(1)(concat) # Remember that part for the next code example
 model = tf.keras.Model(inputs=[input_wide, input_deep], outputs=[output])
 ```
 
@@ -489,6 +489,39 @@ y_pred = model.predict((X_new_wide, X_new_deep))
 >[!NOTE]
 > This can be used for tasks such as locating and classifying an object in an image.
 
+
+
+In addition, it is also possible to use a different _Output_ to perform regularization, this being an _Auxiliary Output_, to see if the underlying part of the network learns something useful on its own, without depending on the rest of the network. Each one should have its own _Loss Function_, with different weights (giving more weight to the main output, and less to the auxiliary). The image below demonstrates how this works:
+
+[Image]
+
+The code for these steps is:
+
+```python
+# [...] Same as above, up to the main output layer
+output = tf.keras.layers.Dense(1)(concat)
+aux_output = tf.keras.layers.Dense(1)(hidden2)
+model = tf.keras.Model(inputs=[input_wide, input_deep], outputs=[output, aux_output])
+
+
+optimizer = tf.keras.optimizers.Adam(learning_rate=1e-3)
+model.compile(loss=("mse", "mse"), loss_weights=(0.9, 0.1),
+	optimizer=optimizer, metrics=["RootMeanSquaredError"])
+```
+
+To train the model, there must be different labels for different outputs. therefore, there must be one output for the main output, and another for the auxiliary output. It is also necessary to clarify that the sums of the Loss weights must be treated as individual metrics:
+
+
+```python
+norm_layer_wide.adapt(X_train_wide)
+norm_layer_deep.adapt(X_train_deep)
+history = model.fit((X_train_wide, X_train_deep), (y_train, y_train), epochs=20,validation_data=((X_valid_wide,
+
+eval_results = model.evaluate((X_test_wide, X_test_deep), (y_test, y_test))
+weighted_sum_of_losses, main_loss, aux_loss, main_rmse, aux_rmse = eval_results
+
+y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
+```
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
