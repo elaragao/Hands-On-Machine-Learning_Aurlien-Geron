@@ -588,7 +588,12 @@ y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
 <!------------------------------------------------------>
 ## Using Callbacks
 
+The `fit()` method accepts the call of _Callbacks_, being specified in the code as a list of objects. A widely used example is the use in `ModelCheckpoint`:
 
+```python
+checkpoint_cb = tf.keras.callbacks.ModelCheckpoint("my_checkpoints", save_weights_only=True)
+history = model.fit([...], callbacks=[checkpoint_cb])
+```
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
