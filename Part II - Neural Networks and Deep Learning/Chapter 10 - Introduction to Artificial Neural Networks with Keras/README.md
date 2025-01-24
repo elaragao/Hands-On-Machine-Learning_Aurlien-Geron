@@ -626,6 +626,13 @@ Additionally, it is possible to create custom _callbacks_, in addition to severa
 
 # Fine-Tuning Neural Network Hyperparameters
 
+
+Due to the great flexibility of neural networks, many adjustments to many existing hyperparameters are necessary. A less common option is to convert the Keras model to a Scikit-Learn model using `KerasRegressor` or `KerasClassifier`. A more common way is to use the **Keras Tuner** library, which offers several solutions and has excellent integration with TensorBoard.
+
+
+
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Hidden Layers
