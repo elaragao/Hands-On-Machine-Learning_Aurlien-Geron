@@ -588,12 +588,17 @@ y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))
 <!------------------------------------------------------>
 ## Using Callbacks
 
-The `fit()` method accepts the call of _Callbacks_, being specified in the code as a list of objects. A widely used example is the use in `ModelCheckpoint`:
+**Callbacks** are arguments called during the `fit()` method and are used to customize model behaviors. _callbacks_ are called before and after each _training_, _epoch_ and processing of each _batch_. A common example is the use in `ModelCheckpoint`, where checkpoints are saved without regular intervals:
 
 ```python
 checkpoint_cb = tf.keras.callbacks.ModelCheckpoint("my_checkpoints", save_weights_only=True)
 history = model.fit([...], callbacks=[checkpoint_cb])
 ```
+
+>[!NOTE]
+> In cases where you have a _validation set_, you can use the argument `save_best_only = True` to save only the best performance so far. It is used both to prevent overfitting and as an alternative to using Early Stopping.
+
+Another example of a callback is `EarlyStopping`, which stops training when there is no further progress in the validation set for a few epochs.
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
