@@ -598,8 +598,15 @@ history = model.fit([...], callbacks=[checkpoint_cb])
 >[!NOTE]
 > In cases where you have a _validation set_, you can use the argument `save_best_only = True` to save only the best performance so far. It is used both to prevent overfitting and as an alternative to using Early Stopping.
 
-Another example of a callback is `EarlyStopping`, which stops training when there is no further progress in the validation set for a few epochs.
+Another example of a callback is `EarlyStopping`, which stops training when there is no more progress in the validation set for some epochs. The `restore_best_weights = True` argument causes the best model from the training to be returned after the training is complete. Ideally, both `ModelCheckpoint` and `EarlyStopping` can be used together.
 
+
+```python
+early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)
+history = model.fit([...], callbacks=[checkpoint_cb, early_stopping_cb])
+```
+
+Additionally, it is possible to create custom _callbacks_, in addition to several others available through `TensorFlow` itself.
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 
