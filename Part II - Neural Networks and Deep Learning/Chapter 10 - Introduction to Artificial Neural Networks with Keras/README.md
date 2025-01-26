@@ -658,6 +658,15 @@ def build_model(hp):
     return model
 ```
 
+
+
+Still in the MNIST Fashion set, in the first part of the hyperparameter adjustment function, 4 are set (they will be explained later). Then, in the second part of the function, a `Sequential` is created starting with a _Flatten Layer_, defining the number of _Hidden Layers_, and then defining the _Output Layer_ with 10 neurons (one per class). The 4 hyperparameters set at the beginning of the function are:
+
+- number of hidden layers (`n_hidden`): In the function, in order of what is presented, it first analyzes whether the name "n_hidden" exists in the `HyperParameters` hp object, and if not, it registers it with values ​​between 0 and 8, and returns a default value of 2 if it has not been set before;
+- number of neurons per layer(`n_neurons`): acts in a similar way to the previous function; - learning rate (`learning_rate`): unlike the two previous functions, it has the `sampling` argument, which basically defines how the steps will operate between the minimum and maximum values.
+- type of optimizer (`optmizer`): decides between SGD and Adam.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Hidden Layers
