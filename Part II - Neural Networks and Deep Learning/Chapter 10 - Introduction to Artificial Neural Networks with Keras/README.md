@@ -668,6 +668,23 @@ Still in the MNIST Fashion set, in the first part of the hyperparameter adjustme
 - type of optimizer (`optmizer`): decides between SGD and Adam.
 
 
+
+
+After defining the `build_model` function, a common way is to `kt.RandomSearch`, and then call the `search()` method:
+
+```python
+random_search_tuner = kt.RandomSearch(
+build_model, objective="val_accuracy", max_trials=5, overwrite=True,
+directory="my_fashion_mnist", project_name="my_rnd_search", seed=42)
+
+random_search_tuner.search(X_train, y_train, epochs=10,
+valid_data=(X_valid, y_valid))
+```
+
+In this code, 5 trials (`max_trials`) are run with the highest validation accuracy objective (`objective`) containing 10 epochs (`epoch`) with a directory (`directory`) "my_fashion_mnist" and a subdirectory (`project_name`) "my_rnd_search".
+
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Hidden Layers
