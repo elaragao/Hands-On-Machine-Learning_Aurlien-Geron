@@ -693,6 +693,13 @@ In this code, 5 trials (`max_trials`) are run with the highest validation accura
 <!------------------------------------------------------>
 ## Number of Neurons per Hidden Layer
 
+The first and last layers (Input and Output Layer) depend exclusively on the input and output data. In the case of MNIST Fashion, for the _Input Layer_, it requires 784 inputs (pixels 28 × 28) and in the _Output Layer_ it has 10 neurons (10 different classes).
+
+In the case of _Hidden Layers_, the most common is to structure them in the form of a pyramid, with more layers at the base and fewer as they approach the _Output Layer_. For example, if there were 3 _Hidden Layers_ in the MNIST set, the first would have 300, the second 200 and the third 100. This was no longer used when it was discovered that using the **same number of neurons** in the layers yields almost the same result, sometimes even better.
+
+An approach used for both the number of layers and the number of neurons is called "_stretch pants_". It consists of using a greater number of layers and neurons, and applying an _Early Stop_ to them.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Learning Rate, Batch Size, and Other Hyperparameters
