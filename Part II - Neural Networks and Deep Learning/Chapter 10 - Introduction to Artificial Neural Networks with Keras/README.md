@@ -693,6 +693,11 @@ In this code, 5 trials (`max_trials`) are run with the highest validation accura
 In many cases it is possible to start with a _Hidden Layer_. When you start to approach more complex cases, it is necessary to use deeper networks, using fewer neurons than shallow networks and with better performance with the same amount of data.
 
 
+One way to understand why this is the case is to think about the real world. Much of the world also works in a hierarchical way. Thinking about it in a basic way, in drawings, we would have as a lower _Hidden Layer_ low-level structures like lines, in different shapes and orientations. When combining these, we would have intermediate _Hidden Layers_, containing shapes like circles, squares, triangles, etc. And then, in higher _Hidden Layers_, there would be the combination of these intermediate structures, giving shapes to things like faces, scenes. This provides the ability to **Generalize Datasets**.
+
+Using examples of trained models, if you have a model trained to recognize faces in photos, you can use this as an intermediate layer to recognize hairstyles or eye colors in other training, also using weights and biases from the previous layers. This is called **Transfer Learning**.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Neurons per Hidden Layer
