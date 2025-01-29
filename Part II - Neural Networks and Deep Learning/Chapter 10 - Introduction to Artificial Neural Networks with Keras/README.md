@@ -712,3 +712,12 @@ An approach used for both the number of layers and the number of neurons is call
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Learning Rate, Batch Size, and Other Hyperparameters
+
+
+Some other important hyperparameters are:
+
+- **Learning Rate**:
+- **Optimizer**:
+- **Batch Size**:
+- **Activation Function**: In most cases, ReLU already performs a good job in the _Hidden Layers_, but in the _Output Layers_ it depends on the task;
+- **Number of Iterations**: In most cases, the use of _Early Stopping_ already delivers an excellent result.
