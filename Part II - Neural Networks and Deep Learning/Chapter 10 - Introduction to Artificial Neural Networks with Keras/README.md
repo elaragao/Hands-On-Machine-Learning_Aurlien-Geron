@@ -689,6 +689,10 @@ In this code, 5 trials (`max_trials`) are run with the highest validation accura
 <!------------------------------------------------------>
 ## Number of Hidden Layers
 
+
+In many cases it is possible to start with a _Hidden Layer_. When you start to approach more complex cases, it is necessary to use deeper networks, using fewer neurons than shallow networks and with better performance with the same amount of data.
+
+
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Neurons per Hidden Layer
