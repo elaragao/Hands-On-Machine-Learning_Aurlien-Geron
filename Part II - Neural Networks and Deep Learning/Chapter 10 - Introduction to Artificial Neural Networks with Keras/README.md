@@ -684,6 +684,29 @@ valid_data=(X_valid, y_valid))
 In this code, 5 trials (`max_trials`) are run with the highest validation accuracy objective (`objective`) containing 10 epochs (`epoch`) with a directory (`directory`) "my_fashion_mnist" and a subdirectory (`project_name`) "my_rnd_search".
 
 
+It is possible to obtain the best models:
+
+```python
+top3_models = random_search_tuner.get_best_models(num_models=3)
+best_model = top3_models[0]
+```
+
+As well as viewing the best hyperparameters:
+
+```python
+top3_params = random_search_tuner.get_best_hyperparameters(num_trials=3)
+top3_params[0].values
+```
+
+The tuners are guided by _Oracle_ (more information in the Keras documentation), and using this it is possible to see the summary of each trial:
+
+```python
+best_trial = random_search_tuner.oracle.get_best_trials(num_trials=1)[0]
+best_trial.summary()
+```
+
+
+
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
