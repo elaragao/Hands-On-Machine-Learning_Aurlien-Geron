@@ -716,8 +716,8 @@ An approach used for both the number of layers and the number of neurons is call
 
 Some other important hyperparameters are:
 
-- **Learning Rate**:
-- **Optimizer**:
-- **Batch Size**:
-- **Activation Function**: In most cases, ReLU already performs a good job in the _Hidden Layers_, but in the _Output Layers_ it depends on the task;
-- **Number of Iterations**: In most cases, the use of _Early Stopping_ already delivers an excellent result.
+- **Learning Rate**: An ideal rate is usually half of the _Maximum Learning Rate_ (Chapter 4). A common strategy is to start from a very low value and work your way up to a large value through iterations. For better observations, it is interesting to plot a graph with the Loss and the Learning Rate (Seen in Chapter 11);
+- **Optimizer**: It will be seen in the next chapter, but the default _Mini Batch Gadient Descent_ is widely used;
+- **Batch Size**: Many studies have been published indicating what would be the most appropriate, larger or smaller _Batch Sizes_. When using large values ​​directly, you should consider whether or not they will fit in the GPU RAM. In general, a good strategy is to use a large _Batch Size_ using a _Learning Rate Warmup_ (It will be covered in Chapter 11), and if the training becomes unstable or bad, use small _Batch Sizes_;
+- **Activation Function**: In most cases, ReLU already performs a good job in _Hidden Layers_, but in _Output Layers_ it depends on the task;
+- **Number of Iterations**: In most cases, using _Early Stopping_ already delivers an excellent result.
