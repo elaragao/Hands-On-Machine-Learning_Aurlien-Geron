@@ -706,7 +706,35 @@ best_trial.summary()
 ```
 
 
+Em alguns asos é necessário fazer o ajuste de hiperparametros no pré processamento, como _Batch-Size_. Nestes casos, é necessário declarar como subclasse `kt.HyperModel` e então definir dois métodos, `build()` (que pera como a função `build_model()`) e `fit()` (utiliza objeto HyperParameters e modelo, faz ajustes e retorna objeto History). A classe abaixo faz os mesmos ajustes feitos anterioremnte, mais um hiperparametro booleano `normalize` para controlar se padroniza ou não dados de treinaemnto:
 
+```python
+class MyClassificationHyperModel(kt.HyperModel):
+
+	def build(self, hp):
+		return build_model(hp)
+
+	def fit(self, hp, model, X, y, **kwargs):
+		if hp.Boolean("normalize"):
+			norm_layer = tf.keras.layers.Normalization()
+			X = norm_layer(X)
+		return model.fit(X, y, **kwargs)
+```
+
+
+
+
+
+
+
+```python
+hyperband_tuner = kt.Hyperband(
+	 MyClassificationHyperModel(), objective="val_accuracy", seed=42,
+	 max_epochs=10, factor=3, hyperband_iterations=2,
+	 overwrite=True, directory="my_fashion_mnist", project_name="hyperband"
+)
+
+```
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
