@@ -726,16 +726,28 @@ class MyClassificationHyperModel(kt.HyperModel):
 
 
 
+You can pass an instance of this class to any tuner you want, before passing it to the `build_model` function, for example, `kt.Hyperband`. In the code below, `HyperBand` operates similarly to the `HalvingSearchCV` function. It starts different models for a few epochs, and eliminates the worst models, keeping only the $1/factor$ (in this case, one third), repeating this until only the best model remains. The process is repeated twice (`hyperband_iterations=2`).
+
+
 
 ```python
 hyperband_tuner = kt.Hyperband(
-	 MyClassificationHyperModel(), objective="val_accuracy", seed=42,
-	 max_epochs=10, factor=3, hyperband_iterations=2,
-	 overwrite=True, directory="my_fashion_mnist", project_name="hyperband"
-)
+	MyClassificationHyperModel(), objective="val_accuracy", seed=42,
+	max_epochs=10, factor=3, hyperband_iterations=2,
+	overwrite=True, directory="my_fashion_mnist", project_name="hyperband")
 
 ```
 
+So, to apply the HyperBand Tuner, the _Callback_ Tensorboard is used. It is necessary to point to the root directory of the project to create different subdirectories per trial, and also define an `EarlyStopping`.
+
+```python
+root_logdir = Path(hyperband_tuner.project_dir) / "tensorboard"
+tensorboard_cb = tf.keras.callbacks.TensorBoard(root_logdir)
+early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=2)
+hyperband_tuner.search(X_train, y_train, epochs=10,
+ validation_data=(X_valid, y_valid),
+ callbacks=[early_stopping_cb, tensorboard_cb])
+```
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 ## Number of Hidden Layers
