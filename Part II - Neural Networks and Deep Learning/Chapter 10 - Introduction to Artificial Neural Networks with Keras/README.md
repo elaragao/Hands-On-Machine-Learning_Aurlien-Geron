@@ -744,9 +744,24 @@ So, to apply the HyperBand Tuner, the _Callback_ Tensorboard is used. It is nece
 root_logdir = Path(hyperband_tuner.project_dir) / "tensorboard"
 tensorboard_cb = tf.keras.callbacks.TensorBoard(root_logdir)
 early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=2)
+
 hyperband_tuner.search(X_train, y_train, epochs=10,
- validation_data=(X_valid, y_valid),
- callbacks=[early_stopping_cb, tensorboard_cb])
+	 validation_data=(X_valid, y_valid),
+	 callbacks=[early_stopping_cb, tensorboard_cb]
+)
+```
+
+
+An alternative to HyperBand would be to use `kt.BayesianOptimization tuner`. It uses the _Gaussian Process_ to analyze which regions are most promising to be adjusted. The algorithm has its own hyperparameters, being `alpha`, which represents the noise level, and `beta`, which identifies how much you want the algorithm to explore.
+
+```python
+bayesian_opt_tuner = kt.BayesianOptimization(
+	MyClassificationHyperModel(), objective="val_accuracy", seed=42,
+	max_trials=10, alpha=1e-4, beta=2.6,
+	overwrite=True, directory="my_fashion_mnist", project_name="bayesian_opt"
+)
+
+bayesian_opt_tuner.search([...])
 ```
 <!------------------------------------------------------>
 <!------------------------------------------------------>
