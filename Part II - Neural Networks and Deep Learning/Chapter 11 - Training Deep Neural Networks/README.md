@@ -1,5 +1,8 @@
 # Training Deep Neural Networks
 
+The previous chapter presented solutions to somewhat simpler problems. Now, if one wants to address more complex problems, such as detecting multiple objects in images, more elaborate methods will be necessary.
+
+Problems such as slow training, little data, _overfitting_ of thousands of parameters, gradient adjustments, etc. This chapter will address these and other possible problems, as well as techniques to overcome and solve them.
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
