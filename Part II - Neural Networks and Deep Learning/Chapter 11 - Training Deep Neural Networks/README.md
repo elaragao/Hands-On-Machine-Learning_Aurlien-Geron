@@ -9,7 +9,7 @@ Problems such as slow training, little data, _overfitting_ of thousands of param
 <!------------------------------------------------------>
 # The Vanishing/Exploding Gradients Problems
 
-
+As discussed in Chapter 10, BackPropagation in its second phase propagates in the _Output → Input_ direction, along with the error gradient.
 
 <!------------------------------------------------------>
 <!------------------------------------------------------>
