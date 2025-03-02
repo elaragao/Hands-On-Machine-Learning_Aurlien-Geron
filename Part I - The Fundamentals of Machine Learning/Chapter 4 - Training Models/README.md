@@ -21,6 +21,7 @@ A, *A*,**A**, $\textbf{A}$ , $A$
 \mathbf{A} = \begin{pmatrix} a & b \\ c & d \end{pmatrix}
 ```
 
+teste 
 
 ```math
 \mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
