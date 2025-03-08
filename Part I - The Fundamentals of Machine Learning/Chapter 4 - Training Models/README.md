@@ -678,7 +678,7 @@ To train a model with a high probability of a target class, **cross-entropy** is
 
 ```math
 
-J(\Theta) = - \frac{1}{m} \sum_{i=1}^{m} \sum_{k=1}^{K} log(\hat{p} _{k} ^{(i)})
+J(\Theta) = - \frac{1}{m} \sum_{i=1}^{m} \sum_{k=1}^{K} y_{k}^{(i)} log(\hat{p} _{k} ^{(i)})
 
 ```
 
